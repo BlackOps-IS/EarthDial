@@ -32,7 +32,8 @@ EarthDial is the first open-source system that compiles real-time reality into a
 
 🎬 Watch the demo video below.
 
-GitHub: [INSERT YOUR REPO LINK]
+🎮 Live demo: https://earthdial.ai
+📂 GitHub: [INSERT YOUR REPO LINK]
 
 Carter Abdallah Nader Khalil — thank you for the GTC Golden Ticket opportunity. I believe prevention is the future, and NVIDIA's technology makes it possible.
 
@@ -41,9 +42,10 @@ Carter Abdallah Nader Khalil — thank you for the GTC Golden Ticket opportunity
 ---
 
 ## POSTING CHECKLIST:
-- [ ] Record and attach video (see VIDEO_SCRIPT.md)
+- [ ] Record and attach video (see VIDEO_SCRIPT.md / VOICEOVER_SCRIPT.md)
 - [ ] Tag Carter Abdallah on LinkedIn
 - [ ] Tag Nader Khalil on LinkedIn
 - [ ] Include #NVIDIAGTC hashtag
 - [ ] Include GitHub repo link
+- [ ] Include https://earthdial.ai live demo link
 - [ ] Post before midnight Feb 15, 2026

@@ -1,143 +1,101 @@
-# EarthDial v3 — Voiceover Script (Demo Loop)
+# EarthDial v3 — Voiceover Sync Guide
 
-## RECORDING INSTRUCTIONS
-- Total runtime: **90 seconds** (5 phases × ~18s each)
-- Voice: Confident, calm, authoritative — like an NVIDIA keynote
-- Pace: Measured, clear. Let the visuals breathe.
-- You control the demo with PREV/NEXT buttons while the voiceover plays
-- **Each phase is timed below with exact timestamps**
+## AUDIO: final.mp3 — Runtime: 1:42 (102 seconds)
 
----
-
-## FULL SCRIPT (Copy this for AI voice generation)
-
-```
-What if we could prevent wildfires — before they start?
-
-This is EarthDial version three. A wildfire prevention and counterfactual decision system — built on NVIDIA Nemotron and GPU-accelerated graph optimization.
-
-Right now, you're looking at Sonoma County, California. Sixteen hundred terrain cells, each analyzed in real-time. The red columns you see? Those are extreme ignition risk zones — driven by forty-five mile per hour Diablo winds, eight percent humidity, and ninety-eight degree heat. This is a Red Flag Warning.
-
-The blue arcs are live power transmission lines. Every one of them is a potential ignition source. Our risk engine scores each line using vegetation encroachment, equipment age, wind interaction, and voltage — all weighted and computed simultaneously.
-
-Now watch. Our GPU graph optimizer evaluates every possible combination of power shutoffs — and finds the surgical cut that maximizes risk reduction while keeping hospitals, shelters, and emergency services online. No brute force guessing. Intelligent de-energization.
-
-Here's the counterfactual. On the left — before intervention. On the right — after. Risk drops. Extreme cells eliminated. And this isn't a simulation — this is a decision engine. Every action is explainable, every tradeoff is quantified.
-
-Finally — Nemotron. NVIDIA's Llama three point three Nemotron Super forty-nine B takes all of this data — the risk surface, the weather, the shutoff plan, the affected facilities — and generates a formal, operator-ready prevention brief. Not a suggestion. A prevention order. Actionable, evidence-grounded, equity-aware.
-
-This is EarthDial. Prevention, not response. Built with NVIDIA.
-```
+### ElevenLabs Settings Used
+- **Speed:** ~40% (slightly slower than center)
+- **Stability:** ~55% (center)
+- **Similarity:** ~75% (high)
+- **Style Exaggeration:** ~15% (minimal)
+- **Speaker boost:** ON
 
 ---
 
-## PHASE-BY-PHASE TIMING GUIDE
+## EXACT SYNC — WHEN TO CLICK EACH PHASE
 
-### Phase 1: THREAT MAP (0:00 – 0:22)
-**Click: Start on Phase 1 (Threat Map)**
+You have ONE job during recording: click NEXT at the right moments.
+Play final.mp3 and follow this guide EXACTLY.
 
-| Timestamp | Line |
-|-----------|------|
-| 0:00 | "What if we could prevent wildfires — before they start?" |
-| 0:04 | "This is EarthDial version three. A wildfire prevention and counterfactual decision system — built on NVIDIA Nemotron and GPU-accelerated graph optimization." |
-| 0:12 | "Right now, you're looking at Sonoma County, California. Sixteen hundred terrain cells, each analyzed in real-time." |
-| 0:17 | "The red columns you see? Those are extreme ignition risk zones — driven by forty-five mile per hour Diablo winds, eight percent humidity, and ninety-eight degree heat. This is a Red Flag Warning." |
-
-### Phase 2: GRID ANALYSIS (0:22 – 0:38)
-**Click: NEXT to Phase 2 at 0:22**
-
-| Timestamp | Line |
-|-----------|------|
-| 0:22 | "The blue arcs are live power transmission lines. Every one of them is a potential ignition source." |
-| 0:27 | "Our risk engine scores each line using vegetation encroachment, equipment age, wind interaction, and voltage — all weighted and computed simultaneously." |
-
-### Phase 3: AI OPTIMIZATION (0:38 – 0:52)
-**Click: NEXT to Phase 3 at 0:38**
-
-| Timestamp | Line |
-|-----------|------|
-| 0:38 | "Now watch. Our GPU graph optimizer evaluates every possible combination of power shutoffs —" |
-| 0:43 | "— and finds the surgical cut that maximizes risk reduction while keeping hospitals, shelters, and emergency services online." |
-| 0:49 | "No brute force guessing. Intelligent de-energization." |
-
-### Phase 4: COUNTERFACTUAL (0:52 – 1:10)
-**Click: NEXT to Phase 4 at 0:52**
-
-| Timestamp | Line |
-|-----------|------|
-| 0:52 | "Here's the counterfactual. On the left — before intervention. On the right — after." |
-| 0:57 | "Risk drops. Extreme cells eliminated." |
-| 1:00 | "And this isn't a simulation — this is a decision engine. Every action is explainable, every tradeoff is quantified." |
-
-### Phase 5: PREVENTION BRIEF (1:10 – 1:30)
-**Click: NEXT to Phase 5 at 1:10**
-
-| Timestamp | Line |
-|-----------|------|
-| 1:10 | "Finally — Nemotron. NVIDIA's Llama three point three Nemotron Super forty-nine B takes all of this data —" |
-| 1:16 | "— the risk surface, the weather, the shutoff plan, the affected facilities — and generates a formal, operator-ready prevention brief." |
-| 1:22 | "Not a suggestion. A prevention order. Actionable, evidence-grounded, equity-aware." |
-| 1:27 | "This is EarthDial. Prevention, not response. Built with NVIDIA." |
+| TIME  | ACTION                        | WHAT THE VOICE IS SAYING                                    |
+|-------|-------------------------------|-------------------------------------------------------------|
+| 0:00  | START RECORDING. Phase 1 visible (3D Threat Map). | "What if we could prevent wildfires, before they start?" |
+| 0:05  | Stay on Phase 1. Slowly pan the 3D map with mouse. | "This is EarthDial version three..." |
+| 0:15  | Still Phase 1. Let the risk columns be visible. | "Sixteen hundred terrain cells, each analyzed in real time..." |
+| 0:22  | Still Phase 1. Don't click yet. | "...extreme ignition risk zones, driven by forty five mile per hour..." |
+| 0:33  | Voice says "Red Flag Warning." Pause 1 second. | (Phase 1 wraps up) |
+| **0:35** | **👆 CLICK NEXT → Phase 2 (Grid Analysis)** | "The blue arcs are live power transmission lines..." |
+| 0:40  | Stay on Phase 2. Let the table load. | "...every one of them is a potential ignition source." |
+| 0:43  | Still Phase 2. Hover over high-risk lines in table. | "Our risk engine scores each line using vegetation encroachment..." |
+| 0:50  | Voice says "...computed simultaneously." | (Phase 2 wraps up) |
+| **0:52** | **👆 CLICK NEXT → Phase 3 (AI Optimization)** | "Now watch. Our GPU graph optimizer..." |
+| 0:55  | Stay on Phase 3. Plans computing/loading. | "...evaluates every possible combination of power shutoffs..." |
+| 1:00  | Still Phase 3. Scroll through plan cards. | "...finds the surgical cut that maximizes risk reduction..." |
+| 1:05  | Voice says "Intelligent de-energization." | (Phase 3 wraps up) |
+| **1:07** | **👆 CLICK NEXT → Phase 4 (Counterfactual)** | "Here's the counterfactual. On the left, before intervention..." |
+| 1:10  | Stay on Phase 4. Before/after cards visible. | "...On the right, after. Risk drops. Extreme cells eliminated." |
+| 1:15  | Still Phase 4. Big green reduction number visible. | "...this is a decision engine. Every action is explainable..." |
+| 1:20  | Voice says "...every tradeoff is quantified." | (Phase 4 wraps up) |
+| **1:22** | **👆 CLICK NEXT → Phase 5 (Prevention Brief)** | "Finally, Nemotron. NVIDIA's Llama three point three..." |
+| 1:28  | Stay on Phase 5. Brief box visible or generating. | "...generates a formal, operator ready prevention brief." |
+| 1:33  | Still Phase 5. | "Not a suggestion. A prevention order..." |
+| 1:37  | Voice says "...equity aware." | (Closing line coming) |
+| 1:38  | Click "🎮 TAKE CONTROL" button. | "This is EarthDial. Prevention, not response. Built with NVIDIA." |
+| 1:42  | **STOP RECORDING.** | (Audio ends) |
 
 ---
 
-## AI VOICE GENERATION
+## SUMMARY — 4 CLICKS TOTAL
 
-Use one of these services to generate the voiceover with your cloned voice:
-1. **ElevenLabs** (elevenlabs.io) — Best quality. Upload 1-3 min of your voice to clone.
-2. **Play.ht** (play.ht) — Good alternative with voice cloning.
-3. **Resemble.ai** — Another option with API access.
-
-### Steps:
-1. Record 2+ minutes of yourself reading anything naturally
-2. Upload to ElevenLabs → Create voice clone
-3. Paste the full script above into the text-to-speech
-4. Generate → Download MP3
-5. Sync with screen recording using the timestamp guide
+| Click # | Time    | Button      | Phase You're Moving TO      |
+|---------|---------|-------------|------------------------------|
+| 1       | **0:35** | NEXT ▶      | Phase 2: Grid Analysis       |
+| 2       | **0:52** | NEXT ▶      | Phase 3: AI Optimization     |
+| 3       | **1:07** | NEXT ▶      | Phase 4: Counterfactual      |
+| 4       | **1:22** | NEXT ▶      | Phase 5: Prevention Brief    |
+| BONUS   | **1:38** | TAKE CONTROL| Interactive mode (wow moment) |
 
 ---
 
-## SCREEN RECORDING TIPS
-- Use **OBS Studio** (free) or Windows Game Bar (Win+G)
-- Resolution: 1920×1080 minimum, 4K preferred
-- Record at 60fps for smooth scrolling
-- Open browser in fullscreen (F11)
-- Move mouse slowly and deliberately — the judges will follow your cursor
-- Open at http://localhost:8503
+## RECORDING SETUP (OBS Studio)
 
-### Recording Flow:
-1. Start OBS recording
-2. Play voiceover audio
-3. Browser shows Phase 1 — 3D map is visible
-4. At 0:22 → Click NEXT (Phase 2: Grid Analysis)
-5. At 0:38 → Click NEXT (Phase 3: AI Optimization)
-6. Wait for plans to auto-compute
-7. At 0:52 → Click NEXT (Phase 4: Counterfactual)
-8. At 1:10 → Click NEXT (Phase 5: Prevention Brief)
-9. Click Generate Brief button
-10. At 1:30 → End recording
-11. Show "TAKE CONTROL" button being clicked as a bonus ending
+1. Open OBS Studio (free: obsproject.com)
+2. Add **Window Capture** → select browser with earthdial.ai
+3. Add **Audio Output** → your final.mp3 playing through media player
+4. Resolution: **1920×1080** or **4K** if possible
+5. FPS: **60**
+6. Browser should be **fullscreen** (F11)
+7. Have the 3D map visible and slowly rotating before you start
+
+### Pre-Recording Checklist:
+- [ ] App running at earthdial.ai (or localhost)
+- [ ] Demo Mode active (Phase 1 visible)
+- [ ] final.mp3 loaded in media player, paused at 0:00
+- [ ] OBS recording started
+- [ ] Press PLAY on final.mp3
+- [ ] Follow the click guide above
+- [ ] Stop OBS at 1:42
 
 ---
 
-## LINKEDIN POST (Updated)
+## LINKEDIN POST (FINAL)
 
 ```
 I built a wildfire prevention system powered by NVIDIA Nemotron.
 
-🔥 EarthDial v3 doesn't just detect fires — it prevents them.
+EarthDial v3 doesn't just detect fires — it prevents them.
 
 Using GPU-accelerated graph optimization and NVIDIA's Llama-3.3-Nemotron-Super-49B, it:
+
 → Computes real-time ignition risk across 1,600 terrain cells
 → Finds surgical power shutoff plans that minimize fire risk while keeping hospitals online
 → Generates operator-ready prevention briefs — not just alerts
 → Runs counterfactual simulations: "What if we de-energize this line?"
 
-🎮 Live demo: [YOUR_STREAMLIT_URL]
+🎮 Live demo: https://earthdial.ai
 📂 Open source: [YOUR_GITHUB_URL]
-🎥 Watch the demo above ⬆️
+🎥 Watch the 90-second demo ⬆️
 
-This is prevention, not response. Built with NVIDIA technology.
+This is prevention, not response. Built with NVIDIA.
 
 @Carter Abdallah @Nader Khalil #NVIDIAGTC #EarthDial #WildfirePrevention #Nemotron
 ```
