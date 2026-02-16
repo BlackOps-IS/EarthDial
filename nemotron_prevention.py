@@ -36,8 +36,13 @@ class NemotronPreventionEngine:
             "Content-Type": "application/json",
         }
 
-    def _call_nemotron(self, system_prompt: str, user_content: str, max_tokens: int = 3000) -> str:
-        """Send a request to Nemotron."""
+    def _call_nemotron(self, system_prompt: str, user_content: str, max_tokens: int = 3000, timeout: int = 30) -> str:
+        """Send a request to Nemotron.
+
+        Args:
+            timeout: HTTP timeout in seconds. Default 30s for interactive mode,
+                     callers should pass timeout=8 for demo/stage mode.
+        """
         payload = {
             "model": NEMOTRON_MODEL,
             "messages": [
@@ -53,7 +58,7 @@ class NemotronPreventionEngine:
             f"{NVIDIA_API_BASE}/chat/completions",
             headers=self.headers,
             json=payload,
-            timeout=120,
+            timeout=timeout,
         )
         response.raise_for_status()
         return response.json()["choices"][0]["message"]["content"]
@@ -65,6 +70,7 @@ class NemotronPreventionEngine:
         shutoff_plan: dict = None,
         affected_facilities: list = None,
         risk_reduction: dict = None,
+        timeout: int = 30,
     ) -> str:
         """
         Generate a comprehensive, operator-ready prevention brief.
@@ -120,7 +126,7 @@ Generate a complete Prevention Brief with:
 8. CONFIDENCE ASSESSMENT (what data gaps exist, what would change the plan)
 9. EQUITY REVIEW (which communities are most impacted, mitigation steps)"""
 
-        return self._call_nemotron(system_prompt, user_content, max_tokens=4000)
+        return self._call_nemotron(system_prompt, user_content, max_tokens=4000, timeout=timeout)
 
     def generate_counterfactual_explanation(
         self,
@@ -128,6 +134,7 @@ Generate a complete Prevention Brief with:
         risk_before: dict,
         risk_after: dict,
         affected_facilities: list = None,
+        timeout: int = 30,
     ) -> str:
         """
         Generate an explanation of a counterfactual scenario.
@@ -161,7 +168,7 @@ Explain:
 3. HOW CONFIDENT we are (and what uncertainty remains)
 4. WHAT ELSE should be done alongside this action"""
 
-        return self._call_nemotron(system_prompt, user_content, max_tokens=2000)
+        return self._call_nemotron(system_prompt, user_content, max_tokens=2000, timeout=timeout)
 
     def generate_community_alert(
         self,

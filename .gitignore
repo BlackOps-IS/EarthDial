@@ -1,7 +1,5 @@
-# Environment variables
+# Environment variables & secrets
 .env
-
-# Streamlit secrets (local only)
 .streamlit/secrets.toml
 
 # Python
@@ -29,3 +27,17 @@ Thumbs.db
 # Data cache
 cache/
 *.pkl
+
+# Deploy tooling (contains credentials — NEVER commit)
+_quick_deploy.py
+
+# Large media (served from VPS static, not git)
+static/voiceover.mp3
+static/loading.mp4
+static/failover.mp4
+static/hero_satellite.jpg
+static/hero_satellite.webp
+
+# Stage documents (local only, not source code)
+RUNBOOK_GTC.md
+FAILOVER_PROTOCOL.md

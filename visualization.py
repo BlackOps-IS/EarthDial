@@ -349,7 +349,7 @@ def build_full_3d_map(
     return pdk.Deck(
         layers=layers,
         initial_view_state=view_state or get_view_state(),
-        map_style="mapbox://styles/mapbox/dark-v11",
+        map_style="https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json",
         tooltip={
             "html": "<b>{name}</b><br/>"
                     "Risk: {ignition_risk}<br/>"
