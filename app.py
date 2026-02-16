@@ -1331,8 +1331,8 @@ st.markdown(f"""
     <div class="topbar-left">
         <div class="topbar-logo">🌍</div>
         <div>
-            <div class="topbar-title">EarthDial v3</div>
-            <div class="topbar-subtitle">Wildfire Prevention & Counterfactual Decision System</div>
+            <div class="topbar-title">EarthDial</div>
+            <div class="topbar-subtitle">AI Decision Intelligence for Planetary Systems</div>
         </div>
     </div>
     <div class="topbar-right">
@@ -2435,10 +2435,11 @@ else:
 
         st.markdown("""
         <div style="text-align:center; padding:40px 20px; margin-top:20px;">
-            <div style="font-size:2rem; margin-bottom:12px;">✅</div>
-            <div style="font-size:1.2rem; font-weight:700; color:var(--nvidia-green);">Experience Complete</div>
-            <div style="font-size:0.78rem; color:var(--text-secondary); margin-top:8px;">
-                You've seen the full EarthDial v3 pipeline — from real-time risk analysis to AI-generated prevention orders.
+            <div style="font-size:2rem; margin-bottom:12px;">🌍</div>
+            <div style="font-size:1.4rem; font-weight:800; color:var(--nvidia-green); letter-spacing:1px;">Earth-2 predicts the planet.</div>
+            <div style="font-size:1.4rem; font-weight:800; color:var(--text-primary); letter-spacing:1px; margin-top:4px;">EarthDial decides what to do about it.</div>
+            <div style="font-size:0.78rem; color:var(--text-secondary); margin-top:12px;">
+                Built open. Built on NVIDIA. Built to prevent what we used to only predict.
             </div>
         </div>
         """, unsafe_allow_html=True)
@@ -2469,16 +2470,16 @@ else:
 st.markdown(f"""
 <div class="app-footer">
     <div class="footer-left">
-        <span>🌍 EarthDial v3.0</span>
+        <span>🌍 EarthDial — AI Decision Intelligence for Planetary Systems</span>
         <span>·</span>
-        <span class="footer-nvidia">NVIDIA Nemotron · GPU Graph Optimization</span>
+        <span class="footer-nvidia">Powered by NVIDIA Nemotron</span>
         <span>·</span>
-        <span>Earth-2 Ecosystem Compatible</span>
+        <span>Earth-2 Ecosystem</span>
     </div>
     <div style="display:flex; align-items:center; gap:12px;">
         <span style="color:var(--nvidia-green); font-weight:600;">#NVIDIAGTC 2026</span>
         <span>·</span>
-        <span>earthdial.ai</span>
+        <span style="font-weight:600;">earthdial.ai</span>
     </div>
 </div>
 """, unsafe_allow_html=True)

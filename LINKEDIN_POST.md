@@ -1,51 +1,48 @@
-# 📝 LinkedIn Post — EarthDial v3 | GTC Golden Ticket Submission
-# Tag: Carter Abdallah, Nader Khalil
-# Hashtag: #NVIDIAGTC
-# Include: video + GitHub link
+# LinkedIn Launch Post — EarthDial.ai
+
+## POST (copy everything below the line)
 
 ---
 
-## POST TEXT (copy below):
+Earth-2 predicts the planet.
+EarthDial decides what to do about it.
 
-🌍 Introducing EarthDial v3 — an open-source wildfire prevention system powered by NVIDIA Nemotron and GPU-accelerated graph optimization.
+Today I'm launching EarthDial.ai — an open-source AI Decision Intelligence platform for planetary systems, built on NVIDIA Nemotron.
 
-Most wildfire systems react after ignition. EarthDial prevents ignition before it happens.
+The problem: Weather AI can now forecast disasters with extraordinary accuracy. But a forecast doesn't shut off a power line. A forecast doesn't reroute an evacuation. A forecast doesn't protect a hospital.
+
+The gap between prediction and prevention kills people.
+
+EarthDial closes that gap.
 
 Here's what it does:
 
-🗺️ 3D Ignition Risk Surface — real-time, spatially-resolved risk columns rendered over terrain
-⚡ Intelligent De-Energization — graph-optimized power shutoffs that minimize fire risk while preserving hospitals, shelters, and emergency comms
-🔄 Counterfactual Simulator — toggle a power line shutoff and watch the risk surface respond live
-📋 AI Prevention Briefs — NVIDIA Nemotron generates operator-ready prevention orders grounded in evidence, with confidence intervals and equity review
-📈 72-Hour Forecast Integration — Diablo wind event modeling with escalating risk timeline
+→ Ingests real-time weather and terrain data across 1,600+ terrain cells
+→ Computes Rothermel-inspired ignition risk surfaces in real time
+→ Runs GPU-accelerated graph optimization to find surgical infrastructure interventions
+→ Uses NVIDIA Nemotron (Llama-3.3 Super 49B) to generate operator-ready prevention orders
+→ Proves every decision with counterfactual simulation: "If we do X, risk drops by Y — here's why"
 
-The tech stack:
-🟢 NVIDIA Nemotron (Llama 3.3 Super 49B) — reasoning, prevention briefs, counterfactual explanations
-🟢 GPU-accelerated graph optimization (cuGraph-compatible) — surgical de-energization
-🟢 PyDeck 3D visualization — Omniverse-style threat rendering
-🟢 Designed for the NVIDIA Earth-2 ecosystem
-🟢 100% open source
+This is not a chatbot wrapper.
+This is not a dashboard with an LLM bolted on.
 
-Why this matters: The 2017 Tubbs Fire killed 22 people in Sonoma County. An aging power line, high vegetation, Diablo winds — conditions that were predictable. The ignition was preventable.
+This is a decision engine.
 
-EarthDial is the first open-source system that compiles real-time reality into an uncertainty-aware world model and uses GPU-scale counterfactuals to recommend prevention actions — not just response.
+The live demo runs automatically when you visit earthdial.ai — narrated, cinematic, 2 minutes. Then you take control and explore the full system yourself.
 
-🎬 Watch the demo video below.
+Technical stack:
+• NVIDIA Nemotron for causal reasoning (not generation — reasoning)
+• GPU-accelerated graph optimization (NetworkX → cuGraph production path)
+• Earth-2 compatible forecast ingestion
+• PyDeck 3D visualization with cinematic camera system
+• Fully open source (MIT license)
 
-🎮 Live demo: https://earthdial.ai
-📂 GitHub: https://github.com/BlackOps-IS/EarthDial
+The wildfire scenario is the proof of concept. The architecture is hazard-agnostic. Floods. Earthquakes. Industrial accidents. Grid failures. Any domain where you need to go from forecast to decision in real time.
 
-Carter Abdallah Nader Khalil — thank you for the GTC Golden Ticket opportunity. I believe prevention is the future, and NVIDIA's technology makes it possible.
+🔗 Live: earthdial.ai
+📦 Source: github.com/BlackOps-IS/EarthDial
 
-#NVIDIAGTC #Nemotron #Earth2 #WildfirePrevention #OpenSource #AI #GTC2026
+Built for the NVIDIA GTC Golden Ticket.
+Built to complete the planetary AI stack.
 
----
-
-## POSTING CHECKLIST:
-- [ ] Record and attach video (see VIDEO_SCRIPT.md / VOICEOVER_SCRIPT.md)
-- [ ] Tag Carter Abdallah on LinkedIn
-- [ ] Tag Nader Khalil on LinkedIn
-- [ ] Include #NVIDIAGTC hashtag
-- [ ] Include GitHub repo link
-- [ ] Include https://earthdial.ai live demo link
-- [ ] Post before midnight Feb 15, 2026
+@Carter Abdallah @Nader Khalil #NVIDIAGTC #NVIDIA #Nemotron #AI #OpenSource #GPU #Earth2 #WildfirePrevention #DecisionIntelligence
