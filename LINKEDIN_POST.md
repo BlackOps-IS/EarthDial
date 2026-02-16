@@ -33,7 +33,7 @@ EarthDial is the first open-source system that compiles real-time reality into a
 🎬 Watch the demo video below.
 
 🎮 Live demo: https://earthdial.ai
-📂 GitHub: [INSERT YOUR REPO LINK]
+📂 GitHub: https://github.com/BlackOps-IS/EarthDial
 
 Carter Abdallah Nader Khalil — thank you for the GTC Golden Ticket opportunity. I believe prevention is the future, and NVIDIA's technology makes it possible.
 

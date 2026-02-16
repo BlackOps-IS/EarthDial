@@ -92,7 +92,7 @@ Using GPU-accelerated graph optimization and NVIDIA's Llama-3.3-Nemotron-Super-4
 → Runs counterfactual simulations: "What if we de-energize this line?"
 
 🎮 Live demo: https://earthdial.ai
-📂 Open source: [YOUR_GITHUB_URL]
+📂 Open source: https://github.com/BlackOps-IS/EarthDial
 🎥 Watch the 90-second demo ⬆️
 
 This is prevention, not response. Built with NVIDIA.
