@@ -13,6 +13,7 @@ import time
 import numpy as np
 import pandas as pd
 import streamlit as st
+import streamlit.components.v1 as components
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -654,6 +655,107 @@ st.markdown("""
         0% { transform: translateY(-100%); }
         100% { transform: translateY(100vh); }
     }
+
+    /* ═══ VOICEOVER EXPERIENCE ═══ */
+    .vo-start-overlay {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 60px 20px;
+        text-align: center;
+    }
+    .vo-start-btn {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--nvidia-green), #5a9400);
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 0 40px var(--nvidia-green-glow), 0 0 80px rgba(118,185,0,0.15);
+        transition: all 0.3s ease;
+        animation: glowPulse 2s ease-in-out infinite;
+    }
+    .vo-start-btn:hover {
+        transform: scale(1.08);
+        box-shadow: 0 0 60px var(--nvidia-green-glow), 0 0 100px rgba(118,185,0,0.25);
+    }
+    .vo-start-btn svg {
+        width: 40px;
+        height: 40px;
+        fill: #000;
+        margin-left: 6px;
+    }
+    .vo-start-title {
+        font-size: 1.4rem;
+        font-weight: 800;
+        color: var(--text-primary);
+        margin-top: 24px;
+        letter-spacing: -0.5px;
+    }
+    .vo-start-sub {
+        font-size: 0.78rem;
+        color: var(--text-secondary);
+        margin-top: 8px;
+        max-width: 450px;
+    }
+    .vo-start-duration {
+        font-size: 0.7rem;
+        color: var(--nvidia-green);
+        font-family: 'JetBrains Mono', monospace;
+        font-weight: 600;
+        margin-top: 16px;
+        letter-spacing: 1px;
+    }
+
+    .vo-progress-container {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 8px 20px;
+        background: rgba(118,185,0,0.06);
+        border: 1px solid rgba(118,185,0,0.15);
+        border-radius: 8px;
+        margin: 8px 0;
+    }
+    .vo-progress-bar-bg {
+        flex: 1;
+        height: 4px;
+        background: var(--border-subtle);
+        border-radius: 2px;
+        overflow: hidden;
+    }
+    .vo-progress-bar-fill {
+        height: 100%;
+        background: linear-gradient(90deg, var(--nvidia-green), #a0e000);
+        border-radius: 2px;
+        transition: width 0.5s linear;
+    }
+    .vo-time {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 0.7rem;
+        color: var(--nvidia-green);
+        font-weight: 600;
+        min-width: 45px;
+    }
+    .vo-label {
+        font-size: 0.65rem;
+        color: var(--text-secondary);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    /* Hide the auto-advance button */
+    .auto-advance-hidden {
+        position: absolute;
+        left: -9999px;
+        top: -9999px;
+        opacity: 0;
+        pointer-events: none;
+    }
 </style>
 """, unsafe_allow_html=True)
 
@@ -681,6 +783,8 @@ def init_state():
         "demo_mode": True,
         "demo_phase": 0,
         "interactive_mode": False,
+        "demo_playing": False,
+        "demo_audio_start": None,
     }
     for k, v in defaults.items():
         if k not in st.session_state:
@@ -797,6 +901,31 @@ st.markdown(f"""
 
 
 # ═══════════════════════════════════════════════════════════════════════════
+# VOICEOVER AUDIO CONTROLLER
+# ═══════════════════════════════════════════════════════════════════════════
+PHASE_TRANSITIONS = [0, 38, 56, 74, 92]  # start seconds for each phase
+AUDIO_DURATION = 118.94
+
+# Calculate elapsed time and current phase when demo is playing
+demo_elapsed = 0.0
+demo_auto_phase = 0
+
+if st.session_state.demo_playing and st.session_state.demo_audio_start is not None:
+    demo_elapsed = time.time() - st.session_state.demo_audio_start
+    if demo_elapsed >= AUDIO_DURATION:
+        # Demo is finished
+        st.session_state.demo_playing = False
+        st.session_state.demo_audio_start = None
+        st.session_state.demo_phase = 4  # stay on last phase
+    else:
+        # Determine phase from elapsed time
+        for i, t in enumerate(PHASE_TRANSITIONS):
+            if demo_elapsed >= t:
+                demo_auto_phase = i
+        st.session_state.demo_phase = demo_auto_phase
+
+
+# ═══════════════════════════════════════════════════════════════════════════
 # TAKE CONTROL / DEMO MODE TOGGLE
 # ═══════════════════════════════════════════════════════════════════════════
 tc_col1, tc_col2, tc_col3 = st.columns([1, 6, 1])
@@ -805,6 +934,8 @@ with tc_col1:
         if st.button("◀ DEMO MODE", use_container_width=True):
             st.session_state.interactive_mode = False
             st.session_state.demo_phase = 0
+            st.session_state.demo_playing = False
+            st.session_state.demo_audio_start = None
             st.rerun()
     else:
         demo_phase_names = ["THREAT MAP", "GRID ANALYSIS", "AI OPTIMIZATION", "COUNTERFACTUAL", "PREVENTION BRIEF"]
@@ -818,29 +949,61 @@ with tc_col1:
 
 with tc_col2:
     if not st.session_state.interactive_mode:
-        # Phase dots
         demo_phase_names = ["THREAT MAP", "GRID ANALYSIS", "AI OPTIMIZATION", "COUNTERFACTUAL", "PREVENTION BRIEF"]
         current_phase = st.session_state.demo_phase % len(demo_phase_names)
-        dots_html = ""
-        for i, name in enumerate(demo_phase_names):
-            if i < current_phase:
-                dots_html += f'<div class="phase-dot completed" title="{name}"></div>'
-            elif i == current_phase:
-                dots_html += f'<div class="phase-dot active" title="{name}"></div>'
-            else:
-                dots_html += f'<div class="phase-dot" title="{name}"></div>'
 
-        st.markdown(f"""
-        <div class="phase-indicator">
-            {dots_html}
-            <span class="phase-label">{demo_phase_names[current_phase]}</span>
-        </div>
-        """, unsafe_allow_html=True)
+        if st.session_state.demo_playing:
+            # Show voiceover progress bar
+            progress_pct = min(100, (demo_elapsed / AUDIO_DURATION) * 100)
+            elapsed_min = int(demo_elapsed) // 60
+            elapsed_sec = int(demo_elapsed) % 60
+            total_min = int(AUDIO_DURATION) // 60
+            total_sec = int(AUDIO_DURATION) % 60
+
+            dots_html = ""
+            for i, name in enumerate(demo_phase_names):
+                if i < current_phase:
+                    dots_html += f'<div class="phase-dot completed" title="{name}"></div>'
+                elif i == current_phase:
+                    dots_html += f'<div class="phase-dot active" title="{name}"></div>'
+                else:
+                    dots_html += f'<div class="phase-dot" title="{name}"></div>'
+
+            st.markdown(f"""
+            <div class="vo-progress-container">
+                <span class="vo-label">🔊 VOICEOVER</span>
+                {dots_html}
+                <span class="phase-label">{demo_phase_names[current_phase]}</span>
+                <div class="vo-progress-bar-bg">
+                    <div class="vo-progress-bar-fill" style="width:{progress_pct:.1f}%"></div>
+                </div>
+                <span class="vo-time">{elapsed_min}:{elapsed_sec:02d} / {total_min}:{total_sec:02d}</span>
+            </div>
+            """, unsafe_allow_html=True)
+        else:
+            # Phase dots (no audio playing)
+            dots_html = ""
+            for i, name in enumerate(demo_phase_names):
+                if i < current_phase:
+                    dots_html += f'<div class="phase-dot completed" title="{name}"></div>'
+                elif i == current_phase:
+                    dots_html += f'<div class="phase-dot active" title="{name}"></div>'
+                else:
+                    dots_html += f'<div class="phase-dot" title="{name}"></div>'
+
+            st.markdown(f"""
+            <div class="phase-indicator">
+                {dots_html}
+                <span class="phase-label">{demo_phase_names[current_phase]}</span>
+            </div>
+            """, unsafe_allow_html=True)
 
 with tc_col3:
     if not st.session_state.interactive_mode:
         if st.button("🎮 TAKE CONTROL", use_container_width=True):
             st.session_state.interactive_mode = True
+            st.session_state.demo_playing = False
+            st.session_state.demo_audio_start = None
             st.rerun()
     else:
         st.markdown(f"""
@@ -849,6 +1012,17 @@ with tc_col3:
             <div style="font-size:0.7rem; color:var(--text-secondary);">Full Control</div>
         </div>
         """, unsafe_allow_html=True)
+
+# ── Stop audio JS when entering interactive mode ──
+if st.session_state.interactive_mode:
+    components.html("""
+    <script>
+    (function() {
+        const audio = window.parent._earthdialAudio;
+        if (audio) { audio.pause(); audio.currentTime = 0; }
+    })();
+    </script>
+    """, height=0)
 
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -1275,21 +1449,126 @@ if st.session_state.interactive_mode:
 
 else:
     # ═══════════════════════════════════════════════════════════════════════
-    # DEMO MODE — AUTO-LOOP CINEMATIC PRESENTATION
+    # DEMO MODE — VOICEOVER-SYNCED CINEMATIC PRESENTATION
     # ═══════════════════════════════════════════════════════════════════════
     demo_phase_names = ["THREAT MAP", "GRID ANALYSIS", "AI OPTIMIZATION", "COUNTERFACTUAL", "PREVENTION BRIEF"]
     current_phase = st.session_state.demo_phase % len(demo_phase_names)
 
-    # Navigation
-    nav1, nav2, nav3 = st.columns([1, 6, 1])
-    with nav1:
-        if st.button("◀ PREV", use_container_width=True, key="demo_prev"):
-            st.session_state.demo_phase = max(0, st.session_state.demo_phase - 1)
-            st.rerun()
-    with nav3:
-        if st.button("NEXT ▶", use_container_width=True, key="demo_next"):
-            st.session_state.demo_phase = min(4, st.session_state.demo_phase + 1)
-            st.rerun()
+    # Hidden auto-advance button (clicked by JS to trigger rerun)
+    advance_col = st.columns(1)[0]
+    with advance_col:
+        if st.button("_advance", key="_vo_advance", type="secondary"):
+            pass  # Phase is calculated from elapsed time above, just rerun
+
+    # Hide the auto-advance button with JS (runs in components iframe)
+    components.html("""
+    <script>
+    (function() {
+        var doc = window.parent.document;
+        var buttons = doc.querySelectorAll('button');
+        for (var i = 0; i < buttons.length; i++) {
+            if (buttons[i].textContent.trim() === '_advance') {
+                var el = buttons[i].closest('[data-testid]') || buttons[i].parentElement;
+                el.style.height = '0';
+                el.style.overflow = 'hidden';
+                el.style.margin = '0';
+                el.style.padding = '0';
+                buttons[i].style.height = '0';
+                buttons[i].style.overflow = 'hidden';
+            }
+        }
+    })();
+    </script>
+    """, height=0)
+
+    # ── START EXPERIENCE or ACTIVE VOICEOVER ──
+    if not st.session_state.demo_playing:
+        # Show START EXPERIENCE overlay
+        st.markdown("""
+        <div class="vo-start-overlay">
+            <div class="vo-start-title">EarthDial v3</div>
+            <div class="vo-start-sub">Experience the full wildfire prevention system with narrated AI voiceover — powered by NVIDIA Nemotron.</div>
+            <div class="vo-start-duration">⏱ 1:58 · 5 PHASES · AI NARRATED</div>
+        </div>
+        """, unsafe_allow_html=True)
+
+        sc1, sc2, sc3 = st.columns([2, 1, 2])
+        with sc2:
+            if st.button("▶  START EXPERIENCE", use_container_width=True, key="start_vo"):
+                st.session_state.demo_playing = True
+                st.session_state.demo_audio_start = time.time()
+                st.session_state.demo_phase = 0
+                st.rerun()
+
+        # Manual navigation when voiceover is NOT playing
+        st.markdown("<br>", unsafe_allow_html=True)
+        nav1, nav2, nav3 = st.columns([1, 6, 1])
+        with nav1:
+            if st.button("◀ PREV", use_container_width=True, key="demo_prev"):
+                st.session_state.demo_phase = max(0, st.session_state.demo_phase - 1)
+                st.rerun()
+        with nav2:
+            st.markdown(f"""
+            <div style="text-align:center; font-size:0.7rem; color:var(--text-dim);">
+                Or browse phases manually below
+            </div>
+            """, unsafe_allow_html=True)
+        with nav3:
+            if st.button("NEXT ▶", use_container_width=True, key="demo_next"):
+                st.session_state.demo_phase = min(4, st.session_state.demo_phase + 1)
+                st.rerun()
+
+    else:
+        # ── VOICEOVER IS PLAYING — inject audio controller ──
+        elapsed_safe = max(0, demo_elapsed)
+
+        # Calculate time until next phase transition (for auto-rerun)
+        next_phase_idx = demo_auto_phase + 1
+        if next_phase_idx < len(PHASE_TRANSITIONS):
+            ms_until_next = max(500, int((PHASE_TRANSITIONS[next_phase_idx] - elapsed_safe) * 1000))
+        else:
+            # Last phase — wait until audio ends
+            ms_until_next = max(500, int((AUDIO_DURATION - elapsed_safe) * 1000))
+
+        # Cap the rerun interval — at least every 2 seconds for progress bar updates
+        ms_until_rerun = min(ms_until_next, 2000)
+
+        components.html(f"""
+        <script>
+        (function() {{
+            // Create or get persistent audio object in parent window
+            let audio = window.parent._earthdialAudio;
+            if (!audio) {{
+                audio = new Audio();
+                audio.preload = 'auto';
+                audio.src = './app/static/voiceover.mp3';
+                window.parent._earthdialAudio = audio;
+            }}
+
+            // Sync playback position (only correct if drifted > 3s)
+            const targetTime = {elapsed_safe:.2f};
+            if (audio.paused) {{
+                audio.currentTime = targetTime;
+                audio.play().catch(function(e) {{ console.log('Autoplay:', e); }});
+            }} else if (Math.abs(audio.currentTime - targetTime) > 3) {{
+                audio.currentTime = targetTime;
+            }}
+
+            // Schedule auto-rerun for next phase transition or progress update
+            setTimeout(function() {{
+                // Find and click the hidden advance button
+                const doc = window.parent.document;
+                const buttons = doc.querySelectorAll('button');
+                for (let i = 0; i < buttons.length; i++) {{
+                    if (buttons[i].textContent.trim() === '_advance') {{
+                        buttons[i].click();
+                        break;
+                    }}
+                }}
+            }}, {ms_until_rerun});
+        }})();
+        </script>
+        """, height=0)
 
     # ── PHASE 0: THREAT MAP ──
     if current_phase == 0:
@@ -1671,6 +1950,47 @@ else:
                 </div>
             </div>
             """, unsafe_allow_html=True)
+
+    # ── DEMO COMPLETE OVERLAY (shown after voiceover ends) ──
+    if not st.session_state.demo_playing and st.session_state.demo_phase == 4 and st.session_state.demo_audio_start is None:
+        # Stop audio in parent
+        components.html("""
+        <script>
+        (function() {
+            const audio = window.parent._earthdialAudio;
+            if (audio) { audio.pause(); audio.currentTime = 0; }
+        })();
+        </script>
+        """, height=0)
+
+        st.markdown("""
+        <div style="text-align:center; padding:40px 20px; margin-top:20px;">
+            <div style="font-size:2rem; margin-bottom:12px;">✅</div>
+            <div style="font-size:1.2rem; font-weight:700; color:var(--nvidia-green);">Experience Complete</div>
+            <div style="font-size:0.78rem; color:var(--text-secondary); margin-top:8px;">
+                You've seen the full EarthDial v3 pipeline — from real-time risk analysis to AI-generated prevention orders.
+            </div>
+        </div>
+        """, unsafe_allow_html=True)
+
+        rc1, rc2, rc3 = st.columns([2, 1, 2])
+        with rc2:
+            if st.button("🔄 REPLAY", use_container_width=True, key="replay_vo"):
+                st.session_state.demo_playing = True
+                st.session_state.demo_audio_start = time.time()
+                st.session_state.demo_phase = 0
+                st.session_state.disabled_lines = set()
+                st.session_state.shutoff_plans = None
+                st.session_state.prevention_brief = None
+                st.session_state.counterfactual_explanation = None
+                st.session_state.selected_plan = None
+                # Reset risk data
+                from data_generator import compute_powerline_proximity, get_power_lines_df
+                from risk_engine import compute_ignition_risk
+                plines = get_power_lines_df()
+                prox = compute_powerline_proximity(st.session_state.terrain_df, plines)
+                st.session_state.risk_df = compute_ignition_risk(st.session_state.terrain_df, prox)
+                st.rerun()
 
 
 # ═══════════════════════════════════════════════════════════════════════════
