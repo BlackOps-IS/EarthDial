@@ -29,735 +29,1199 @@ st.set_page_config(
 # ─── NVIDIA-Grade CSS ──────────────────────────────────────────────────────
 st.markdown("""
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
 
-    /* ═══ GLOBAL ═══ */
-    :root {
-        --nvidia-green: #76B900;
-        --nvidia-green-glow: rgba(118,185,0,0.4);
-        --nvidia-green-dim: rgba(118,185,0,0.15);
-        --bg-primary: #0a0a0f;
-        --bg-secondary: #12121a;
-        --bg-card: rgba(18,18,26,0.85);
-        --bg-glass: rgba(255,255,255,0.03);
-        --border-subtle: rgba(255,255,255,0.06);
-        --border-glow: rgba(118,185,0,0.3);
-        --text-primary: #f0f0f5;
-        --text-secondary: #8a8a9a;
-        --text-dim: #555566;
-        --danger: #ff3b3b;
-        --warning: #ffaa00;
-        --info: #00b4d8;
-    }
+:root {
+    /* Core Colors */
+    --nvidia-green: #76B900;
+    --nvidia-green-bright: #a0ff00;
+    --nvidia-green-dark: #4a7500;
+    --nvidia-green-glow: rgba(118,185,0,0.6);
+    --neon-cyan: #00ffff;
+    --neon-magenta: #ff00ff;
+    --neon-orange: #ff7700;
+    
+    /* Backgrounds */
+    --bg-primary: #000000;
+    --bg-secondary: #0a0a0f;
+    --bg-card: rgba(10,10,20,0.7);
+    
+    /* Glows */
+    --glow-intense: 0 0 40px var(--nvidia-green-glow), 0 0 80px rgba(118,185,0,0.3), 0 0 120px rgba(118,185,0,0.1);
+    --glow-soft: 0 0 20px var(--nvidia-green-glow), 0 0 40px rgba(118,185,0,0.2);
+    --glow-extreme: 0 0 60px var(--nvidia-green-glow), 0 0 120px rgba(118,185,0,0.4), 0 0 180px rgba(118,185,0,0.2), 0 0 240px rgba(118,185,0,0.1);
+    
+    /* Text */
+    --text-primary: #ffffff;
+    --text-secondary: #b0b0b0;
+    --text-dim: #666666;
+    
+    /* Status */  
+    --danger: #ff0055;
+    --warning: #ffaa00;
+    --info: #00ddff;
+    --nvidia-green-dim: rgba(118,185,0,0.15);
+    --border-subtle: rgba(255,255,255,0.06);
+    --border-glow: rgba(118,185,0,0.3);
+}
 
-    /* Hide Streamlit chrome */
-    #MainMenu {visibility: hidden;}
-    footer {visibility: hidden;}
-    header {visibility: hidden;}
-    .stDeployButton {display: none;}
-    div[data-testid="stToolbar"] {display: none;}
-    div[data-testid="stDecoration"] {display: none;}
-    div[data-testid="stStatusWidget"] {display: none;}
+/* ═══ ANIMATED BACKGROUND ═══ */
+.stApp {
+    background: 
+        radial-gradient(circle at 20% 30%, rgba(118,185,0,0.03) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(0,180,255,0.02) 0%, transparent 50%),
+        radial-gradient(circle at 50% 50%, rgba(255,0,85,0.02) 0%, transparent 50%),
+        linear-gradient(180deg, #000000 0%, #0a0a12 50%, #000000 100%);
+    background-attachment: fixed;
+    color: var(--text-primary);
+    font-family: 'Rajdhani', 'Inter', sans-serif;
+    position: relative;
+}
 
-    .main .block-container {
-        padding: 0.5rem 1.5rem 2rem 1.5rem;
-        max-width: 100%;
-    }
+/* Particle Grid Overlay */
+.stApp::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        linear-gradient(0deg, rgba(118,185,0,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(118,185,0,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    background-position: 0 0, 0 0;
+    animation: gridScroll 20s linear infinite;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.3;
+}
 
-    .stApp {
-        background: var(--bg-primary);
-        color: var(--text-primary);
-        font-family: 'Inter', -apple-system, sans-serif;
-    }
+@keyframes gridScroll {
+    0% { background-position: 0 0, 0 0; }
+    100% { background-position: 40px 40px, 40px 40px; }
+}
 
-    /* ═══ TOPBAR ═══ */
-    .topbar {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 12px 24px;
-        background: linear-gradient(180deg, rgba(10,10,15,0.98) 0%, rgba(10,10,15,0.85) 100%);
-        border-bottom: 1px solid var(--border-subtle);
-        backdrop-filter: blur(20px);
-        position: relative;
-        z-index: 100;
-        margin: -0.5rem -1.5rem 0 -1.5rem;
-    }
-    .topbar::after {
-        content: '';
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        height: 1px;
-        background: linear-gradient(90deg, transparent, var(--nvidia-green), transparent);
-        opacity: 0.5;
-    }
-    .topbar-left {
-        display: flex;
-        align-items: center;
-        gap: 16px;
-    }
-    .topbar-logo {
-        width: 36px;
-        height: 36px;
-        background: var(--nvidia-green);
-        border-radius: 8px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 20px;
-        box-shadow: 0 0 20px var(--nvidia-green-glow);
-    }
-    .topbar-title {
-        font-size: 1.15rem;
-        font-weight: 700;
-        color: var(--text-primary);
-        letter-spacing: -0.3px;
-    }
-    .topbar-subtitle {
-        font-size: 0.7rem;
-        color: var(--text-secondary);
-        font-weight: 400;
-        letter-spacing: 0.5px;
-        text-transform: uppercase;
-    }
-    .topbar-right {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-    }
-    .topbar-badge {
-        background: rgba(118,185,0,0.12);
-        border: 1px solid rgba(118,185,0,0.3);
-        color: var(--nvidia-green);
-        padding: 4px 12px;
-        border-radius: 20px;
-        font-size: 0.65rem;
-        font-weight: 600;
-        letter-spacing: 1px;
-        text-transform: uppercase;
-    }
-    .topbar-status {
-        display: flex;
-        align-items: center;
-        gap: 6px;
-        font-size: 0.72rem;
-        color: var(--text-secondary);
-    }
-    .status-dot {
-        width: 7px;
-        height: 7px;
-        border-radius: 50%;
-        background: var(--nvidia-green);
-        box-shadow: 0 0 8px var(--nvidia-green-glow);
-        animation: statusPulse 2s ease-in-out infinite;
-    }
-    .status-dot.danger {
-        background: var(--danger);
-        box-shadow: 0 0 8px rgba(255,59,59,0.4);
-    }
-    @keyframes statusPulse {
-        0%, 100% { opacity: 1; transform: scale(1); }
-        50% { opacity: 0.6; transform: scale(0.85); }
-    }
+/* Scanline Effect */
+.stApp::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        180deg,
+        transparent 0%,
+        rgba(118,185,0,0.02) 50%,
+        transparent 100%
+    );
+    background-size: 100% 4px;
+    animation: scanline 8s linear infinite;
+    pointer-events: none;
+    z-index: 2;
+}
 
-    /* ═══ THREAT BANNER ═══ */
-    .threat-banner {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 12px;
-        padding: 8px 20px;
-        background: linear-gradient(90deg, rgba(255,59,59,0.08), rgba(255,59,59,0.15), rgba(255,59,59,0.08));
-        border: 1px solid rgba(255,59,59,0.2);
-        border-radius: 8px;
-        margin: 12px 0;
-        animation: threatPulse 3s ease-in-out infinite;
-    }
-    @keyframes threatPulse {
-        0%, 100% { border-color: rgba(255,59,59,0.2); }
-        50% { border-color: rgba(255,59,59,0.5); }
-    }
-    .threat-banner-icon {
-        font-size: 0.85rem;
-    }
-    .threat-banner-text {
-        font-size: 0.72rem;
-        font-weight: 600;
-        color: var(--danger);
-        letter-spacing: 1.5px;
-        text-transform: uppercase;
-    }
-    .threat-banner-time {
-        font-size: 0.68rem;
-        color: var(--text-secondary);
-        font-family: 'JetBrains Mono', monospace;
-    }
+@keyframes scanline {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(100%); }
+}
 
-    /* ═══ GLASS CARDS ═══ */
-    .glass-card {
-        background: var(--bg-card);
-        border: 1px solid var(--border-subtle);
-        border-radius: 12px;
-        padding: 20px;
-        backdrop-filter: blur(10px);
-        position: relative;
-        overflow: hidden;
-        transition: border-color 0.3s ease, box-shadow 0.3s ease;
-    }
-    .glass-card:hover {
-        border-color: var(--border-glow);
-        box-shadow: 0 0 30px rgba(118,185,0,0.05);
-    }
-    .glass-card::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 1px;
-        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
-    }
+/* ═══ HIDE STREAMLIT CHROME ═══ */
+#MainMenu, footer, header, .stDeployButton,
+div[data-testid="stToolbar"],
+div[data-testid="stDecoration"],
+div[data-testid="stStatusWidget"] {
+    visibility: hidden !important;
+    display: none !important;
+}
 
-    /* ═══ STAT CARDS ═══ */
-    .stat-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-        gap: 12px;
-        margin: 16px 0;
-    }
-    .stat-card {
-        background: var(--bg-card);
-        border: 1px solid var(--border-subtle);
-        border-radius: 10px;
-        padding: 16px;
-        position: relative;
-        overflow: hidden;
-    }
-    .stat-card::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 3px;
-        height: 100%;
-    }
-    .stat-card.green::before { background: var(--nvidia-green); }
-    .stat-card.red::before { background: var(--danger); }
-    .stat-card.orange::before { background: var(--warning); }
-    .stat-card.blue::before { background: var(--info); }
-    .stat-label {
-        font-size: 0.65rem;
-        color: var(--text-secondary);
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        font-weight: 500;
-    }
-    .stat-value {
-        font-size: 1.8rem;
-        font-weight: 800;
-        color: var(--text-primary);
-        line-height: 1.1;
-        margin-top: 4px;
-        font-family: 'JetBrains Mono', monospace;
-    }
-    .stat-value.green { color: var(--nvidia-green); }
-    .stat-value.red { color: var(--danger); }
-    .stat-value.orange { color: var(--warning); }
-    .stat-value.blue { color: var(--info); }
-    .stat-delta {
-        font-size: 0.7rem;
-        margin-top: 4px;
-        font-weight: 500;
-    }
-    .stat-delta.up { color: var(--danger); }
-    .stat-delta.down { color: var(--nvidia-green); }
+.main .block-container {
+    padding: 0.5rem 1.5rem 2rem 1.5rem;
+    max-width: 100%;
+    position: relative;
+    z-index: 10;
+}
 
-    /* ═══ SECTION HEADERS ═══ */
-    .section-header {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        margin: 20px 0 12px 0;
-        padding-bottom: 8px;
-        border-bottom: 1px solid var(--border-subtle);
-    }
-    .section-icon {
-        width: 28px;
-        height: 28px;
-        background: var(--nvidia-green-dim);
-        border-radius: 6px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 14px;
-    }
-    .section-title {
-        font-size: 0.85rem;
-        font-weight: 600;
-        color: var(--text-primary);
-        letter-spacing: 0.3px;
-    }
-    .section-subtitle {
-        font-size: 0.68rem;
-        color: var(--text-secondary);
-    }
+/* ═══ TOPBAR — HOLOGRAPHIC COMMAND CENTER ═══ */
+.topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 28px;
+    background: linear-gradient(
+        180deg, 
+        rgba(0,0,0,0.95) 0%, 
+        rgba(10,10,20,0.85) 100%
+    );
+    border-bottom: 2px solid var(--nvidia-green);
+    box-shadow: 
+        0 4px 20px rgba(118,185,0,0.3),
+        0 8px 40px rgba(0,0,0,0.5),
+        inset 0 1px 1px rgba(118,185,0,0.2);
+    backdrop-filter: blur(20px) saturate(180%);
+    position: relative;
+    z-index: 100;
+    margin: -0.5rem -1.5rem 0 -1.5rem;
+}
 
-    /* ═══ TAKE CONTROL BUTTON ═══ */
-    .take-control-container {
-        position: fixed;
-        bottom: 30px;
-        right: 30px;
-        z-index: 9999;
-    }
+.topbar::before {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(
+        90deg, 
+        transparent 0%,
+        var(--nvidia-green-bright) 20%,
+        var(--neon-cyan) 50%,
+        var(--nvidia-green-bright) 80%,
+        transparent 100%
+    );
+    animation: energyFlow 3s ease-in-out infinite;
+}
 
-    /* ═══ DEMO PHASE INDICATOR ═══ */
-    .phase-indicator {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 8px;
-        padding: 10px 20px;
-        background: rgba(118,185,0,0.08);
-        border: 1px solid rgba(118,185,0,0.2);
-        border-radius: 8px;
-        margin: 12px 0;
-    }
-    .phase-dot {
-        width: 8px;
-        height: 8px;
-        border-radius: 50%;
-        background: var(--text-dim);
-        transition: all 0.3s ease;
-    }
-    .phase-dot.active {
-        background: var(--nvidia-green);
-        box-shadow: 0 0 10px var(--nvidia-green-glow);
-        transform: scale(1.3);
-    }
-    .phase-dot.completed {
-        background: var(--nvidia-green);
-        opacity: 0.5;
-    }
-    .phase-label {
-        font-size: 0.72rem;
-        color: var(--nvidia-green);
-        font-weight: 600;
-        letter-spacing: 0.5px;
-        text-transform: uppercase;
-        margin-left: 8px;
-    }
+@keyframes energyFlow {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 1; }
+}
 
-    /* ═══ DATA TABLE ═══ */
-    .data-table {
-        width: 100%;
-        border-collapse: separate;
-        border-spacing: 0;
-        font-size: 0.75rem;
-    }
-    .data-table th {
-        background: rgba(118,185,0,0.08);
-        color: var(--text-secondary);
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 0.8px;
-        padding: 10px 14px;
-        text-align: left;
-        font-size: 0.65rem;
-        border-bottom: 1px solid var(--border-subtle);
-    }
-    .data-table td {
-        padding: 10px 14px;
-        border-bottom: 1px solid var(--border-subtle);
-        color: var(--text-primary);
-    }
-    .data-table tr:hover td {
-        background: rgba(118,185,0,0.03);
-    }
+.topbar-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
 
-    /* ═══ RISK BADGE ═══ */
-    .risk-badge {
-        display: inline-block;
-        padding: 2px 10px;
-        border-radius: 12px;
-        font-size: 0.65rem;
-        font-weight: 700;
-        letter-spacing: 0.5px;
-    }
-    .risk-badge.extreme {
-        background: rgba(255,59,59,0.15);
-        color: var(--danger);
-        border: 1px solid rgba(255,59,59,0.3);
-    }
-    .risk-badge.high {
-        background: rgba(255,170,0,0.15);
-        color: var(--warning);
-        border: 1px solid rgba(255,170,0,0.3);
-    }
-    .risk-badge.moderate {
-        background: rgba(0,180,216,0.15);
-        color: var(--info);
-        border: 1px solid rgba(0,180,216,0.3);
-    }
-    .risk-badge.low {
-        background: rgba(118,185,0,0.15);
-        color: var(--nvidia-green);
-        border: 1px solid rgba(118,185,0,0.3);
-    }
+.topbar-logo {
+    width: 48px;
+    height: 48px;
+    background: linear-gradient(135deg, var(--nvidia-green-bright), var(--nvidia-green-dark));
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+    box-shadow: var(--glow-extreme);
+    animation: logoFloat 6s ease-in-out infinite;
+    position: relative;
+}
 
-    /* ═══ PREVENTION BRIEF BOX ═══ */
-    .brief-box {
-        background: rgba(18,18,26,0.9);
-        border: 1px solid rgba(118,185,0,0.2);
-        border-radius: 12px;
-        padding: 24px 28px;
-        font-family: 'Inter', sans-serif;
-        font-size: 0.82rem;
-        line-height: 1.7;
-        color: var(--text-primary);
-        max-height: 600px;
-        overflow-y: auto;
-    }
-    .brief-box h1, .brief-box h2, .brief-box h3 {
-        color: var(--nvidia-green);
-        border-bottom: 1px solid var(--border-subtle);
-        padding-bottom: 6px;
-    }
-    .brief-box strong {
-        color: var(--nvidia-green);
-    }
+.topbar-logo::after {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: 12px;
+    background: linear-gradient(45deg, transparent, var(--nvidia-green), transparent);
+    animation: borderRotate 4s linear infinite;
+    z-index: -1;
+}
 
-    /* ═══ FOOTER ═══ */
-    .app-footer {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 16px 0;
-        border-top: 1px solid var(--border-subtle);
-        margin-top: 30px;
-        font-size: 0.68rem;
-        color: var(--text-dim);
-    }
-    .footer-left {
-        display: flex;
-        align-items: center;
-        gap: 20px;
-    }
-    .footer-link {
-        color: var(--text-secondary);
-        text-decoration: none;
-        transition: color 0.2s;
-    }
-    .footer-link:hover {
-        color: var(--nvidia-green);
-    }
-    .footer-nvidia {
-        display: flex;
-        align-items: center;
-        gap: 6px;
-        color: var(--nvidia-green);
-        font-weight: 600;
-    }
+@keyframes logoFloat {
+    0%, 100% { transform: translateY(0px) scale(1); }
+    50% { transform: translateY(-4px) scale(1.05); }
+}
 
-    /* ═══ OVERRIDE STREAMLIT DEFAULTS ═══ */
-    .stTabs [data-baseweb="tab-list"] {
-        background: var(--bg-secondary);
-        border-radius: 10px;
-        padding: 4px;
-        gap: 4px;
-        border: 1px solid var(--border-subtle);
-    }
-    .stTabs [data-baseweb="tab"] {
-        border-radius: 8px;
-        color: var(--text-secondary);
-        font-weight: 500;
-        font-size: 0.78rem;
-        padding: 8px 16px;
-        background: transparent;
-    }
-    .stTabs [aria-selected="true"] {
-        background: var(--nvidia-green-dim) !important;
-        color: var(--nvidia-green) !important;
-        font-weight: 600;
-    }
-    .stTabs [data-baseweb="tab-highlight"] {
-        display: none;
-    }
-    .stTabs [data-baseweb="tab-border"] {
-        display: none;
-    }
+@keyframes borderRotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
 
-    /* Expander styling */
-    .streamlit-expanderHeader {
-        background: var(--bg-card) !important;
-        border: 1px solid var(--border-subtle) !important;
-        border-radius: 8px !important;
-        font-size: 0.8rem !important;
-    }
+.topbar-title {
+    font-family: 'Orbitron', monospace;
+    font-size: 1.5rem;
+    font-weight: 900;
+    background: linear-gradient(
+        135deg,
+        var(--nvidia-green-bright),
+        var(--neon-cyan),
+        var(--nvidia-green-bright)
+    );
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: gradientShift 4s ease infinite;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-shadow: 
+        0 0 20px rgba(118,185,0,0.5),
+        0 0 40px rgba(118,185,0,0.3);
+}
 
-    /* Metric styling */
-    [data-testid="stMetric"] {
-        background: var(--bg-card);
-        border: 1px solid var(--border-subtle);
-        border-radius: 8px;
-        padding: 12px 16px;
-    }
-    [data-testid="stMetricValue"] {
-        font-family: 'JetBrains Mono', monospace;
-        font-weight: 700;
-    }
-    [data-testid="stMetricLabel"] {
-        font-size: 0.7rem;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-    }
+@keyframes gradientShift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
 
-    /* Button styling */
-    .stButton > button {
-        background: linear-gradient(135deg, var(--nvidia-green), #5a9400) !important;
-        color: #000 !important;
-        font-weight: 700 !important;
-        border: none !important;
-        border-radius: 8px !important;
-        padding: 10px 24px !important;
-        font-size: 0.8rem !important;
-        letter-spacing: 0.3px !important;
-        transition: all 0.2s ease !important;
-        box-shadow: 0 2px 10px var(--nvidia-green-glow) !important;
-    }
-    .stButton > button:hover {
-        transform: translateY(-1px) !important;
-        box-shadow: 0 4px 20px var(--nvidia-green-glow) !important;
-    }
-    .stButton > button[kind="secondary"] {
-        background: transparent !important;
-        border: 1px solid var(--border-glow) !important;
-        color: var(--nvidia-green) !important;
-        box-shadow: none !important;
-    }
+.topbar-subtitle {
+    font-size: 0.75rem;
+    color: var(--neon-cyan);
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    text-shadow: 0 0 10px rgba(0,255,255,0.5);
+}
 
-    /* Checkbox styling */
-    .stCheckbox label {
-        font-size: 0.78rem !important;
-        color: var(--text-secondary) !important;
-    }
+.topbar-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
 
-    /* Slider styling */
-    .stSlider [data-baseweb="slider"] [role="slider"] {
-        background: var(--nvidia-green) !important;
-    }
+.topbar-badge {
+    background: rgba(118,185,0,0.15);
+    border: 2px solid var(--nvidia-green);
+    color: var(--nvidia-green-bright);
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    box-shadow: 
+        0 0 20px rgba(118,185,0,0.4),
+        inset 0 0 10px rgba(118,185,0,0.1);
+    animation: badgePulse 2s ease-in-out infinite;
+}
 
-    /* Selectbox */
-    .stSelectbox [data-baseweb="select"] {
-        background: var(--bg-card) !important;
-        border: 1px solid var(--border-subtle) !important;
-        border-radius: 8px !important;
-    }
+@keyframes badgePulse {
+    0%, 100% { box-shadow: 0 0 20px rgba(118,185,0,0.4), inset 0 0 10px rgba(118,185,0,0.1); }
+    50% { box-shadow: 0 0 30px rgba(118,185,0,0.6), inset 0 0 15px rgba(118,185,0,0.2); }
+}
 
-    /* Spinner */
-    .stSpinner > div {
-        border-top-color: var(--nvidia-green) !important;
-    }
+.topbar-status {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.72rem;
+    color: var(--text-secondary);
+}
 
-    /* ═══ SIDEBAR ═══ */
-    section[data-testid="stSidebar"] {
-        background: var(--bg-primary);
-        border-right: 1px solid var(--border-subtle);
-    }
-    section[data-testid="stSidebar"] .stMarkdown {
-        font-size: 0.82rem;
-    }
+.status-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--nvidia-green);
+    box-shadow: var(--glow-intense);
+    animation: statusFlash 1.5s ease-in-out infinite;
+}
 
-    /* ═══ SCROLLBAR ═══ */
-    ::-webkit-scrollbar { width: 6px; }
-    ::-webkit-scrollbar-track { background: var(--bg-primary); }
-    ::-webkit-scrollbar-thumb { background: var(--text-dim); border-radius: 3px; }
-    ::-webkit-scrollbar-thumb:hover { background: var(--text-secondary); }
+.status-dot.danger {
+    background: var(--danger);
+    box-shadow: 
+        0 0 40px rgba(255,0,85,0.6),
+        0 0 80px rgba(255,0,85,0.3);
+}
 
-    /* ═══ MAP CONTAINER ═══ */
-    .map-container {
-        border-radius: 12px;
-        overflow: hidden;
-        border: 1px solid var(--border-subtle);
-        position: relative;
-    }
-    .map-overlay-label {
-        position: absolute;
-        top: 12px;
-        left: 12px;
-        background: rgba(10,10,15,0.85);
-        border: 1px solid var(--border-subtle);
-        border-radius: 8px;
-        padding: 6px 14px;
-        font-size: 0.68rem;
-        color: var(--text-secondary);
-        font-weight: 500;
-        letter-spacing: 0.5px;
-        text-transform: uppercase;
-        z-index: 10;
-        backdrop-filter: blur(10px);
-    }
+@keyframes statusFlash {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.6; transform: scale(0.9); }
+}
 
-    /* ═══ PLAN CARD ═══ */
-    .plan-card {
-        background: var(--bg-card);
-        border: 1px solid var(--border-subtle);
-        border-radius: 10px;
-        padding: 16px 20px;
-        margin: 8px 0;
-        transition: all 0.2s ease;
-    }
-    .plan-card:hover {
-        border-color: var(--border-glow);
-    }
-    .plan-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 8px;
-    }
-    .plan-rank {
-        font-family: 'JetBrains Mono', monospace;
-        font-size: 0.7rem;
-        color: var(--nvidia-green);
-        font-weight: 700;
-    }
-    .plan-efficiency {
-        font-family: 'JetBrains Mono', monospace;
-        font-size: 0.8rem;
-        font-weight: 700;
-    }
-    .plan-detail {
-        font-size: 0.72rem;
-        color: var(--text-secondary);
-        margin: 2px 0;
-    }
+/* ═══ THREAT BANNER — CRITICAL ALERT ═══ */
+.threat-banner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    padding: 12px 24px;
+    background: linear-gradient(
+        90deg,
+        rgba(255,0,85,0.1),
+        rgba(255,0,85,0.2),
+        rgba(255,0,85,0.1)
+    );
+    border: 2px solid var(--danger);
+    border-radius: 12px;
+    margin: 16px 0;
+    box-shadow: 
+        0 0 40px rgba(255,0,85,0.3),
+        inset 0 0 20px rgba(255,0,85,0.1);
+    animation: alertFlash 2s ease-in-out infinite;
+    position: relative;
+    overflow: hidden;
+}
 
-    /* ═══ ANIMATIONS ═══ */
-    @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(8px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
-    .animate-in {
-        animation: fadeIn 0.4s ease-out forwards;
-    }
+.threat-banner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,0.2),
+        transparent
+    );
+    animation: alertSweep 3s ease-in-out infinite;
+}
 
-    @keyframes glowPulse {
-        0%, 100% { box-shadow: 0 0 15px var(--nvidia-green-glow); }
-        50% { box-shadow: 0 0 30px var(--nvidia-green-glow), 0 0 60px rgba(118,185,0,0.1); }
-    }
-    .glow-pulse {
-        animation: glowPulse 3s ease-in-out infinite;
-    }
+@keyframes alertFlash {
+    0%, 100% { border-color: var(--danger); }
+    50% { border-color: #ff3377; }
+}
 
-    @keyframes scanline {
-        0% { transform: translateY(-100%); }
-        100% { transform: translateY(100vh); }
-    }
+@keyframes alertSweep {
+    0% { left: -100%; }
+    100% { left: 200%; }
+}
 
-    /* ═══ VOICEOVER EXPERIENCE ═══ */
-    .vo-start-overlay {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        padding: 60px 20px;
-        text-align: center;
-    }
-    .vo-start-btn {
-        width: 100px;
-        height: 100px;
-        border-radius: 50%;
-        background: linear-gradient(135deg, var(--nvidia-green), #5a9400);
-        border: none;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        box-shadow: 0 0 40px var(--nvidia-green-glow), 0 0 80px rgba(118,185,0,0.15);
-        transition: all 0.3s ease;
-        animation: glowPulse 2s ease-in-out infinite;
-    }
-    .vo-start-btn:hover {
-        transform: scale(1.08);
-        box-shadow: 0 0 60px var(--nvidia-green-glow), 0 0 100px rgba(118,185,0,0.25);
-    }
-    .vo-start-btn svg {
-        width: 40px;
-        height: 40px;
-        fill: #000;
-        margin-left: 6px;
-    }
-    .vo-start-title {
-        font-size: 1.4rem;
-        font-weight: 800;
-        color: var(--text-primary);
-        margin-top: 24px;
-        letter-spacing: -0.5px;
-    }
-    .vo-start-sub {
-        font-size: 0.78rem;
-        color: var(--text-secondary);
-        margin-top: 8px;
-        max-width: 450px;
-    }
-    .vo-start-duration {
-        font-size: 0.7rem;
-        color: var(--nvidia-green);
-        font-family: 'JetBrains Mono', monospace;
-        font-weight: 600;
-        margin-top: 16px;
-        letter-spacing: 1px;
-    }
+.threat-banner-icon {
+    font-size: 0.85rem;
+}
 
-    .vo-progress-container {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        padding: 8px 20px;
-        background: rgba(118,185,0,0.06);
-        border: 1px solid rgba(118,185,0,0.15);
-        border-radius: 8px;
-        margin: 8px 0;
-    }
-    .vo-progress-bar-bg {
-        flex: 1;
-        height: 4px;
-        background: var(--border-subtle);
-        border-radius: 2px;
-        overflow: hidden;
-    }
-    .vo-progress-bar-fill {
-        height: 100%;
-        background: linear-gradient(90deg, var(--nvidia-green), #a0e000);
-        border-radius: 2px;
-        transition: width 0.5s linear;
-    }
-    .vo-time {
-        font-family: 'JetBrains Mono', monospace;
-        font-size: 0.7rem;
-        color: var(--nvidia-green);
-        font-weight: 600;
-        min-width: 45px;
-    }
-    .vo-label {
-        font-size: 0.65rem;
-        color: var(--text-secondary);
-        text-transform: uppercase;
-        letter-spacing: 1px;
-    }
+.threat-banner-text {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #ff3377;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-shadow: 0 0 20px rgba(255,0,85,0.6);
+}
 
-    /* Hide the auto-advance button */
-    .auto-advance-hidden {
-        position: absolute;
-        left: -9999px;
-        top: -9999px;
-        opacity: 0;
-        pointer-events: none;
-    }
+.threat-banner-time {
+    font-size: 0.68rem;
+    color: var(--text-secondary);
+    font-family: 'JetBrains Mono', monospace;
+}
+
+/* ═══ HOLOGRAPHIC CARDS ═══ */
+.glass-card {
+    background: linear-gradient(
+        135deg,
+        rgba(10,10,20,0.7),
+        rgba(20,20,40,0.5)
+    );
+    border: 2px solid transparent;
+    border-image: linear-gradient(
+        135deg,
+        rgba(118,185,0,0.3),
+        rgba(0,180,255,0.2),
+        rgba(118,185,0,0.3)
+    ) 1;
+    border-radius: 16px;
+    padding: 24px;
+    backdrop-filter: blur(20px) saturate(180%);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 
+        0 8px 32px rgba(0,0,0,0.3),
+        inset 0 1px 1px rgba(255,255,255,0.1);
+    transition: all 0.3s ease;
+}
+
+.glass-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        45deg,
+        transparent,
+        rgba(118,185,0,0.05),
+        transparent
+    );
+    animation: holoShimmer 6s linear infinite;
+}
+
+@keyframes holoShimmer {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.glass-card:hover {
+    border-image: linear-gradient(
+        135deg,
+        rgba(118,185,0,0.6),
+        rgba(0,180,255,0.4),
+        rgba(118,185,0,0.6)
+    ) 1;
+    box-shadow: 
+        0 12px 48px rgba(118,185,0,0.2),
+        inset 0 1px 1px rgba(255,255,255,0.2);
+    transform: translateY(-2px) scale(1.01);
+}
+
+/* ═══ STAT CARDS — DATA NODES ═══ */
+.stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 12px;
+    margin: 16px 0;
+}
+
+.stat-card {
+    background: linear-gradient(135deg, rgba(10,10,20,0.9), rgba(20,20,40,0.7));
+    border: 2px solid var(--nvidia-green);
+    border-radius: 12px;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 
+        0 0 30px rgba(118,185,0,0.3),
+        inset 0 0 20px rgba(118,185,0,0.05);
+    transition: all 0.3s ease;
+}
+
+.stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(180deg, var(--nvidia-green-bright), var(--nvidia-green-dark));
+    box-shadow: var(--glow-soft);
+}
+
+.stat-card.red::before { 
+    background: linear-gradient(180deg, #ff3377, #ff0055); 
+    box-shadow: 0 0 20px rgba(255,0,85,0.6);
+}
+.stat-card.orange::before { 
+    background: linear-gradient(180deg, #ffcc00, #ff7700); 
+    box-shadow: 0 0 20px rgba(255,170,0,0.6);
+}
+.stat-card.blue::before { 
+    background: linear-gradient(180deg, #00ffff, #0088ff); 
+    box-shadow: 0 0 20px rgba(0,180,255,0.6);
+}
+.stat-card.green::before { 
+    background: linear-gradient(180deg, var(--nvidia-green-bright), var(--nvidia-green-dark));
+    box-shadow: var(--glow-soft);
+}
+
+.stat-card:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 
+        0 0 50px rgba(118,185,0,0.5),
+        inset 0 0 30px rgba(118,185,0,0.1);
+}
+
+.stat-card::after {
+    content: '|||||||||||||||||||||||||||||||';
+    position: absolute;
+    top: -10px;
+    right: 10px;
+    font-size: 0.6rem;
+    color: var(--nvidia-green);
+    opacity: 0.2;
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 2px;
+    animation: dataStream 3s linear infinite;
+}
+
+@keyframes dataStream {
+    from { transform: translateY(0); opacity: 0.3; }
+    to { transform: translateY(20px); opacity: 0; }
+}
+
+.stat-label {
+    font-size: 0.65rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 500;
+}
+
+.stat-value {
+    font-family: 'Orbitron', monospace;
+    font-size: 2.2rem;
+    font-weight: 900;
+    background: linear-gradient(135deg, var(--nvidia-green-bright), var(--neon-cyan));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 0 30px rgba(118,185,0,0.5);
+    line-height: 1;
+    margin-top: 8px;
+}
+
+.stat-value.red {
+    background: linear-gradient(135deg, #ff3377, #ff0055);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.stat-value.orange {
+    background: linear-gradient(135deg, #ffcc00, #ff7700);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.stat-value.green {
+    background: linear-gradient(135deg, var(--nvidia-green-bright), var(--neon-cyan));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.stat-value.blue {
+    background: linear-gradient(135deg, var(--neon-cyan), #0088ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.stat-delta {
+    font-size: 0.7rem;
+    margin-top: 4px;
+    font-weight: 500;
+}
+.stat-delta.up { color: var(--danger); }
+.stat-delta.down { color: var(--nvidia-green); }
+
+/* ═══ SECTION HEADERS ═══ */
+.section-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 20px 0 12px 0;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.section-icon {
+    width: 28px;
+    height: 28px;
+    background: var(--nvidia-green-dim);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+}
+
+.section-title {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    letter-spacing: 0.3px;
+}
+
+.section-subtitle {
+    font-size: 0.68rem;
+    color: var(--text-secondary);
+}
+
+/* ═══ BUTTONS — TACTICAL CONTROLS ═══ */
+.stButton > button {
+    background: linear-gradient(135deg, var(--nvidia-green), var(--nvidia-green-dark)) !important;
+    color: #000000 !important;
+    font-family: 'Orbitron', monospace !important;
+    font-weight: 800 !important;
+    font-size: 0.85rem !important;
+    letter-spacing: 2px !important;
+    text-transform: uppercase !important;
+    border: 2px solid var(--nvidia-green-bright) !important;
+    border-radius: 12px !important;
+    padding: 14px 32px !important;
+    box-shadow: var(--glow-intense) !important;
+    transition: all 0.2s ease !important;
+    position: relative !important;
+    overflow: hidden !important;
+}
+
+.stButton > button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: left 0.5s ease;
+}
+
+.stButton > button:hover::before {
+    left: 100%;
+}
+
+.stButton > button:hover {
+    transform: translateY(-3px) scale(1.05) !important;
+    box-shadow: var(--glow-extreme) !important;
+    border-color: var(--neon-cyan) !important;
+}
+
+.stButton > button[kind="secondary"] {
+    background: transparent !important;
+    border: 1px solid var(--border-glow) !important;
+    color: var(--nvidia-green) !important;
+    box-shadow: none !important;
+}
+
+/* ═══ TAKE CONTROL BUTTON ═══ */
+.take-control-container {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 9999;
+}
+
+/* ═══ PHASE INDICATOR — MISSION PROGRESS ═══ */
+.phase-indicator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 14px 28px;
+    background: linear-gradient(90deg, rgba(118,185,0,0.1), rgba(0,180,255,0.1), rgba(118,185,0,0.1));
+    border: 2px solid var(--nvidia-green);
+    border-radius: 12px;
+    margin: 16px 0;
+    box-shadow: 
+        0 0 40px rgba(118,185,0,0.3),
+        inset 0 0 20px rgba(118,185,0,0.05);
+}
+
+.phase-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--text-dim);
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    border: 2px solid transparent;
+}
+
+.phase-dot.active {
+    background: var(--nvidia-green-bright);
+    border-color: var(--neon-cyan);
+    box-shadow: var(--glow-extreme);
+    transform: scale(1.8);
+    animation: phaseActive 1.5s ease-in-out infinite;
+}
+
+@keyframes phaseActive {
+    0%, 100% { box-shadow: var(--glow-extreme); }
+    50% { box-shadow: 0 0 80px var(--nvidia-green-glow), 0 0 160px rgba(118,185,0,0.4); }
+}
+
+.phase-dot.completed {
+    background: var(--nvidia-green);
+    border-color: var(--nvidia-green);
+    box-shadow: 0 0 20px rgba(118,185,0,0.4);
+}
+
+.phase-label {
+    font-family: 'Orbitron', monospace;
+    font-size: 0.85rem;
+    color: var(--nvidia-green-bright);
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-shadow: 0 0 20px rgba(118,185,0,0.6);
+    margin-left: 12px;
+}
+
+/* ═══ START EXPERIENCE — MISSION BRIEF ═══ */
+.vo-start-overlay {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 20px;
+    text-align: center;
+}
+
+.vo-start-btn {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--nvidia-green), #5a9400);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 40px var(--nvidia-green-glow), 0 0 80px rgba(118,185,0,0.15);
+    transition: all 0.3s ease;
+    animation: glowPulse 2s ease-in-out infinite;
+}
+
+@keyframes glowPulse {
+    0%, 100% { box-shadow: 0 0 15px var(--nvidia-green-glow); }
+    50% { box-shadow: 0 0 30px var(--nvidia-green-glow), 0 0 60px rgba(118,185,0,0.1); }
+}
+
+.vo-start-btn:hover {
+    transform: scale(1.08);
+    box-shadow: 0 0 60px var(--nvidia-green-glow), 0 0 100px rgba(118,185,0,0.25);
+}
+
+.vo-start-btn svg {
+    width: 40px;
+    height: 40px;
+    fill: #000;
+    margin-left: 6px;
+}
+
+.vo-start-title {
+    font-family: 'Orbitron', monospace;
+    font-size: 3rem;
+    font-weight: 900;
+    background: linear-gradient(
+        135deg,
+        var(--nvidia-green-bright),
+        var(--neon-cyan),
+        var(--neon-magenta),
+        var(--nvidia-green-bright)
+    );
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: epicGradient 5s ease infinite;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    text-shadow: 0 0 60px rgba(118,185,0,0.6);
+    margin-bottom: 16px;
+}
+
+@keyframes epicGradient {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+.vo-start-sub {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    max-width: 600px;
+    line-height: 1.6;
+    margin-top: 12px;
+}
+
+.vo-start-duration {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    color: var(--neon-cyan);
+    font-weight: 700;
+    letter-spacing: 3px;
+    margin-top: 24px;
+    text-shadow: 0 0 20px rgba(0,255,255,0.6);
+}
+
+/* ═══ VOICEOVER PROGRESS ═══ */
+.vo-progress-container {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 12px 24px;
+    background: linear-gradient(90deg, rgba(118,185,0,0.08), rgba(0,180,255,0.08), rgba(118,185,0,0.08));
+    border: 2px solid var(--nvidia-green);
+    border-radius: 12px;
+    margin: 12px 0;
+    box-shadow: 
+        0 0 30px rgba(118,185,0,0.3),
+        inset 0 0 15px rgba(118,185,0,0.05);
+}
+
+.vo-progress-bar-bg {
+    flex: 1;
+    height: 4px;
+    background: var(--border-subtle);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.vo-progress-bar-fill {
+    height: 6px;
+    background: linear-gradient(90deg, var(--nvidia-green-bright), var(--neon-cyan));
+    border-radius: 3px;
+    box-shadow: 0 0 20px rgba(118,185,0,0.6);
+    transition: width 0.5s linear;
+}
+
+.vo-time {
+    font-family: 'Orbitron', monospace;
+    font-size: 0.85rem;
+    color: var(--nvidia-green-bright);
+    font-weight: 700;
+    text-shadow: 0 0 15px rgba(118,185,0,0.6);
+    min-width: 45px;
+}
+
+.vo-label {
+    font-size: 0.65rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* ═══ DATA TABLE ═══ */
+.data-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-size: 0.75rem;
+}
+
+.data-table th {
+    background: rgba(118,185,0,0.08);
+    color: var(--text-secondary);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    padding: 10px 14px;
+    text-align: left;
+    font-size: 0.65rem;
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.data-table td {
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border-subtle);
+    color: var(--text-primary);
+}
+
+.data-table tr:hover td {
+    background: rgba(118,185,0,0.03);
+}
+
+/* ═══ RISK BADGE ═══ */
+.risk-badge {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 12px;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.risk-badge.extreme {
+    background: rgba(255,59,59,0.15);
+    color: var(--danger);
+    border: 1px solid rgba(255,59,59,0.3);
+}
+
+.risk-badge.high {
+    background: rgba(255,170,0,0.15);
+    color: var(--warning);
+    border: 1px solid rgba(255,170,0,0.3);
+}
+
+.risk-badge.moderate {
+    background: rgba(0,180,216,0.15);
+    color: var(--info);
+    border: 1px solid rgba(0,180,216,0.3);
+}
+
+.risk-badge.low {
+    background: rgba(118,185,0,0.15);
+    color: var(--nvidia-green);
+    border: 1px solid rgba(118,185,0,0.3);
+}
+
+/* ═══ PREVENTION BRIEF BOX ═══ */
+.brief-box {
+    background: rgba(18,18,26,0.9);
+    border: 1px solid rgba(118,185,0,0.2);
+    border-radius: 12px;
+    padding: 24px 28px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.82rem;
+    line-height: 1.7;
+    color: var(--text-primary);
+    max-height: 600px;
+    overflow-y: auto;
+}
+
+.brief-box h1, .brief-box h2, .brief-box h3 {
+    color: var(--nvidia-green);
+    border-bottom: 1px solid var(--border-subtle);
+    padding-bottom: 6px;
+}
+
+.brief-box strong {
+    color: var(--nvidia-green);
+}
+
+/* ═══ FOOTER ═══ */
+.app-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 0;
+    border-top: 1px solid var(--border-subtle);
+    margin-top: 30px;
+    font-size: 0.68rem;
+    color: var(--text-dim);
+}
+
+.footer-left {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.footer-link {
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.footer-link:hover {
+    color: var(--nvidia-green);
+}
+
+.footer-nvidia {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--nvidia-green);
+    font-weight: 600;
+}
+
+/* ═══ OVERRIDE STREAMLIT DEFAULTS ═══ */
+.stTabs [data-baseweb="tab-list"] {
+    background: var(--bg-secondary);
+    border-radius: 10px;
+    padding: 4px;
+    gap: 4px;
+    border: 1px solid var(--border-subtle);
+}
+
+.stTabs [data-baseweb="tab"] {
+    border-radius: 8px;
+    color: var(--text-secondary);
+    font-weight: 500;
+    font-size: 0.78rem;
+    padding: 8px 16px;
+    background: transparent;
+}
+
+.stTabs [aria-selected="true"] {
+    background: var(--nvidia-green-dim) !important;
+    color: var(--nvidia-green) !important;
+    font-weight: 600;
+}
+
+.stTabs [data-baseweb="tab-highlight"] {
+    display: none;
+}
+
+.stTabs [data-baseweb="tab-border"] {
+    display: none;
+}
+
+/* Expander styling */
+.streamlit-expanderHeader {
+    background: var(--bg-card) !important;
+    border: 1px solid var(--border-subtle) !important;
+    border-radius: 8px !important;
+    font-size: 0.8rem !important;
+}
+
+/* Metric styling */
+[data-testid="stMetric"] {
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: 8px;
+    padding: 12px 16px;
+}
+
+[data-testid="stMetricValue"] {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+}
+
+[data-testid="stMetricLabel"] {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Checkbox styling */
+.stCheckbox label {
+    font-size: 0.78rem !important;
+    color: var(--text-secondary) !important;
+}
+
+/* Slider styling */
+.stSlider [data-baseweb="slider"] [role="slider"] {
+    background: var(--nvidia-green) !important;
+}
+
+/* Selectbox */
+.stSelectbox [data-baseweb="select"] {
+    background: var(--bg-card) !important;
+    border: 1px solid var(--border-subtle) !important;
+    border-radius: 8px !important;
+}
+
+/* Spinner */
+.stSpinner > div {
+    border-top-color: var(--nvidia-green) !important;
+}
+
+/* ═══ SIDEBAR ═══ */
+section[data-testid="stSidebar"] {
+    background: var(--bg-primary);
+    border-right: 1px solid var(--border-subtle);
+}
+
+section[data-testid="stSidebar"] .stMarkdown {
+    font-size: 0.82rem;
+}
+
+/* ═══ SCROLLBAR ═══ */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-primary); }
+::-webkit-scrollbar-thumb { background: var(--text-dim); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-secondary); }
+
+/* ═══ MAP CONTAINER ═══ */
+.map-container {
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--border-subtle);
+    position: relative;
+}
+
+.map-overlay-label {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: rgba(10,10,15,0.85);
+    border: 1px solid var(--border-subtle);
+    border-radius: 8px;
+    padding: 6px 14px;
+    font-size: 0.68rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    z-index: 10;
+    backdrop-filter: blur(10px);
+}
+
+/* ═══ PLAN CARD ═══ */
+.plan-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin: 8px 0;
+    transition: all 0.2s ease;
+}
+
+.plan-card:hover {
+    border-color: var(--border-glow);
+}
+
+.plan-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.plan-rank {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--nvidia-green);
+    font-weight: 700;
+}
+
+.plan-efficiency {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+
+.plan-detail {
+    font-size: 0.72rem;
+    color: var(--text-secondary);
+    margin: 2px 0;
+}
+
+/* ═══ ANIMATIONS ═══ */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-in {
+    animation: fadeIn 0.4s ease-out forwards;
+}
+
+/* Hide the auto-advance button */
+.auto-advance-hidden {
+    position: absolute;
+    left: -9999px;
+    top: -9999px;
+    opacity: 0;
+    pointer-events: none;
+}
 </style>
 """, unsafe_allow_html=True)
+
+# ─── Cinematic Camera System ───────────────────────────────────────────────
+def get_cinematic_view_state(phase):
+    """
+    Return cinematic camera position for each demo phase.
+    
+    Phase 0: Orbit overview - Wide establishing shot
+    Phase 1: Zoom to risk zone - Close-up on power lines
+    Phase 2: Optimization view - Network focus
+    Phase 3: Before/After - Comparison angle
+    Phase 4: Final reveal - Dramatic wide shot
+    """
+    import pydeck as pdk
+    from config import CENTER_LAT, CENTER_LON
+    
+    camera_positions = {
+        0: pdk.ViewState(  # PHASE 0: Orbit Overview
+            latitude=CENTER_LAT - 0.01,
+            longitude=CENTER_LON + 0.01,
+            zoom=10.5,
+            pitch=60,
+            bearing=-15,
+            min_zoom=8,
+            max_zoom=16,
+        ),
+        1: pdk.ViewState(  # PHASE 1: Zoom to Risk Zone
+            latitude=CENTER_LAT + 0.005,
+            longitude=CENTER_LON - 0.005,
+            zoom=12.5,
+            pitch=50,
+            bearing=20,
+            min_zoom=8,
+            max_zoom=16,
+        ),
+        2: pdk.ViewState(  # PHASE 2: Optimization Network View
+            latitude=CENTER_LAT,
+            longitude=CENTER_LON,
+            zoom=11.2,
+            pitch=45,
+            bearing=-10,
+            min_zoom=8,
+            max_zoom=16,
+        ),
+        3: pdk.ViewState(  # PHASE 3: Before/After Comparison
+            latitude=CENTER_LAT - 0.005,
+            longitude=CENTER_LON + 0.008,
+            zoom=11.8,
+            pitch=55,
+            bearing=30,
+            min_zoom=8,
+            max_zoom=16,
+        ),
+        4: pdk.ViewState(  # PHASE 4: Final Reveal
+            latitude=CENTER_LAT,
+            longitude=CENTER_LON,
+            zoom=10.8,
+            pitch=65,
+            bearing=-25,
+            min_zoom=8,
+            max_zoom=16,
+        ),
+    }
+    
+    return camera_positions.get(phase, camera_positions[0])
 
 
 # ─── Session State ──────────────────────────────────────────────────────────
@@ -1607,7 +2071,11 @@ else:
             show_heatmap=False,
             show_wind=True,
             show_fire_spread=True,
+            view_state=get_cinematic_view_state(current_phase),  # 🎬 CINEMATIC CAMERA
         )
+        
+        # Disable map controller during demo for cinematic experience
+        deck.controller = False
 
         st.pydeck_chart(deck, height=650, use_container_width=True)
 
@@ -1896,7 +2364,9 @@ else:
                 show_heatmap=False,
                 show_wind=True,
                 show_fire_spread=True,
+                view_state=get_cinematic_view_state(current_phase),
             )
+            deck.controller = False
 
             st.pydeck_chart(deck, height=500, use_container_width=True)
 
