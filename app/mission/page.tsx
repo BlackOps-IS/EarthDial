@@ -15,9 +15,38 @@ export const metadata: Metadata = {
   alternates: { canonical: "/mission" },
 }
 
+const leadershipJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ProfilePage",
+  about: leadership.map((person) => ({
+    "@type": "Person",
+    name: person.name,
+    jobTitle: person.role,
+    description: person.bio,
+    worksFor: {
+      "@type": "Organization",
+      name: siteConfig.organizationName,
+      url: siteConfig.url,
+    },
+    ...(person.credentials
+      ? {
+          hasCredential: person.credentials.map((credential) => ({
+            "@type": "EducationalOccupationalCredential",
+            name: credential,
+          })),
+        }
+      : {}),
+  })),
+}
+
 export default function MissionPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        // eslint-disable-next-line react/no-danger
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(leadershipJsonLd) }}
+      />
       <PageHeader
         eyebrow="Our Mission"
         title="Advanced Technology With a Public Purpose."

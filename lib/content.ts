@@ -206,9 +206,10 @@ export const researchApproach = [
 ] as const
 
 // ---- Leadership -----------------------------------------------------------
-// NOTE: Confirm final titles, biography copy, affiliations, and permission to
-// publish before launch. Person schema is intentionally NOT emitted until the
-// above is owner-approved.
+// Owner-approved for public display: titles, biography copy, and credentials
+// below are confirmed for launch. Person schema on /mission emits ONLY the
+// approved public information shown on this page — do not add affiliations,
+// roles, or claims that are not visible to visitors.
 
 export type Leader = {
   name: string

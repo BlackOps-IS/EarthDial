@@ -53,7 +53,7 @@ export default function ReldunOsPage() {
             <div className="relative mx-auto w-full max-w-md">
               <div className="overflow-hidden rounded-2xl border border-border bg-card shadow-2xl shadow-black/40">
                 <Image
-                  src={siteConfig.reldunImage || "/placeholder.svg"}
+                  src={siteConfig.reldunImage}
                   alt={siteConfig.reldunImageAlt}
                   width={640}
                   height={640}

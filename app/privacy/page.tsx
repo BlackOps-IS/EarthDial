@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   title: "Privacy Policy",
   description:
     "How Black Diamond Project Corp collects, uses, and protects information submitted through this website.",
+  alternates: { canonical: "/privacy" },
 }
 
 const sections = [
@@ -20,7 +21,7 @@ const sections = [
   },
   {
     heading: "How We Use Information",
-    body: "We use the information you provide to respond to your inquiries, communicate about our programs and research, and improve our website. We do not sell your personal information.",
+    body: "We use the information you provide to respond to your inquiries, communicate about our research and initiatives, and improve our website. We do not sell your personal information.",
   },
   {
     heading: "Information Sharing",

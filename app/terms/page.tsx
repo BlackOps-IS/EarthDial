@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   title: "Terms of Use",
   description:
     "The terms that govern your use of the Black Diamond Project Corp website and its content.",
+  alternates: { canonical: "/terms" },
 }
 
 const sections = [
@@ -28,7 +29,7 @@ const sections = [
   },
   {
     heading: "Charitable Contributions",
-    body: "Black Diamond Project Corp is listed in IRS Publication 78 as eligible to receive tax-deductible charitable contributions and is classified by the IRS as a private foundation. The deductibility of any contribution depends on your individual circumstances; consult your tax adviser.",
+    body: "Black Diamond Project Corp is listed in IRS Publication 78 Data as eligible to receive tax-deductible charitable contributions and is classified by the IRS as a private foundation. The deductibility of any contribution depends on your individual circumstances; consult your tax adviser.",
   },
   {
     heading: "Limitation of Liability",

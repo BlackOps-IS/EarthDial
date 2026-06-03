@@ -12,7 +12,8 @@ import { PageHeader } from "@/components/site/page-header"
 export const metadata: Metadata = {
   title: "Foundation Status & IRS Recognition",
   description:
-    "Black Diamond Project Corp is listed in IRS Publication 78 as eligible to receive tax-deductible charitable contributions. IRS classification: Private Foundation.",
+    "Black Diamond Project Corp is listed in IRS Publication 78 Data as eligible to receive tax-deductible charitable contributions. IRS classification: Private Foundation.",
+  alternates: { canonical: "/foundation-status" },
 }
 
 const statusRows = [
@@ -28,7 +29,7 @@ export default function FoundationStatusPage() {
       <PageHeader
         eyebrow="Transparency & Recognition"
         title="Foundation Status & IRS Recognition"
-        description="Black Diamond Project Corp is listed in IRS Publication 78 as an organization eligible to receive tax-deductible charitable contributions."
+        description="Black Diamond Project Corp is listed in IRS Publication 78 Data as an organization eligible to receive tax-deductible charitable contributions."
       />
 
       <section className="py-16 sm:py-20">
