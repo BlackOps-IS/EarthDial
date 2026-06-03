@@ -59,13 +59,14 @@ export default function HomePage() {
       {/* SECTION 5 — Featured initiative: Reldun OS */}
       <section className="border-t border-border py-20 sm:py-24">
         <Container className="grid items-center gap-12 lg:grid-cols-2">
-          <div className="order-2 overflow-hidden rounded-xl border border-border bg-[oklch(0.12_0.004_286)] lg:order-1">
+          <div className="order-2 flex justify-center overflow-hidden rounded-xl border border-border bg-[oklch(0.12_0.004_286)] p-6 sm:p-10 lg:order-1">
             <Image
               src={siteConfig.reldunImage}
               alt={siteConfig.reldunImageAlt}
               width={1024}
               height={1024}
-              className="h-auto w-full"
+              sizes="(max-width: 1024px) 80vw, 40vw"
+              className="h-auto w-full max-w-xs sm:max-w-sm lg:max-w-md"
             />
           </div>
           <div className="order-1 lg:order-2">

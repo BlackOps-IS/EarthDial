@@ -22,12 +22,12 @@ export function SiteFooter() {
                 <h2 className="text-xs font-semibold uppercase tracking-[0.18em] text-foreground/70">
                   {column.heading}
                 </h2>
-                <ul className="mt-4 flex flex-col gap-2.5">
+                <ul className="mt-3 flex flex-col gap-0.5">
                   {column.links.map((item) => (
                     <li key={item.label}>
                       <Link
                         href={item.href}
-                        className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+                        className="inline-flex min-h-9 items-center text-sm text-muted-foreground transition-colors hover:text-foreground"
                       >
                         {item.label}
                       </Link>
