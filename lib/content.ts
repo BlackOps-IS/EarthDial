@@ -111,13 +111,6 @@ export const trustStrip = [
   "Public-Safety Resilience Technology",
 ] as const
 
-// Compact credibility chips used in the hero.
-export const heroCredibility = [
-  "Private Foundation",
-  "IRS Publication 78 Listed",
-  "Secure & Resilient Technology Research",
-] as const
-
 // ---- Four connected technology areas --------------------------------------
 
 export type TechArea = {
