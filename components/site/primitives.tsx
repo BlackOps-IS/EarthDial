@@ -99,13 +99,13 @@ export function DiamondMark({ className }: { className?: string }) {
 
 export function Logo({ className }: { className?: string }) {
   return (
-    <span className={cn("inline-flex items-center gap-2.5", className)}>
-      <DiamondMark className="size-7" />
+    <span className={cn("inline-flex shrink-0 items-center gap-2.5", className)}>
+      <DiamondMark className="size-7 shrink-0" />
       <span className="flex flex-col leading-none">
-        <span className="font-serif text-base font-semibold tracking-tight">
+        <span className="whitespace-nowrap font-serif text-base font-semibold tracking-tight">
           Black Diamond
         </span>
-        <span className="text-[0.62rem] font-medium uppercase tracking-[0.28em] text-muted-foreground">
+        <span className="whitespace-nowrap text-[0.62rem] font-medium uppercase tracking-[0.28em] text-muted-foreground">
           Project Corp
         </span>
       </span>

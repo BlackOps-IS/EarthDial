@@ -16,10 +16,10 @@ export function AnnouncementBar() {
         <p className="flex-1 text-pretty text-[0.8rem] leading-snug text-foreground/90">
           <span className="font-semibold text-primary">Milestone:</span>{" "}
           <span className="hidden sm:inline">
-            Black Diamond Project Corp is listed in IRS Publication 78 as eligible to receive
+            Black Diamond Project Corp is listed in IRS Publication 78 Data as eligible to receive
             tax-deductible charitable contributions.
           </span>
-          <span className="sm:hidden">Listed in IRS Publication 78.</span>
+          <span className="sm:hidden">Listed in IRS Publication 78 Data.</span>
         </p>
         <Link
           href={announcement.ctaHref}
