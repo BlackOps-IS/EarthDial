@@ -10,20 +10,25 @@ import { siteConfig, donationDisclosure } from "@/lib/content"
 export const metadata: Metadata = {
   title: "Support the Mission",
   description:
-    "Support Black Diamond Project Corp, an IRS Publication 78-listed private foundation, in advancing trustworthy AI, quantum resilience, and public-safety research.",
+    "Support Black Diamond Project Corp, an IRS Publication 78-listed private foundation, in advancing secure AI, post-quantum cybersecurity, privacy-first systems, and public-safety resilience research.",
+  alternates: { canonical: "/support" },
 }
 
 const supportImpact = [
   {
-    title: "Trustworthy AI Research",
+    title: "Secure & Responsible AI",
     body: "Advancing human-overseen, auditable, and evidence-grounded artificial intelligence.",
   },
   {
-    title: "Quantum Resilience",
-    body: "Exploring AI-assisted error correction and post-quantum readiness for critical systems.",
+    title: "Post-Quantum Cybersecurity",
+    body: "Researching quantum-resilient cryptography and long-term protection of sensitive information.",
   },
   {
-    title: "Public-Safety Technology",
+    title: "Privacy-First Systems",
+    body: "Exploring secure computing foundations and kernel-boundary control, including Reldun OS.",
+  },
+  {
+    title: "Public-Safety Resilience",
     body: "Designing resilient, auditable decision support for emergency awareness and response.",
   },
 ]
@@ -34,7 +39,7 @@ export default function SupportPage() {
       <PageHeader
         eyebrow="Support"
         title="Support responsible technology research."
-        description="Contributions help Black Diamond Project Corp advance public-benefit research in trustworthy AI, quantum resilience, cybersecurity assurance, and public-safety innovation."
+        description="Contributions help Black Diamond Project Corp advance public-benefit research in secure AI, post-quantum cybersecurity, privacy-first systems, and public-safety resilience technology."
       />
 
       <section className="py-16 sm:py-20">

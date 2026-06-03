@@ -36,14 +36,14 @@ export function SiteHeader() {
           <Logo />
         </Link>
 
-        <nav aria-label="Primary" className="hidden items-center gap-7 lg:flex">
+        <nav aria-label="Primary" className="hidden items-center gap-5 lg:flex xl:gap-6">
           {primaryNav.map((item) => (
             <Link
               key={item.href}
               href={item.href}
               aria-current={isActive(item.href) ? "page" : undefined}
               className={cn(
-                "text-sm font-medium transition-colors hover:text-foreground",
+                "whitespace-nowrap text-sm font-medium transition-colors hover:text-foreground",
                 isActive(item.href) ? "text-foreground" : "text-muted-foreground",
               )}
             >

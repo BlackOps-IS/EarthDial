@@ -6,9 +6,10 @@ import { Card } from "@/components/ui/card"
 import { siteConfig } from "@/lib/content"
 
 export const metadata: Metadata = {
-  title: "Contact",
+  title: "Contact & Partner With Us",
   description:
-    "Contact Black Diamond Project Corp for research collaboration, institutional inquiries, public-safety technology questions, or support.",
+    "Contact Black Diamond Project Corp for research collaboration, institutional partnership, public-safety technology questions, or support.",
+  alternates: { canonical: "/contact" },
 }
 
 export default function ContactPage() {
@@ -55,8 +56,8 @@ export default function ContactPage() {
             <Card className="p-7">
               <h3 className="font-serif text-lg font-medium">About Our Work</h3>
               <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-                {siteConfig.locationNeutral} We focus on trustworthy AI, quantum resilience,
-                cybersecurity assurance, and public-safety technology.
+                {siteConfig.locationNeutral} We focus on secure AI, post-quantum cybersecurity,
+                privacy-first systems including Reldun OS, and public-safety resilience technology.
               </p>
             </Card>
           </div>

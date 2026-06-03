@@ -15,18 +15,18 @@ export default function NotFound() {
           Page not found.
         </h1>
         <p className="mt-5 max-w-md text-base leading-relaxed text-muted-foreground">
-          The page you are looking for may have moved. Explore our mission, programs, and research
-          from the links below.
+          The page you are looking for may have moved. Explore our mission and research from the
+          links below.
         </p>
         <div className="mt-8 flex flex-col gap-3 sm:flex-row">
           <Link href="/" className={cn(buttonVariants({ variant: "primary", size: "lg" }))}>
             Return Home
           </Link>
           <Link
-            href="/programs"
+            href="/research"
             className={cn(buttonVariants({ variant: "outline", size: "lg" }))}
           >
-            View Programs
+            View Research
           </Link>
         </div>
       </Container>

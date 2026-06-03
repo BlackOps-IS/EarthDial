@@ -10,14 +10,15 @@ import { siteConfig, missionPrinciples, researchApproach } from "@/lib/content"
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Black Diamond Project Corp is a California nonprofit corporation and IRS-listed private foundation advancing trustworthy AI, quantum resilience, and public-safety technology.",
+    "Black Diamond Project Corp is a California nonprofit corporation and IRS-listed private foundation advancing secure AI, post-quantum cybersecurity, privacy-first systems, and public-safety resilience technology.",
+  alternates: { canonical: "/about" },
 }
 
 const focusAreas = [
-  "Trustworthy and human-overseen artificial intelligence",
-  "Quantum-resilient systems and post-quantum readiness",
-  "Cybersecurity assurance and data provenance",
-  "Public-safety and emergency-awareness technology",
+  "Secure and responsible, human-overseen artificial intelligence",
+  "Post-quantum cybersecurity and long-term data protection",
+  "Privacy-first systems and secure computing, including Reldun OS",
+  "Public-safety resilience and emergency-awareness technology",
 ]
 
 export default function AboutPage() {
@@ -141,10 +142,10 @@ export default function AboutPage() {
 
           <div className="mt-12 flex flex-col gap-3 sm:flex-row">
             <Link
-              href="/programs"
+              href="/research"
               className={cn(buttonVariants({ variant: "primary", size: "lg" }))}
             >
-              Explore Our Programs
+              Explore Our Research
             </Link>
             <Link
               href="/foundation-status"
