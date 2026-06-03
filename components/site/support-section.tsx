@@ -1,4 +1,5 @@
 import Link from "next/link"
+import Image from "next/image"
 import { cn } from "@/lib/utils"
 import { donationDisclosure } from "@/lib/content"
 import { buttonVariants } from "@/components/ui/button"
@@ -6,8 +7,18 @@ import { Container, DiamondMark } from "./primitives"
 
 export function SupportSection() {
   return (
-    <section className="border-y border-border bg-diamond-grid py-20 sm:py-24">
-      <Container>
+    <section className="relative overflow-hidden border-y border-border py-24 sm:py-28">
+      <div className="pointer-events-none absolute inset-0" aria-hidden>
+        <Image
+          src="/images/lattice-texture.png"
+          alt=""
+          fill
+          sizes="100vw"
+          className="object-cover opacity-60"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-background via-background/70 to-background" />
+      </div>
+      <Container className="relative">
         <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
           <DiamondMark className="size-9" />
           <h2 className="mt-6 font-serif text-3xl font-medium leading-tight tracking-tight text-balance sm:text-4xl">
