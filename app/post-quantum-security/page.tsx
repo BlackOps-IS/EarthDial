@@ -9,7 +9,7 @@ import { PageHeader } from "@/components/site/page-header"
 import { Breadcrumbs } from "@/components/site/breadcrumbs"
 
 export const metadata: Metadata = {
-  title: "Post-Quantum Cybersecurity Research | Black Diamond Project Corp",
+  title: "Post-Quantum Cybersecurity Research",
   description:
     "Explore Black Diamond Project Corp research into quantum-resilient security and future-ready protection of sensitive information.",
   alternates: { canonical: "/post-quantum-security" },
