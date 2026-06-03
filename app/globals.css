@@ -1,0 +1,144 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --font-sans: var(--font-inter);
+  --font-serif: var(--font-fraunces);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+:root {
+  --radius: 0.5rem;
+
+  /* Obsidian / charcoal institutional palette */
+  --background: oklch(0.16 0.004 286);
+  --foreground: oklch(0.96 0.004 92);
+
+  --card: oklch(0.2 0.005 286);
+  --card-foreground: oklch(0.96 0.004 92);
+
+  --popover: oklch(0.2 0.005 286);
+  --popover-foreground: oklch(0.96 0.004 92);
+
+  /* Warm gold accent inspired by the IRS announcement graphic */
+  --primary: oklch(0.78 0.11 84);
+  --primary-foreground: oklch(0.18 0.01 286);
+
+  /* Restrained midnight-blue secondary research accent */
+  --secondary: oklch(0.34 0.05 256);
+  --secondary-foreground: oklch(0.95 0.01 92);
+
+  --muted: oklch(0.26 0.005 286);
+  --muted-foreground: oklch(0.72 0.006 286);
+
+  --accent: oklch(0.78 0.11 84);
+  --accent-foreground: oklch(0.18 0.01 286);
+
+  --border: oklch(0.3 0.005 286);
+  --input: oklch(0.3 0.005 286);
+  --ring: oklch(0.78 0.11 84);
+}
+
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+
+  html {
+    color-scheme: dark;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background-color: color-mix(in oklch, var(--primary) 30%, transparent);
+    color: var(--foreground);
+  }
+
+  /* Visible focus states for keyboard navigation */
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+}
+
+@layer utilities {
+  /* Subtle diamond geometry used sparingly on dark sections */
+  .bg-diamond-grid {
+    background-image: linear-gradient(
+        135deg,
+        color-mix(in oklch, var(--primary) 8%, transparent) 0%,
+        transparent 40%
+      ),
+      repeating-linear-gradient(
+        45deg,
+        color-mix(in oklch, var(--foreground) 2.5%, transparent) 0px,
+        color-mix(in oklch, var(--foreground) 2.5%, transparent) 1px,
+        transparent 1px,
+        transparent 22px
+      ),
+      repeating-linear-gradient(
+        -45deg,
+        color-mix(in oklch, var(--foreground) 2.5%, transparent) 0px,
+        color-mix(in oklch, var(--foreground) 2.5%, transparent) 1px,
+        transparent 1px,
+        transparent 22px
+      );
+  }
+
+  .text-gradient-gold {
+    background: linear-gradient(
+      180deg,
+      oklch(0.92 0.06 92) 0%,
+      oklch(0.78 0.11 84) 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+
+  .hairline-top {
+    border-top: 1px solid color-mix(in oklch, var(--primary) 35%, transparent);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
