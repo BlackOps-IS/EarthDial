@@ -2,32 +2,41 @@ import Link from "next/link"
 import { footerNav, footerLegal, siteConfig } from "@/lib/content"
 import { Container, Logo } from "./primitives"
 
+const columns = [footerNav.organization, footerNav.research, footerNav.support]
+
 export function SiteFooter() {
   return (
     <footer className="mt-24 border-t border-border bg-[oklch(0.14_0.004_286)]">
       <Container className="py-14">
-        <div className="flex flex-col gap-10 md:flex-row md:items-start md:justify-between">
-          <div className="max-w-sm">
+        <div className="grid gap-10 md:grid-cols-12">
+          <div className="md:col-span-4 lg:col-span-5">
             <Logo />
-            <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-              {siteConfig.tagline}
-            </p>
-            <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+            <p className="mt-4 max-w-sm text-sm leading-relaxed text-muted-foreground">
               {siteConfig.locationNeutral}
             </p>
           </div>
 
-          <nav aria-label="Footer" className="grid grid-cols-2 gap-x-12 gap-y-3 sm:grid-cols-4">
-            {footerNav.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="text-sm text-muted-foreground transition-colors hover:text-foreground"
-              >
-                {item.label}
-              </Link>
+          <div className="grid grid-cols-2 gap-8 sm:grid-cols-3 md:col-span-8 lg:col-span-7">
+            {columns.map((column) => (
+              <nav key={column.heading} aria-label={column.heading}>
+                <h2 className="text-xs font-semibold uppercase tracking-[0.18em] text-foreground/70">
+                  {column.heading}
+                </h2>
+                <ul className="mt-4 flex flex-col gap-2.5">
+                  {column.links.map((item) => (
+                    <li key={item.label}>
+                      <Link
+                        href={item.href}
+                        className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+                      >
+                        {item.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </nav>
             ))}
-          </nav>
+          </div>
         </div>
 
         <div className="mt-12 border-t border-border pt-8">

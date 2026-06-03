@@ -1,15 +1,16 @@
 import Link from "next/link"
 import Image from "next/image"
-import { ArrowRight, ShieldCheck, Atom, Radar } from "lucide-react"
+import { ArrowRight, ShieldCheck, Atom, Cpu, Radar } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { siteConfig, heroCredibility } from "@/lib/content"
 import { buttonVariants } from "@/components/ui/button"
 import { Container, Eyebrow, DiamondMark } from "./primitives"
 
 const pillars = [
-  { icon: ShieldCheck, label: "Trustworthy AI" },
-  { icon: Atom, label: "Quantum Resilience" },
-  { icon: Radar, label: "Public-Safety Technology" },
+  { icon: ShieldCheck, label: "Secure & Responsible AI" },
+  { icon: Atom, label: "Post-Quantum Security" },
+  { icon: Cpu, label: "Privacy-First Systems" },
+  { icon: Radar, label: "Public-Safety Resilience" },
 ]
 
 export function Hero() {
@@ -33,31 +34,42 @@ export function Hero() {
       <Container className="relative py-24 lg:py-36">
         <div className="max-w-2xl">
           <Eyebrow>{siteConfig.organizationName}</Eyebrow>
-          <h1 className="mt-6 font-serif text-[2.6rem] font-medium leading-[1.04] tracking-tight text-balance sm:text-6xl lg:text-7xl">
-            Technology Built for{" "}
-            <span className="text-gradient-gold">Public Benefit.</span>
+          <h1 className="mt-6 font-serif text-[2.5rem] font-medium leading-[1.05] tracking-tight text-balance sm:text-6xl lg:text-[4.25rem]">
+            Secure Technology for a{" "}
+            <span className="text-gradient-gold">Safer and More Resilient Future</span>
           </h1>
           <p className="mt-7 max-w-xl text-lg leading-relaxed text-muted-foreground">
-            {siteConfig.organizationName} is a private foundation advancing trustworthy AI,
-            quantum-resilient systems, and public-safety technology through responsible research and
-            mission-driven innovation.
+            {siteConfig.organizationName} advances privacy-first artificial intelligence,
+            post-quantum cybersecurity, secure systems research and public-safety resilience
+            technology. Our work is built for environments where trust, privacy and reliability
+            matter most.
           </p>
 
           <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
             <Link
-              href="/programs"
+              href="/research"
               className={cn(buttonVariants({ variant: "primary", size: "lg" }))}
             >
               Explore Our Research
               <ArrowRight className="size-4" aria-hidden />
             </Link>
             <Link
-              href="/foundation-status"
+              href="/support"
               className={cn(buttonVariants({ variant: "outline", size: "lg" }))}
             >
-              View Foundation Status
+              Support the Mission
             </Link>
           </div>
+
+          <p className="mt-5 text-sm text-muted-foreground">
+            Researching with institutions and collaborators?{" "}
+            <Link
+              href="/contact"
+              className="font-medium text-primary underline-offset-4 hover:underline"
+            >
+              Partner With Us
+            </Link>
+          </p>
 
           {/* Pillars */}
           <ul className="mt-12 flex flex-wrap gap-3">

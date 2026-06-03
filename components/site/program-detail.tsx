@@ -1,23 +1,32 @@
 import Link from "next/link"
-import { ArrowLeft, Check, Info } from "lucide-react"
+import { ArrowLeft, Check, Info, TriangleAlert } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { type ProgramDetail } from "@/lib/content"
 import { buttonVariants } from "@/components/ui/button"
 import { Container } from "./primitives"
 import { PageHeader } from "./page-header"
 import { ProgramStatusPanel } from "./program-status-panel"
+import { Breadcrumbs } from "./breadcrumbs"
 
 export function ProgramDetailView({ detail }: { detail: ProgramDetail }) {
   return (
     <>
-      <PageHeader eyebrow="Research Initiative" title={detail.name} description={detail.subtitle}>
-        <Link
-          href="/programs"
-          className="inline-flex items-center gap-1.5 text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
-        >
-          <ArrowLeft className="size-4" aria-hidden />
-          All Programs
-        </Link>
+      <PageHeader eyebrow={detail.eyebrow} title={detail.name} description={detail.subtitle}>
+        <div className="flex flex-col gap-4">
+          <Breadcrumbs
+            items={[
+              { label: "Research", href: "/research" },
+              { label: detail.name, href: `/${detail.slug}` },
+            ]}
+          />
+          <Link
+            href={detail.backHref}
+            className="inline-flex items-center gap-1.5 text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
+          >
+            <ArrowLeft className="size-4" aria-hidden />
+            {detail.backLabel}
+          </Link>
+        </div>
       </PageHeader>
 
       <section className="py-16 sm:py-20">
@@ -60,6 +69,16 @@ export function ProgramDetailView({ detail }: { detail: ProgramDetail }) {
                 ) : null}
               </div>
             ))}
+
+            {/* Safety notice (e.g. EarthDial) */}
+            {detail.safetyNotice ? (
+              <div className="flex items-start gap-3 rounded-lg border border-primary/30 bg-primary/5 p-5">
+                <TriangleAlert className="mt-0.5 size-5 shrink-0 text-primary" aria-hidden />
+                <p className="text-sm font-medium leading-relaxed text-foreground/90">
+                  {detail.safetyNotice}
+                </p>
+              </div>
+            ) : null}
 
             {/* Responsible disclosure */}
             <div className="flex items-start gap-3 rounded-lg border border-border bg-muted/40 p-5">

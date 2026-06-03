@@ -1,151 +1,220 @@
 import Link from "next/link"
+import Image from "next/image"
 import { ArrowRight } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { programs } from "@/lib/content"
+import { techAreas, trustStrip, reldunOS, siteConfig, leadership, faqs } from "@/lib/content"
 import { buttonVariants } from "@/components/ui/button"
-import { Container, SectionHeading } from "@/components/site/primitives"
+import { Container, SectionHeading, DiamondMark } from "@/components/site/primitives"
 import { Hero } from "@/components/site/hero"
-import { IRSRecognitionSection } from "@/components/site/irs-recognition"
-import { MissionPrinciples } from "@/components/site/mission-principles"
-import { ProgramCard } from "@/components/site/program-card"
-import { ResearchApproachTimeline } from "@/components/site/research-approach"
+import { TechAreaCard } from "@/components/site/tech-area-card"
+import { FaqSection } from "@/components/site/faq-section"
 import { SupportSection } from "@/components/site/support-section"
-import { Card, CardContent } from "@/components/ui/card"
+import { Card } from "@/components/ui/card"
 
 export default function HomePage() {
-  const featured = programs.filter((p) => p.featured)
-  const supporting = programs.find((p) => !p.featured)
-
   return (
     <>
       {/* SECTION 1 — Hero */}
       <Hero />
 
-      {/* SECTION 2 — IRS / Foundation milestone */}
-      <IRSRecognitionSection />
+      {/* SECTION 2 — Trust strip */}
+      <section className="border-b border-border bg-[oklch(0.14_0.004_286)]">
+        <Container className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 py-6">
+          {trustStrip.map((item) => (
+            <span key={item} className="flex items-center gap-2 text-sm font-medium text-foreground/80">
+              <DiamondMark className="size-3.5" />
+              {item}
+            </span>
+          ))}
+        </Container>
+      </section>
 
       {/* SECTION 3 — Mission */}
       <section className="py-20 sm:py-24">
         <Container>
           <SectionHeading
             eyebrow="Our Mission"
-            title="Advanced Technology With a Public Purpose."
-            description="We believe powerful technology should strengthen communities, improve resilience, and earn trust through responsible design. Our work explores how artificial intelligence, quantum-resilient systems, and secure decision-support technologies can serve public safety and scientific progress."
+            title="Technology Built for High-Trust Environments"
+            description="The future of security is not a single product. It is the responsible integration of secure intelligence, resilient cryptography, trustworthy computing foundations and public-safety awareness. Black Diamond Project Corp brings these research paths together under one public-benefit mission."
           />
-          <div className="mt-12">
-            <MissionPrinciples />
-          </div>
         </Container>
       </section>
 
-      {/* SECTION 4 — Flagship programs */}
+      {/* SECTION 4 — Research pillars */}
       <section className="border-t border-border bg-[oklch(0.14_0.004_286)] py-20 sm:py-24">
         <Container>
           <SectionHeading
-            eyebrow="Programs"
-            title="Flagship Research Initiatives"
-            description="Two flagship initiatives, supported by a shared research foundation in AI security and quantum readiness."
+            eyebrow="What We Research"
+            title="Four Connected Technology Areas"
+            description="One coherent mission: protecting people, protecting information and building resilient systems for the future."
           />
-          <div className="mt-12 grid gap-6 lg:grid-cols-2">
-            {featured.map((program) => (
-              <ProgramCard key={program.slug} program={program} featured />
+          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {techAreas.map((area) => (
+              <TechAreaCard key={area.slug} area={area} />
             ))}
           </div>
-          {supporting ? (
-            <div className="mt-6">
-              <ProgramCard program={supporting} />
-            </div>
-          ) : null}
         </Container>
       </section>
 
-      {/* SECTION 5 — Research approach */}
-      <section className="py-20 sm:py-24">
-        <Container>
-          <SectionHeading
-            eyebrow="Our Approach"
-            title="Research That Must Earn Trust."
-            description="Black Diamond approaches emerging technology with disciplined validation: identify the need, define the risk, design the system, test the assumptions, document limitations, and only then describe what the work can support."
-          />
-          <div className="mt-12">
-            <ResearchApproachTimeline />
+      {/* SECTION 5 — Featured initiative: Reldun OS */}
+      <section className="border-t border-border py-20 sm:py-24">
+        <Container className="grid items-center gap-12 lg:grid-cols-2">
+          <div className="order-2 overflow-hidden rounded-xl border border-border bg-[oklch(0.12_0.004_286)] lg:order-1">
+            <Image
+              src={siteConfig.reldunImage}
+              alt={siteConfig.reldunImageAlt}
+              width={1024}
+              height={1024}
+              className="h-auto w-full"
+            />
+          </div>
+          <div className="order-1 lg:order-2">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">
+              Featured Initiative
+            </p>
+            <h2 className="mt-4 font-serif text-3xl font-medium leading-tight tracking-tight text-balance sm:text-4xl">
+              Reldun OS
+            </h2>
+            <p className="mt-2 text-lg text-foreground/80">{reldunOS.tagline}</p>
+            <p className="mt-5 max-w-xl text-base leading-relaxed text-muted-foreground">
+              A privacy-first, security-focused operating system research initiative exploring
+              secure computing foundations for high-trust environments.
+            </p>
+            <Link
+              href="/reldun-os"
+              className={cn(buttonVariants({ variant: "primary", size: "md" }), "mt-7")}
+            >
+              Explore Reldun OS
+              <ArrowRight className="size-4" aria-hidden />
+            </Link>
           </div>
         </Container>
       </section>
 
-      {/* SECTION 6 — Featured insight */}
-      <section className="border-t border-border py-20 sm:py-24">
-        <Container>
-          <Card className="hairline-top overflow-hidden">
-            <CardContent className="grid gap-8 p-8 sm:p-12 lg:grid-cols-12 lg:items-center">
-              <div className="lg:col-span-8">
-                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">
-                  Featured Insight
-                </p>
-                <h2 className="mt-4 font-serif text-3xl font-medium leading-tight tracking-tight text-balance">
-                  Preparing for the Post-Quantum Transition
-                </h2>
-                <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground">
-                  Explore practical considerations for cryptographic inventory, quantum-risk
-                  assessment, crypto-agility, and migration planning in a changing standards
-                  environment.
-                </p>
-                <Link
-                  href="/research/pqc-readiness"
-                  className={cn(buttonVariants({ variant: "primary", size: "md" }), "mt-7")}
-                >
-                  Read the PQC Readiness Guide
-                  <ArrowRight className="size-4" aria-hidden />
-                </Link>
-              </div>
-              <div className="lg:col-span-4">
-                <ul className="grid gap-2.5 text-sm">
-                  {[
-                    "Cryptographic Inventory",
-                    "Quantum-Risk Assessment",
-                    "Crypto-Agility",
-                    "Migration Planning",
-                  ].map((item) => (
-                    <li
-                      key={item}
-                      className="rounded-md border border-border bg-background/50 px-4 py-3 font-medium"
-                    >
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </CardContent>
+      {/* SECTION 6 + 7 — EarthDial & Post-Quantum */}
+      <section className="border-t border-border bg-[oklch(0.14_0.004_286)] py-20 sm:py-24">
+        <Container className="grid gap-6 lg:grid-cols-2">
+          <Card className="flex flex-col p-8">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">
+              Featured Initiative
+            </p>
+            <h2 className="mt-4 font-serif text-2xl font-medium tracking-tight">EarthDial</h2>
+            <p className="mt-4 flex-1 text-base leading-relaxed text-muted-foreground">
+              A public-safety resilience technology initiative focused on emergency awareness,
+              preparedness and community-impacting conditions.
+            </p>
+            <Link
+              href="/earthdial"
+              className="mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-foreground transition-colors hover:text-primary"
+            >
+              Explore EarthDial
+              <ArrowRight className="size-4" aria-hidden />
+            </Link>
+          </Card>
+          <Card className="flex flex-col p-8">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">
+              Research Focus
+            </p>
+            <h2 className="mt-4 font-serif text-2xl font-medium tracking-tight text-balance">
+              Preparing for Security Beyond Today&apos;s Cryptography
+            </h2>
+            <p className="mt-4 flex-1 text-base leading-relaxed text-muted-foreground">
+              Black Diamond explores responsible approaches to quantum-era security challenges,
+              resilient information protection and future-ready trust systems.
+            </p>
+            <Link
+              href="/post-quantum-security"
+              className="mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-foreground transition-colors hover:text-primary"
+            >
+              Explore Post-Quantum Research
+              <ArrowRight className="size-4" aria-hidden />
+            </Link>
           </Card>
         </Container>
       </section>
 
-      {/* SECTION 7 — About / leadership preview */}
-      <section className="border-t border-border bg-[oklch(0.14_0.004_286)] py-20 sm:py-24">
-        <Container>
-          <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
-            <SectionHeading
-              eyebrow="About"
-              title="Led by Research and Responsibility."
-              description="Black Diamond Project Corp was founded to advance public-benefit technology at the intersection of artificial intelligence, cybersecurity, quantum resilience, and emergency-awareness systems."
+      {/* SECTION 8 — Foundation trust */}
+      <section className="border-t border-border py-20 sm:py-24">
+        <Container className="grid items-center gap-12 lg:grid-cols-2">
+          <div className="overflow-hidden rounded-xl border border-primary/25 shadow-2xl shadow-black/40">
+            <Image
+              src={siteConfig.foundationGraphic}
+              alt={siteConfig.foundationGraphicAlt}
+              width={1485}
+              height={1050}
+              className="h-auto w-full"
             />
-            <div className="flex flex-col items-start gap-6 lg:items-end">
-              <p className="text-sm leading-relaxed text-muted-foreground lg:text-right">
-                Founded by Simon Carreras, AI and security researcher.
-              </p>
+          </div>
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">
+              Verified Foundation Status
+            </p>
+            <h2 className="mt-4 font-serif text-3xl font-medium leading-tight tracking-tight text-balance sm:text-4xl">
+              A Verified Private Foundation Supporting Public-Benefit Technology
+            </h2>
+            <p className="mt-5 text-base leading-relaxed text-muted-foreground">
+              Black Diamond Project Corp is listed in IRS Publication 78 Data as an organization
+              eligible to receive tax-deductible charitable contributions. IRS deductibility code:
+              PF — Private Foundation.
+            </p>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Link
-                href="/about"
+                href="/foundation-status"
+                className={cn(buttonVariants({ variant: "primary", size: "md" }))}
+              >
+                View Foundation Status
+              </Link>
+              <Link
+                href="/support"
                 className={cn(buttonVariants({ variant: "outline", size: "md" }))}
               >
-                About Black Diamond
-                <ArrowRight className="size-4" aria-hidden />
+                Support the Mission
               </Link>
             </div>
           </div>
         </Container>
       </section>
 
-      {/* SECTION 8 — Support */}
+      {/* SECTION 9 — Leadership preview */}
+      <section className="border-t border-border bg-[oklch(0.14_0.004_286)] py-20 sm:py-24">
+        <Container>
+          <SectionHeading
+            eyebrow="Leadership"
+            title="Guided by Research and Responsibility"
+            description="Black Diamond Project Corp is led by researchers focused on secure AI, cybersecurity, secure systems and public-benefit technology."
+          />
+          <div className="mt-12 grid gap-6 sm:grid-cols-2">
+            {leadership.map((leader) => (
+              <Card key={leader.name} className="p-7">
+                <h3 className="font-serif text-xl font-medium tracking-tight">{leader.name}</h3>
+                <p className="mt-1 text-sm font-medium text-primary">{leader.role}</p>
+                <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{leader.bio}</p>
+              </Card>
+            ))}
+          </div>
+          <Link
+            href="/mission#leadership"
+            className="mt-8 inline-flex items-center gap-1.5 text-sm font-medium text-foreground transition-colors hover:text-primary"
+          >
+            Read more about our mission and leadership
+            <ArrowRight className="size-4" aria-hidden />
+          </Link>
+        </Container>
+      </section>
+
+      {/* SECTION 10 — FAQ */}
+      <section className="border-t border-border py-20 sm:py-24">
+        <Container className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr]">
+          <SectionHeading
+            eyebrow="Questions"
+            title="Frequently Asked Questions"
+            description="Clear answers about the organization, its initiatives, and foundation status."
+          />
+          <FaqSection items={faqs} />
+        </Container>
+      </section>
+
+      {/* SECTION 11 — Support */}
       <SupportSection />
     </>
   )

@@ -2,138 +2,165 @@
  * Centralized content & configuration for Black Diamond Project Corp.
  *
  * Every public-facing claim lives here so it can be changed without editing
- * components. Do NOT add unverified claims (grants, awards, deployments,
- * partners, EIN, street address, 501(c)(3) wording, etc.) to this file.
+ * components. Do NOT add unverified claims (issued patents, awards, grants,
+ * deployments, partners, EIN, street address, "501(c)(3)" or "public charity"
+ * wording, "most secure / most anonymous" superlatives, etc.) to this file.
  */
 
 export const siteConfig = {
   organizationName: "Black Diamond Project Corp",
   shortName: "Black Diamond",
-  tagline: "Advancing technology for public benefit.",
-  headline: "Technology Built for Public Benefit.",
+  tagline:
+    "Secure technology for a safer and more resilient future.",
+  headline: "Secure Technology for a Safer and More Resilient Future",
   description:
-    "Black Diamond Project Corp is a private foundation advancing trustworthy AI, quantum-resilient systems, and public-safety technology through responsible research.",
+    "Black Diamond Project Corp is a private foundation advancing secure AI, post-quantum cybersecurity, Reldun OS and public-safety resilience technology.",
   url: "https://www.bdproj.com",
   contactEmail: "support@bdproj.com",
   locationNeutral:
-    "A California nonprofit corporation supporting public-benefit technology initiatives in the United States.",
+    "A private foundation advancing privacy-first, secure and resilient technology for high-trust environments.",
 
-  // Foundation status (approved facts only)
+  // Foundation status (approved, verified facts only)
   publication78Status:
-    "Black Diamond Project Corp is listed in IRS Publication 78 as eligible to receive tax-deductible charitable contributions.",
+    "Black Diamond Project Corp is listed in IRS Publication 78 Data as an organization eligible to receive tax-deductible charitable contributions.",
   foundationClassification: "Private Foundation",
   deductibilityCode: "PF",
+  irsVerifyUrl: "https://apps.irs.gov/app/eos/",
 
   // Assets
   foundationGraphic: "/images/irs-publication-78.png",
   foundationGraphicAlt:
-    "Black Diamond Project Corp announcement: listed in IRS Publication 78 and classified as a private foundation.",
+    "Black Diamond Project Corp announcement: listed in IRS Publication 78 Data and classified as a private foundation.",
+  reldunImage: "/images/reldun-os.png",
+  reldunImageAlt:
+    "Reldun OS emblem with the words Control Starts at the Kernel Boundary.",
 
   // Feature flags — keep OFF until explicitly confirmed.
   donationEnabled: false,
-  communityResponseEnabled: false,
 } as const
 
 export const announcement = {
   message:
-    "Milestone: Black Diamond Project Corp is listed in IRS Publication 78 as eligible to receive tax-deductible charitable contributions.",
+    "Black Diamond Project Corp is listed in IRS Publication 78 Data as eligible to receive tax-deductible charitable contributions.",
   ctaLabel: "View Foundation Status",
   ctaHref: "/foundation-status",
 } as const
 
 export const primaryNav = [
   { label: "Mission", href: "/mission" },
-  { label: "Programs", href: "/programs" },
   { label: "Research", href: "/research" },
-  { label: "Foundation Status", href: "/foundation-status" },
-  { label: "About", href: "/about" },
-  { label: "Contact", href: "/contact" },
-] as const
-
-export const footerNav = [
-  { label: "Mission", href: "/mission" },
-  { label: "Programs", href: "/programs" },
-  { label: "Research", href: "/research" },
+  { label: "Reldun OS", href: "/reldun-os" },
+  { label: "EarthDial", href: "/earthdial" },
   { label: "Foundation Status", href: "/foundation-status" },
   { label: "Support", href: "/support" },
   { label: "Contact", href: "/contact" },
-  { label: "Privacy", href: "/privacy" },
-  { label: "Terms", href: "/terms" },
 ] as const
 
+export const footerNav = {
+  organization: {
+    heading: "Organization",
+    links: [
+      { label: "Mission", href: "/mission" },
+      { label: "Leadership", href: "/mission#leadership" },
+      { label: "Foundation Status", href: "/foundation-status" },
+      { label: "Contact", href: "/contact" },
+    ],
+  },
+  research: {
+    heading: "Research",
+    links: [
+      { label: "Secure AI", href: "/research" },
+      { label: "Post-Quantum Security", href: "/post-quantum-security" },
+      { label: "AI-QEC", href: "/ai-qec" },
+      { label: "Reldun OS", href: "/reldun-os" },
+      { label: "EarthDial", href: "/earthdial" },
+    ],
+  },
+  support: {
+    heading: "Support",
+    links: [
+      { label: "Support the Mission", href: "/support" },
+      { label: "Partner With Us", href: "/contact" },
+      { label: "Privacy Policy", href: "/privacy" },
+      { label: "Terms of Use", href: "/terms" },
+    ],
+  },
+} as const
+
 export const footerLegal =
-  "Black Diamond Project Corp is a California nonprofit corporation. Listed in IRS Publication 78 as eligible to receive tax-deductible charitable contributions. IRS classification: Private Foundation."
+  "Black Diamond Project Corp is listed in IRS Publication 78 Data as eligible to receive tax-deductible charitable contributions. IRS deductibility code: PF — Private Foundation."
 
 export const donationDisclosure =
-  "Black Diamond Project Corp is listed in IRS Publication 78 as eligible to receive tax-deductible charitable contributions and is classified by the IRS as a private foundation. Consult your tax adviser regarding your individual circumstances."
+  "Black Diamond Project Corp is listed in IRS Publication 78 Data as an organization eligible to receive tax-deductible charitable contributions. Its IRS deductibility code is PF, identifying it as a private foundation. Consult your tax adviser regarding your individual circumstances."
 
-export type ProgramStatus =
-  | "Submitted Concept"
-  | "Proposed Research"
-  | "Supporting Capability"
+// ---- Trust strip ----------------------------------------------------------
 
-export const statusStyles: Record<
-  ProgramStatus,
-  { label: string; tone: "gold" | "blue" | "muted" }
-> = {
-  "Submitted Concept": { label: "Submitted RFI Concept", tone: "gold" },
-  "Proposed Research": { label: "Proposed Research", tone: "blue" },
-  "Supporting Capability": { label: "Research Foundation", tone: "muted" },
-}
+export const trustStrip = [
+  "Private Foundation",
+  "Listed in IRS Publication 78 Data",
+  "Secure AI Research",
+  "Post-Quantum Security",
+  "Public-Safety Resilience Technology",
+] as const
 
-export type Program = {
+// Compact credibility chips used in the hero.
+export const heroCredibility = [
+  "Private Foundation",
+  "IRS Publication 78 Listed",
+  "Secure & Resilient Technology Research",
+] as const
+
+// ---- Four connected technology areas --------------------------------------
+
+export type TechArea = {
   slug: string
   name: string
-  shortName?: string
-  label: string
-  status: ProgramStatus
+  tagline: string
   summary: string
-  footnote?: string
   href: string
   cta: string
-  featured: boolean
 }
 
-export const programs: Program[] = [
+export const techAreas: TechArea[] = [
   {
-    slug: "earthdial",
-    name: "EarthDial Guardian Mesh",
-    label: "Public Safety & Mission Intelligence",
-    status: "Submitted Concept",
+    slug: "secure-ai",
+    name: "Secure and Responsible AI",
+    tagline: "Privacy-first artificial intelligence",
     summary:
-      "A federated, Zero Trust, AI-enabled mission intelligence concept for trusted emergency-awareness data, auditable decision support, and resilient domestic-response workflows.",
-    footnote:
-      "Submitted as an unclassified NGB Enterprise Data and AI Program RFI response concept.",
-    href: "/programs/earthdial",
-    cta: "Explore EarthDial",
-    featured: true,
-  },
-  {
-    slug: "ai-qec",
-    name: "AI-Integrated Quantum Error Correction",
-    shortName: "AI-QEC",
-    label: "Quantum Resilience & Scientific Networking",
-    status: "Proposed Research",
-    summary:
-      "A proposed research framework exploring AI-assisted error correction, secure coordination, and digital-twin benchmarking for reliable quantum networking environments.",
-    footnote:
-      "Developed as a proposed framework aligned to DOE Genesis Mission Topic 8, Focus Area D.",
-    href: "/programs/ai-qec",
-    cta: "Explore AI-QEC",
-    featured: true,
-  },
-  {
-    slug: "ai-security",
-    name: "AI Security & Quantum Readiness",
-    label: "Supporting Capability",
-    status: "Supporting Capability",
-    summary:
-      "Adversarial evaluation, safe AI architecture, data provenance, and post-quantum readiness practices supporting responsible public-benefit technology.",
+      "Privacy-first artificial intelligence systems designed for controlled, auditable and high-trust use, with human oversight on consequential decisions.",
     href: "/research",
-    cta: "View Research",
-    featured: false,
+    cta: "Explore Research",
+  },
+  {
+    slug: "post-quantum",
+    name: "Post-Quantum Cybersecurity",
+    tagline: "Quantum-resilient protection",
+    summary:
+      "Research into quantum-resilient cryptography, secure communications and long-term protection of sensitive information against future threats.",
+    href: "/post-quantum-security",
+    cta: "Explore Post-Quantum Research",
+  },
+  {
+    slug: "privacy-first-systems",
+    name: "Privacy-First Systems / Reldun OS",
+    tagline: "Control starts at the kernel boundary",
+    summary:
+      "Security-focused operating systems and computing architecture, including Reldun OS, built around the principle that control begins at the kernel boundary.",
+    href: "/reldun-os",
+    cta: "Explore Reldun OS",
+  },
+  {
+    slug: "public-safety-resilience",
+    name: "Public-Safety Resilience / EarthDial",
+    tagline: "Emergency awareness and resilience",
+    summary:
+      "Technology initiatives such as EarthDial that support emergency awareness, preparedness, coordination and community resilience.",
+    href: "/earthdial",
+    cta: "Explore EarthDial",
   },
 ]
+
+// ---- Mission principles & research approach -------------------------------
 
 export const missionPrinciples = [
   {
@@ -145,8 +172,8 @@ export const missionPrinciples = [
     body: "Technology designed for disruption, uncertainty, and critical operating conditions.",
   },
   {
-    title: "Measurable by Method",
-    body: "Research framed around validation, transparency, and reproducible results.",
+    title: "Private by Default",
+    body: "Privacy and control treated as architectural principles, not afterthoughts.",
   },
 ] as const
 
@@ -159,7 +186,7 @@ export const researchApproach = [
   {
     step: "02",
     title: "System Design",
-    body: "Architect the system around trust, resilience, and human authorization.",
+    body: "Architect the system around trust, resilience, privacy, and human authorization.",
   },
   {
     step: "03",
@@ -178,13 +205,54 @@ export const researchApproach = [
   },
 ] as const
 
-export const heroCredibility = [
-  "IRS Publication 78 Listed",
-  "Private Foundation",
-  "Responsible Technology Research",
-] as const
+// ---- Leadership -----------------------------------------------------------
+// NOTE: Confirm final titles, biography copy, affiliations, and permission to
+// publish before launch. Person schema is intentionally NOT emitted until the
+// above is owner-approved.
 
-// ---- Program detail pages -------------------------------------------------
+export type Leader = {
+  name: string
+  role: string
+  bio: string
+  credentials?: string[]
+}
+
+export const leadership: Leader[] = [
+  {
+    name: "Simon Peter Carreras",
+    role: "Founder / Lead Security Researcher",
+    bio: "Simon Peter Carreras founded Black Diamond Project Corp to advance public-benefit technology at the intersection of secure AI, cybersecurity research, secure systems, and resilient public-safety technology. He guides the foundation's research direction and its commitment to disciplined, evidence-grounded innovation.",
+  },
+  {
+    name: "Nazila Safavi, Ph.D.",
+    role: "Co-Founder",
+    bio: "Dr. Nazila Safavi is an engineering, computer science and information technology educator and professional whose work includes digital systems, document integrity, information technology, computer-based workflows and system reliability.",
+    credentials: [
+      "Ph.D. in Information Technology & Management",
+      "M.S. in Telecommunications Engineering & Management, Southern Methodist University",
+      "B.S. in Computer Science, Oxford Brookes University",
+      "IEEE Senior Member; ACM affiliate",
+    ],
+  },
+]
+
+// ---- Program status styling ----------------------------------------------
+
+export type ProgramStatus =
+  | "Submitted Concept"
+  | "Proposed Research"
+  | "Research Initiative"
+
+export const statusStyles: Record<
+  ProgramStatus,
+  { label: string; tone: "gold" | "blue" | "muted" }
+> = {
+  "Submitted Concept": { label: "Submitted RFI Concept", tone: "gold" },
+  "Proposed Research": { label: "Proposed Research", tone: "blue" },
+  "Research Initiative": { label: "Research Initiative / In Development", tone: "muted" },
+}
+
+// ---- Program / initiative detail pages ------------------------------------
 
 export type DetailSection = { title: string; body: string; points?: string[] }
 
@@ -192,20 +260,27 @@ export type ProgramDetail = {
   slug: string
   name: string
   subtitle: string
+  eyebrow: string
+  backHref: string
+  backLabel: string
   panel: { label: string; value: string }[]
   approvedMessage: string
   sections: DetailSection[]
+  safetyNotice?: string
   disclosure: string
 }
 
 export const programDetails: Record<string, ProgramDetail> = {
   earthdial: {
     slug: "earthdial",
-    name: "EarthDial Guardian Mesh",
+    name: "EarthDial",
+    eyebrow: "Public-Safety Resilience Initiative",
+    backHref: "/research",
+    backLabel: "All Research",
     subtitle:
-      "Trusted AI decision-support concepts for emergency awareness and resilient operations.",
+      "Emergency-awareness and resilience technology to help communities and stakeholders understand evolving hazards and response conditions.",
     panel: [
-      { label: "Initiative Type", value: "Public Safety & Mission Intelligence Research" },
+      { label: "Initiative Type", value: "Public-Safety Resilience Technology" },
       { label: "Public Status", value: "Submitted Unclassified RFI Response Concept" },
       {
         label: "Submission Context",
@@ -215,15 +290,15 @@ export const programDetails: Record<string, ProgramDetail> = {
       { label: "Deployment Status", value: "No deployment claim made" },
     ],
     approvedMessage:
-      "EarthDial Guardian Mesh is designed around federated data control, auditable AI decision support, source trust, resilient operations, and human authorization for consequential actions.",
+      "EarthDial explores emergency-awareness and resilience technology intended to help communities and stakeholders better understand evolving hazards and response conditions. It is designed around federated data control, auditable decision support, source trust, and human authorization for consequential actions.",
     sections: [
       {
         title: "The Need",
-        body: "Emergency awareness and domestic-response coordination depend on trusted data and decision support that hold up under disruption, uncertainty, and high-consequence conditions. Information arrives from many sources, at varying quality, and decisions often must be made quickly and accountably.",
+        body: "Emergency awareness and community resilience depend on trusted information and decision support that hold up under disruption, uncertainty, and high-consequence conditions. Information arrives from many sources, at varying quality, and decisions often must be made quickly and accountably.",
       },
       {
         title: "The Concept",
-        body: "EarthDial Guardian Mesh is a federated, Zero Trust, AI-enabled mission intelligence concept designed to support trusted operational data, emergency awareness, auditable decision support, and resilient domestic-response workflows. It is presented as a concept and design framework, not a deployed system.",
+        body: "EarthDial is a public-safety resilience initiative exploring how federated, auditable, AI-supported awareness technology can help communities and stakeholders better understand evolving hazards and response conditions. It is presented as a concept and design framework, not a deployed system.",
       },
       {
         title: "Design Principles",
@@ -236,27 +311,29 @@ export const programDetails: Record<string, ProgramDetail> = {
         ],
       },
       {
-        title: "Human-Commanded AI",
+        title: "Human-Commanded Technology",
         body: "AI is positioned to support analysis and decision context. Human authorization is required for consequential actions; the concept does not propose autonomous action on critical decisions.",
       },
       {
-        title: "Trust, Auditability, and Zero Trust Architecture",
-        body: "A Zero Trust posture, with verifiable sources and auditable decision pathways, is intended to make the system's behavior reviewable and accountable rather than opaque.",
-      },
-      {
         title: "Responsible Status Disclosure",
-        body: "EarthDial Guardian Mesh is a submitted unclassified response concept. It is not deployed, selected, funded, approved, endorsed, or used by the National Guard or any government agency.",
+        body: "EarthDial is a submitted unclassified response concept. It is not deployed, selected, funded, approved, endorsed, or used by the National Guard or any government agency, and it does not provide official emergency dispatch or government-integrated services.",
       },
     ],
+    safetyNotice:
+      "EarthDial is a technology initiative and is not a replacement for emergency services or official emergency alerts. In an emergency, always contact your local emergency services.",
     disclosure:
       "Submitted by Black Diamond Project Corp as an unclassified response concept for the National Guard Bureau Enterprise Data and Artificial Intelligence Program RFI. No deployment, selection, funding, endorsement, or government acceptance is claimed.",
   },
   "ai-qec": {
     slug: "ai-qec",
-    name: "AI-Integrated Quantum Error Correction",
-    subtitle: "Exploring AI-assisted reliability for scientific quantum networking.",
+    name: "AI-QEC",
+    eyebrow: "Quantum Reliability Research Initiative",
+    backHref: "/research",
+    backLabel: "All Research",
+    subtitle:
+      "Research at the intersection of artificial intelligence and quantum reliability.",
     panel: [
-      { label: "Initiative Type", value: "Quantum Resilience Research" },
+      { label: "Initiative Type", value: "Quantum Reliability Research" },
       { label: "Public Status", value: "Proposed Feasibility Research Initiative" },
       { label: "Alignment Context", value: "DOE Genesis Mission Topic 8, Focus Area D" },
       { label: "Funding Status", value: "No award or funding claim made" },
@@ -302,24 +379,59 @@ export const programDetails: Record<string, ProgramDetail> = {
   },
 }
 
+// ---- Reldun OS ------------------------------------------------------------
+
+export const reldunOS = {
+  name: "Reldun OS",
+  tagline: "Control Starts at the Kernel Boundary",
+  status: "Research Initiative / In Development",
+  heroCopy:
+    "Reldun OS is a secure systems research initiative focused on privacy, isolation and disciplined control at the lowest levels of computing. Designed by Black Diamond Project Corp, it explores how operating-system architecture can better protect identity, activity and sensitive workflows in high-trust environments.",
+  positioning:
+    "Reldun OS is a privacy-first, security-focused operating system initiative designed around the principle that meaningful control begins at the kernel boundary.",
+  focusAreas: [
+    {
+      title: "Kernel-Boundary Security Architecture",
+      body: "Exploring how control and trust decisions enforced at the kernel boundary can constrain what software is permitted to do.",
+    },
+    {
+      title: "Privacy-First System Design",
+      body: "Treating privacy as an architectural property of the system rather than a configurable add-on.",
+    },
+    {
+      title: "Capability-Restricted Access",
+      body: "Researching least-privilege access principles so components receive only the capabilities they require.",
+    },
+    {
+      title: "Controlled Exposure of Identity and Resources",
+      body: "Studying how identity, activity, and system resources can be selectively and deliberately exposed.",
+    },
+  ],
+  whyTitle: "Why Reldun OS Belongs Within the Mission",
+  whyBody:
+    "Secure AI and post-quantum systems are only as trustworthy as the platforms on which they operate. Reldun OS represents Black Diamond Project Corp's research into computing foundations where privacy and control are not add-ons, but architectural principles.",
+  disclosure:
+    "Reldun OS is an early-stage research initiative. No independent audit, deployment, adoption, benchmark result, or guarantee of anonymity or security is claimed. Capabilities described reflect research focus areas and design principles under active development.",
+} as const
+
 // ---- Research library -----------------------------------------------------
 
 export const researchCategories = [
   {
-    title: "Trustworthy AI",
-    body: "Human oversight, adversarial evaluation, and evidence-grounded system design.",
+    title: "Secure & Responsible AI",
+    body: "Human oversight, adversarial evaluation, and evidence-grounded system design for high-trust use.",
   },
   {
-    title: "Quantum Resilience",
-    body: "AI-assisted error correction and post-quantum readiness for critical systems.",
+    title: "Post-Quantum Cybersecurity",
+    body: "Quantum-resilient cryptography and long-term protection of sensitive information.",
   },
   {
-    title: "Cybersecurity Assurance",
-    body: "Data provenance, secure architecture, and disciplined validation practices.",
+    title: "Privacy-First Systems",
+    body: "Secure operating-system architecture and control at the kernel boundary, including Reldun OS.",
   },
   {
-    title: "Public Safety Technology",
-    body: "Resilient, auditable decision support for emergency awareness and response.",
+    title: "Public-Safety Resilience",
+    body: "Resilient, auditable awareness technology for emergency preparedness and community resilience.",
   },
 ] as const
 
@@ -334,31 +446,40 @@ export type Article = {
 
 export const articles: Article[] = [
   {
-    title: "Post-Quantum Cryptography Readiness Guide",
-    category: "Quantum Resilience",
+    title: "Preparing Security for the Post-Quantum Future",
+    category: "Post-Quantum Cybersecurity",
     status: "Educational Resource",
     date: "2025",
     summary:
       "Practical considerations for cryptographic inventory, quantum-risk assessment, crypto-agility, and migration planning in a changing standards environment.",
-    href: "/research/pqc-readiness",
+    href: "/post-quantum-security",
   },
   {
-    title: "EarthDial Guardian Mesh Overview",
-    category: "Public Safety Technology",
+    title: "EarthDial: Public-Safety Resilience",
+    category: "Public-Safety Resilience",
     status: "Submitted RFI Concept",
     date: "2025",
     summary:
-      "A federated, Zero Trust, AI-enabled mission intelligence concept for trusted emergency-awareness data and auditable decision support.",
-    href: "/programs/earthdial",
+      "An emergency-awareness and resilience technology initiative exploring federated, auditable decision support for evolving hazards and response conditions.",
+    href: "/earthdial",
   },
   {
-    title: "AI-QEC Research Overview",
-    category: "Quantum Resilience",
+    title: "AI-QEC: AI and Quantum Reliability",
+    category: "Post-Quantum Cybersecurity",
     status: "Proposed Research",
     date: "2025",
     summary:
       "A proposed framework exploring AI-assisted error correction, secure coordination, and digital-twin benchmarking for reliable quantum networking.",
-    href: "/programs/ai-qec",
+    href: "/ai-qec",
+  },
+  {
+    title: "Reldun OS: Control at the Kernel Boundary",
+    category: "Privacy-First Systems",
+    status: "Research Initiative",
+    date: "2025",
+    summary:
+      "A privacy-first, security-focused operating system research initiative exploring secure computing foundations for high-trust environments.",
+    href: "/reldun-os",
   },
 ]
 
@@ -405,11 +526,45 @@ export const pqcSections: DetailSection[] = [
   },
 ]
 
+// ---- FAQ (answer-engine discoverability) ----------------------------------
+
+export type Faq = { question: string; answer: string }
+
+export const faqs: Faq[] = [
+  {
+    question: "What is Black Diamond Project Corp?",
+    answer:
+      "Black Diamond Project Corp is a private foundation and mission-driven technology research organization advancing secure artificial intelligence, post-quantum cybersecurity, privacy-first operating systems, and public-safety resilience technology.",
+  },
+  {
+    question: "What is Reldun OS?",
+    answer:
+      "Reldun OS is a privacy-first, security-focused operating system research initiative from Black Diamond Project Corp, built around the principle that control starts at the kernel boundary. It is an early-stage research initiative in development.",
+  },
+  {
+    question: "What is EarthDial?",
+    answer:
+      "EarthDial is a Black Diamond Project Corp public-safety resilience initiative exploring emergency-awareness technology. It is a technology initiative and not a replacement for emergency services or official emergency alerts.",
+  },
+  {
+    question: "What is AI-QEC?",
+    answer:
+      "AI-QEC is a Black Diamond Project Corp research initiative exploring the intersection of artificial intelligence and quantum reliability, including AI-assisted error correction and digital-twin benchmarking. It is a proposed feasibility research initiative.",
+  },
+  {
+    question: "Are contributions to Black Diamond Project Corp tax-deductible?",
+    answer:
+      "Black Diamond Project Corp is listed in IRS Publication 78 Data as an organization eligible to receive tax-deductible charitable contributions, with IRS deductibility code PF (Private Foundation). Consult your tax adviser regarding your individual circumstances.",
+  },
+]
+
+// ---- Contact --------------------------------------------------------------
+
 export const contactInquiryTypes = [
   "General Inquiry",
   "Research Collaboration",
-  "Public Safety Technology Inquiry",
-  "Institutional / Government Inquiry",
-  "Support or Donation Question",
+  "Institutional Partnership",
+  "Foundation / Donation Question",
   "Media Inquiry",
+  "Public Information Request",
 ] as const

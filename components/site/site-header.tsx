@@ -54,7 +54,7 @@ export function SiteHeader() {
 
         <div className="hidden items-center gap-3 lg:flex">
           <Link href="/contact" className={cn(buttonVariants({ variant: "ghost", size: "sm" }))}>
-            Contact Us
+            Partner With Us
           </Link>
           <Link
             href="/support"
@@ -109,7 +109,7 @@ export function SiteHeader() {
                 href="/contact"
                 className={cn(buttonVariants({ variant: "outline", size: "md" }), "w-full")}
               >
-                Contact Us
+                Partner With Us
               </Link>
               <Link
                 href="/support"
