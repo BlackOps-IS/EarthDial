@@ -79,6 +79,7 @@ const organizationJsonLd = {
   description: siteConfig.description,
   slogan: siteConfig.tagline,
   nonprofitStatus: "NonprofitType",
+  sameAs: [siteConfig.earthDialUrl],
   knowsAbout: [
     "Secure and Responsible Artificial Intelligence",
     "Post-Quantum Cybersecurity",

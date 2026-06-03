@@ -1,6 +1,10 @@
 import Link from "next/link"
+import { ExternalLink } from "lucide-react"
 import { footerNav, footerLegal, siteConfig } from "@/lib/content"
 import { Container, Logo } from "./primitives"
+
+const linkClass =
+  "inline-flex min-h-9 items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
 
 const columns = [footerNav.organization, footerNav.research, footerNav.support]
 
@@ -23,16 +27,28 @@ export function SiteFooter() {
                   {column.heading}
                 </h2>
                 <ul className="mt-3 flex flex-col gap-0.5">
-                  {column.links.map((item) => (
-                    <li key={item.label}>
-                      <Link
-                        href={item.href}
-                        className="inline-flex min-h-9 items-center text-sm text-muted-foreground transition-colors hover:text-foreground"
-                      >
-                        {item.label}
-                      </Link>
-                    </li>
-                  ))}
+                  {column.links.map((item) =>
+                    "external" in item && item.external ? (
+                      <li key={item.label}>
+                        <a
+                          href={item.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className={linkClass}
+                        >
+                          {item.label}
+                          <ExternalLink className="size-3.5" aria-hidden />
+                          <span className="sr-only">(opens in a new tab)</span>
+                        </a>
+                      </li>
+                    ) : (
+                      <li key={item.label}>
+                        <Link href={item.href} className={linkClass}>
+                          {item.label}
+                        </Link>
+                      </li>
+                    ),
+                  )}
                 </ul>
               </nav>
             ))}

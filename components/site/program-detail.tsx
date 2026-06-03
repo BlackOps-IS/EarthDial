@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { ArrowLeft, Check, Info, TriangleAlert } from "lucide-react"
+import { ArrowLeft, Check, ExternalLink, Info, TriangleAlert } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { type ProgramDetail } from "@/lib/content"
 import { buttonVariants } from "@/components/ui/button"
@@ -86,10 +86,27 @@ export function ProgramDetailView({ detail }: { detail: ProgramDetail }) {
               <p className="text-sm leading-relaxed text-muted-foreground">{detail.disclosure}</p>
             </div>
 
-            <div className="flex flex-col gap-3 sm:flex-row">
+            <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+              {detail.externalUrl ? (
+                <a
+                  href={detail.externalUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={cn(buttonVariants({ variant: "primary", size: "md" }))}
+                >
+                  {detail.externalLabel ?? "Visit Website"}
+                  <ExternalLink className="size-4" aria-hidden />
+                  <span className="sr-only">(opens in a new tab)</span>
+                </a>
+              ) : null}
               <Link
                 href="/contact"
-                className={cn(buttonVariants({ variant: "primary", size: "md" }))}
+                className={cn(
+                  buttonVariants({
+                    variant: detail.externalUrl ? "outline" : "primary",
+                    size: "md",
+                  }),
+                )}
               >
                 Discuss This Research
               </Link>

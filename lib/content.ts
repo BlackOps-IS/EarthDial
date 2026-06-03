@@ -17,6 +17,7 @@ export const siteConfig = {
     "Black Diamond Project Corp is a private foundation advancing secure AI, post-quantum cybersecurity, Reldun OS and public-safety resilience technology.",
   url: "https://www.bdproj.com",
   contactEmail: "support@bdproj.com",
+  earthDialUrl: "https://www.earthdial.ai",
   locationNeutral:
     "A private foundation advancing privacy-first, secure and resilient technology for high-trust environments.",
 
@@ -74,6 +75,7 @@ export const footerNav = {
       { label: "AI-QEC", href: "/ai-qec" },
       { label: "Reldun OS", href: "/reldun-os" },
       { label: "EarthDial", href: "/earthdial" },
+      { label: "EarthDial.ai", href: "https://www.earthdial.ai", external: true },
     ],
   },
   support: {
@@ -269,6 +271,8 @@ export type ProgramDetail = {
   sections: DetailSection[]
   safetyNotice?: string
   disclosure: string
+  externalUrl?: string
+  externalLabel?: string
 }
 
 export const programDetails: Record<string, ProgramDetail> = {
@@ -324,6 +328,8 @@ export const programDetails: Record<string, ProgramDetail> = {
       "EarthDial is a technology initiative and is not a replacement for emergency services or official emergency alerts. In an emergency, always contact your local emergency services.",
     disclosure:
       "Submitted by Black Diamond Project Corp as an unclassified response concept for the National Guard Bureau Enterprise Data and Artificial Intelligence Program RFI. No deployment, selection, funding, endorsement, or government acceptance is claimed.",
+    externalUrl: "https://www.earthdial.ai",
+    externalLabel: "Visit EarthDial.ai",
   },
   "ai-qec": {
     slug: "ai-qec",
