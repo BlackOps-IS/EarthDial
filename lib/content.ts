@@ -47,24 +47,30 @@ export const announcement = {
   ctaHref: "/foundation-status",
 } as const
 
+// Primary nav holds content/destination pages only. The two conversion
+// actions (Partner With Us → /contact, Support the Mission → /support) live
+// as distinct buttons in the header, so they are intentionally NOT repeated
+// here. Keep this list to content pages to avoid duplicate links.
 export const primaryNav = [
   { label: "Mission", href: "/mission" },
   { label: "Research", href: "/research" },
   { label: "Reldun OS", href: "/reldun-os" },
   { label: "EarthDial", href: "/earthdial" },
   { label: "Foundation Status", href: "/foundation-status" },
-  { label: "Support", href: "/support" },
-  { label: "Contact", href: "/contact" },
 ] as const
 
+// Footer links are organized so every destination appears exactly once:
+// Organization (who we are), Research (what we do), and Get Involved
+// (the two conversion actions + legal). /contact is represented only by
+// "Partner With Us" and /support only by "Support the Mission".
 export const footerNav = {
   organization: {
     heading: "Organization",
     links: [
+      { label: "About", href: "/about" },
       { label: "Mission", href: "/mission" },
       { label: "Leadership", href: "/mission#leadership" },
       { label: "Foundation Status", href: "/foundation-status" },
-      { label: "Contact", href: "/contact" },
     ],
   },
   research: {
@@ -78,11 +84,11 @@ export const footerNav = {
       { label: "EarthDial.ai", href: "https://www.earthdial.ai", external: true },
     ],
   },
-  support: {
-    heading: "Support",
+  getInvolved: {
+    heading: "Get Involved",
     links: [
-      { label: "Support the Mission", href: "/support" },
       { label: "Partner With Us", href: "/contact" },
+      { label: "Support the Mission", href: "/support" },
       { label: "Privacy Policy", href: "/privacy" },
       { label: "Terms of Use", href: "/terms" },
     ],

@@ -71,21 +71,24 @@ export default function SupportPage() {
             ) : (
               <>
                 <p className="text-sm leading-relaxed text-muted-foreground">
-                  Online giving is being prepared. To discuss a contribution or institutional
-                  support in the meantime, please contact us directly and our team will follow up.
+                  Online giving is being prepared. To make or discuss a contribution today, email
+                  our team directly and we will follow up with the details for your gift.
                 </p>
-                <Link
-                  href="/contact"
+                <a
+                  href={`mailto:${siteConfig.contactEmail}?subject=Supporting%20Black%20Diamond%20Project%20Corp`}
                   className={cn(buttonVariants({ variant: "primary", size: "lg" }))}
                 >
-                  Contact Us to Give
-                </Link>
-                <a
-                  href={`mailto:${siteConfig.contactEmail}`}
-                  className={cn(buttonVariants({ variant: "outline", size: "lg" }))}
-                >
-                  Email {siteConfig.contactEmail}
+                  Email Us to Give
                 </a>
+                <p className="text-sm leading-relaxed text-muted-foreground">
+                  Exploring a research collaboration or institutional partnership instead?{" "}
+                  <Link
+                    href="/contact"
+                    className="font-medium text-primary underline-offset-4 hover:underline"
+                  >
+                    Partner With Us
+                  </Link>
+                </p>
               </>
             )}
             <p className="border-t border-border pt-5 text-xs leading-relaxed text-muted-foreground">

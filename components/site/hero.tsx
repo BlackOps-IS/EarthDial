@@ -54,22 +54,12 @@ export function Hero() {
               <ArrowRight className="size-4" aria-hidden />
             </Link>
             <Link
-              href="/support"
-              className={cn(buttonVariants({ variant: "outline", size: "lg" }))}
-            >
-              Support the Mission
-            </Link>
-          </div>
-
-          <p className="mt-5 text-sm text-muted-foreground">
-            Researching with institutions and collaborators?{" "}
-            <Link
               href="/contact"
-              className="font-medium text-primary underline-offset-4 hover:underline"
+              className={cn(buttonVariants({ variant: "outline", size: "lg" }))}
             >
               Partner With Us
             </Link>
-          </p>
+          </div>
 
           {/* Pillars */}
           <ul className="mt-12 flex flex-wrap gap-3">

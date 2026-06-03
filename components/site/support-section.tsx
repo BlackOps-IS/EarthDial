@@ -40,7 +40,7 @@ export function SupportSection() {
               href="/contact"
               className={cn(buttonVariants({ variant: "outline", size: "lg" }))}
             >
-              Contact Us
+              Partner With Us
             </Link>
           </div>
 
