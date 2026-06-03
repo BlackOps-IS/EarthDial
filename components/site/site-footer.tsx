@@ -6,7 +6,7 @@ import { Container, Logo } from "./primitives"
 const linkClass =
   "inline-flex min-h-9 items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
 
-const columns = [footerNav.organization, footerNav.research, footerNav.support]
+const columns = [footerNav.organization, footerNav.research, footerNav.getInvolved]
 
 export function SiteFooter() {
   return (

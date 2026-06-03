@@ -2,9 +2,9 @@ import Link from "next/link"
 import Image from "next/image"
 import { ArrowRight, ShieldCheck, Atom, Cpu, Radar } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { siteConfig, heroCredibility } from "@/lib/content"
+import { siteConfig } from "@/lib/content"
 import { buttonVariants } from "@/components/ui/button"
-import { Container, Eyebrow, DiamondMark } from "./primitives"
+import { Container, Eyebrow } from "./primitives"
 
 const pillars = [
   { icon: ShieldCheck, label: "Secure & Responsible AI" },
@@ -54,22 +54,12 @@ export function Hero() {
               <ArrowRight className="size-4" aria-hidden />
             </Link>
             <Link
-              href="/support"
-              className={cn(buttonVariants({ variant: "outline", size: "lg" }))}
-            >
-              Support the Mission
-            </Link>
-          </div>
-
-          <p className="mt-5 text-sm text-muted-foreground">
-            Researching with institutions and collaborators?{" "}
-            <Link
               href="/contact"
-              className="font-medium text-primary underline-offset-4 hover:underline"
+              className={cn(buttonVariants({ variant: "outline", size: "lg" }))}
             >
               Partner With Us
             </Link>
-          </p>
+          </div>
 
           {/* Pillars */}
           <ul className="mt-12 flex flex-wrap gap-3">
@@ -80,16 +70,6 @@ export function Hero() {
               >
                 <pillar.icon className="size-4 text-primary" aria-hidden />
                 <span className="text-sm font-medium">{pillar.label}</span>
-              </li>
-            ))}
-          </ul>
-
-          {/* Credibility strip */}
-          <ul className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3 border-t border-border pt-6">
-            {heroCredibility.map((item) => (
-              <li key={item} className="flex items-center gap-2 text-sm text-foreground/80">
-                <DiamondMark className="size-3.5" />
-                {item}
               </li>
             ))}
           </ul>

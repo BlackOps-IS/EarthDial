@@ -46,7 +46,7 @@ export default function AboutPage() {
               deployments, funding, awards, endorsements, or partnerships that have not occurred.
             </p>
             <p>
-              The organization is listed in IRS Publication 78 as eligible to receive
+              The organization is listed in IRS Publication 78 Data as eligible to receive
               tax-deductible charitable contributions and is classified by the IRS as a private
               foundation. This recognition supports our ability to pursue long-horizon,
               public-benefit research with integrity.
@@ -70,7 +70,7 @@ export default function AboutPage() {
               </div>
               <div className="flex flex-col gap-1">
                 <dt className="text-muted-foreground">Charitable Eligibility</dt>
-                <dd className="font-medium">Listed in IRS Publication 78</dd>
+                <dd className="font-medium">Listed in IRS Publication 78 Data</dd>
               </div>
               <div className="flex flex-col gap-1">
                 <dt className="text-muted-foreground">Contact</dt>

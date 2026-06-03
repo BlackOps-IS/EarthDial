@@ -2,9 +2,17 @@ import Link from "next/link"
 import Image from "next/image"
 import { ArrowRight } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { techAreas, trustStrip, reldunOS, siteConfig, leadership, faqs } from "@/lib/content"
+import {
+  techAreas,
+  trustStrip,
+  reldunOS,
+  siteConfig,
+  leadership,
+  faqs,
+  missionPrinciples,
+} from "@/lib/content"
 import { buttonVariants } from "@/components/ui/button"
-import { Container, SectionHeading, DiamondMark } from "@/components/site/primitives"
+import { Container, SectionHeading, DiamondMark, Eyebrow } from "@/components/site/primitives"
 import { Hero } from "@/components/site/hero"
 import { TechAreaCard } from "@/components/site/tech-area-card"
 import { FaqSection } from "@/components/site/faq-section"
@@ -30,13 +38,38 @@ export default function HomePage() {
       </section>
 
       {/* SECTION 3 — Mission */}
-      <section className="py-20 sm:py-24">
-        <Container>
-          <SectionHeading
-            eyebrow="Our Mission"
-            title="Technology Built for High-Trust Environments"
-            description="The future of security is not a single product. It is the responsible integration of secure intelligence, resilient cryptography, trustworthy computing foundations and public-safety awareness. Black Diamond Project Corp brings these research paths together under one public-benefit mission."
-          />
+      <section className="relative overflow-hidden py-20 sm:py-24">
+        <div className="bg-diamond-grid pointer-events-none absolute inset-0 opacity-60" aria-hidden />
+        <Container className="relative grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+          <div>
+            <Eyebrow>Our Mission</Eyebrow>
+            <h2 className="mt-4 font-serif text-3xl font-medium leading-tight tracking-tight text-balance sm:text-4xl">
+              Technology Built for High-Trust Environments
+            </h2>
+            <p className="mt-5 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">
+              The future of security is not a single product. It is the responsible integration of
+              secure intelligence, resilient cryptography, trustworthy computing foundations and
+              public-safety awareness. Black Diamond Project Corp brings these research paths
+              together under one public-benefit mission.
+            </p>
+          </div>
+          <ul className="grid gap-px overflow-hidden rounded-xl border border-border bg-border">
+            {missionPrinciples.map((principle) => (
+              <li key={principle.title} className="bg-card p-6 sm:p-7">
+                <div className="flex items-start gap-3.5">
+                  <DiamondMark className="mt-0.5 size-5 shrink-0" />
+                  <div>
+                    <h3 className="font-serif text-lg font-medium tracking-tight">
+                      {principle.title}
+                    </h3>
+                    <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
+                      {principle.body}
+                    </p>
+                  </div>
+                </div>
+              </li>
+            ))}
+          </ul>
         </Container>
       </section>
 
