@@ -25,7 +25,9 @@ export const metadata: Metadata = {
     default: "Black Diamond Project Corp | Technology Built for Public Benefit",
     template: "%s | Black Diamond Project Corp",
   },
+  applicationName: siteConfig.organizationName,
   description: siteConfig.description,
+  manifest: "/site.webmanifest",
   keywords: [
     "secure AI",
     "responsible artificial intelligence",
@@ -61,6 +63,13 @@ export const metadata: Metadata = {
     images: ["/images/og-default.png"],
   },
   robots: { index: true, follow: true },
+  icons: {
+    icon: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/favicon.ico", sizes: "any" },
+    ],
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180" }],
+  },
 }
 
 export const viewport: Viewport = {
