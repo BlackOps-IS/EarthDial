@@ -6,19 +6,12 @@ import { buttonVariants } from "@/components/ui/button"
 import { Container } from "./primitives"
 import { PageHeader } from "./page-header"
 import { ProgramStatusPanel } from "./program-status-panel"
-import { Breadcrumbs } from "./breadcrumbs"
 
 export function ProgramDetailView({ detail }: { detail: ProgramDetail }) {
   return (
     <>
       <PageHeader eyebrow={detail.eyebrow} title={detail.name} description={detail.subtitle}>
-        <div className="flex flex-col gap-4">
-          <Breadcrumbs
-            items={[
-              { label: "Research", href: "/research" },
-              { label: detail.name, href: `/${detail.slug}` },
-            ]}
-          />
+        <div>
           <Link
             href={detail.backHref}
             className="inline-flex items-center gap-1.5 text-sm font-medium text-muted-foreground transition-colors hover:text-primary"

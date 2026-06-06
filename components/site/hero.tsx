@@ -23,6 +23,7 @@ export function Hero() {
           alt=""
           fill
           priority
+          fetchPriority="high"
           sizes="100vw"
           className="object-cover object-right opacity-50 sm:opacity-70 lg:opacity-100 lg:object-[120%_center]"
         />

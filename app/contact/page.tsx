@@ -1,16 +1,16 @@
-import type { Metadata } from "next"
 import { Container } from "@/components/site/primitives"
 import { PageHeader } from "@/components/site/page-header"
 import { ContactForm } from "@/components/site/contact-form"
 import { Card } from "@/components/ui/card"
 import { siteConfig } from "@/lib/content"
+import { createPageMetadata } from "@/lib/metadata"
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: "Contact & Partner With Us",
   description:
     "Contact Black Diamond Project Corp for research collaboration, institutional partnership, public-safety technology questions, or support.",
-  alternates: { canonical: "/contact" },
-}
+  path: "/contact",
+})
 
 export default function ContactPage() {
   return (

@@ -1,4 +1,3 @@
-import type { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
 import { Info } from "lucide-react"
@@ -6,14 +5,14 @@ import { cn } from "@/lib/utils"
 import { reldunOS, siteConfig } from "@/lib/content"
 import { buttonVariants } from "@/components/ui/button"
 import { Container, Eyebrow, SectionHeading } from "@/components/site/primitives"
-import { Breadcrumbs } from "@/components/site/breadcrumbs"
+import { createPageMetadata } from "@/lib/metadata"
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: "Reldun OS — Control Starts at the Kernel Boundary",
   description:
     "Reldun OS is a privacy-first, security-focused operating system research initiative from Black Diamond Project Corp, built around the principle that control starts at the kernel boundary.",
-  alternates: { canonical: "/reldun-os" },
-}
+  path: "/reldun-os",
+})
 
 export default function ReldunOsPage() {
   return (
@@ -21,8 +20,7 @@ export default function ReldunOsPage() {
       {/* Hero */}
       <section className="relative overflow-hidden border-b border-border bg-diamond-grid">
         <Container className="py-16 sm:py-20">
-          <Breadcrumbs items={[{ label: "Reldun OS", href: "/reldun-os" }]} />
-          <div className="mt-8 grid items-center gap-10 lg:grid-cols-[1.1fr_0.9fr]">
+          <div className="grid items-center gap-10 lg:grid-cols-[1.1fr_0.9fr]">
             <div>
               <Eyebrow>Privacy-First Systems</Eyebrow>
               <h1 className="mt-4 font-serif text-4xl font-medium leading-[1.08] tracking-tight text-balance sm:text-5xl">

@@ -1,17 +1,17 @@
-import type { Metadata } from "next"
 import { articles, techAreas } from "@/lib/content"
 import { Container, SectionHeading } from "@/components/site/primitives"
 import { PageHeader } from "@/components/site/page-header"
 import { ArticleCard } from "@/components/site/article-card"
 import { TechAreaCard } from "@/components/site/tech-area-card"
 import { ResearchApproachTimeline } from "@/components/site/research-approach"
+import { createPageMetadata } from "@/lib/metadata"
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: "Research & Insights",
   description:
     "Research and educational insights from Black Diamond Project Corp across secure AI, post-quantum cybersecurity, privacy-first systems including Reldun OS, and public-safety resilience technology.",
-  alternates: { canonical: "/research" },
-}
+  path: "/research",
+})
 
 export default function ResearchPage() {
   return (

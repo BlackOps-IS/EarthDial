@@ -1,14 +1,14 @@
-import type { Metadata } from "next"
 import { Container } from "@/components/site/primitives"
 import { PageHeader } from "@/components/site/page-header"
 import { siteConfig } from "@/lib/content"
+import { createPageMetadata } from "@/lib/metadata"
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: "Privacy Policy",
   description:
     "How Black Diamond Project Corp collects, uses, and protects information submitted through this website.",
-  alternates: { canonical: "/privacy" },
-}
+  path: "/privacy",
+})
 
 const sections = [
   {

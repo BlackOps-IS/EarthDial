@@ -1,4 +1,3 @@
-import type { Metadata } from "next"
 import Link from "next/link"
 import { ExternalLink, FileCheck2 } from "lucide-react"
 import { cn } from "@/lib/utils"
@@ -8,13 +7,14 @@ import { Container, SectionHeading } from "@/components/site/primitives"
 import { PageHeader } from "@/components/site/page-header"
 import { MissionPrinciples } from "@/components/site/mission-principles"
 import { ResearchApproachTimeline } from "@/components/site/research-approach"
+import { createPageMetadata } from "@/lib/metadata"
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: "Mission & Leadership",
   description:
     "Black Diamond Project Corp advances secure AI, post-quantum cybersecurity, privacy-first systems, and public-safety resilience technology through responsible, evidence-grounded research.",
-  alternates: { canonical: "/mission" },
-}
+  path: "/mission",
+})
 
 const leadershipJsonLd = {
   "@context": "https://schema.org",
