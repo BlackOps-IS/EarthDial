@@ -15,9 +15,10 @@ export const siteConfig = {
   headline: "Secure Technology for a Safer and More Resilient Future",
   description:
     "Black Diamond Project Corp is a private foundation advancing secure AI, post-quantum cybersecurity, Reldun OS and public-safety resilience technology.",
-  url: "https://www.bdproj.com",
-  contactEmail: "support@bdproj.com",
+  url: "https://bdproj.org",
+  contactEmail: "support@bdproj.org",
   earthDialUrl: "https://www.earthdial.ai",
+  linkedInUrl: "https://www.linkedin.com/company/black-diamond-project-corp/",
   locationNeutral:
     "A private foundation advancing privacy-first, secure and resilient technology for high-trust environments.",
 
@@ -89,6 +90,7 @@ export const footerNav = {
     links: [
       { label: "Partner With Us", href: "/contact" },
       { label: "Support the Mission", href: "/support" },
+      { label: "LinkedIn", href: siteConfig.linkedInUrl, external: true },
       { label: "Privacy Policy", href: "/privacy" },
       { label: "Terms of Use", href: "/terms" },
     ],
@@ -217,23 +219,56 @@ export type Leader = {
   role: string
   bio: string
   credentials?: string[]
+  links?: { label: string; href: string }[]
 }
 
 export const leadership: Leader[] = [
   {
     name: "Simon Peter Carreras",
     role: "Founder / Lead Security Researcher",
-    bio: "Simon Peter Carreras founded Black Diamond Project Corp to advance public-benefit technology at the intersection of secure AI, cybersecurity research, secure systems, and resilient public-safety technology. He guides the foundation's research direction and its commitment to disciplined, evidence-grounded innovation.",
+    bio: "Simon Peter Carreras founded Black Diamond Project Corp to advance public-benefit technology at the intersection of secure AI, cybersecurity research, secure systems, IEEE-aligned technical collaboration, and resilient public-safety technology. He guides the foundation's research direction and its commitment to disciplined, evidence-grounded innovation.",
+    credentials: [
+      "IEEE participant",
+      "Secure AI and cybersecurity research leadership",
+      "Public-benefit technology founder",
+    ],
+    links: [
+      {
+        label: "LinkedIn",
+        href: "https://www.linkedin.com/in/simoncarreras/",
+      },
+    ],
   },
   {
     name: "Nazila Safavi, Ph.D.",
     role: "Co-Founder",
-    bio: "Dr. Nazila Safavi is an engineering, computer science and information technology educator and professional whose work includes digital systems, document integrity, information technology, computer-based workflows and system reliability.",
+    bio: "Dr. Nazila Safavi is an engineering, computer science and information technology educator and professional whose work includes digital systems, information technology, cybersecurity, telecommunications, blockchain, AI, computer-based workflows, and system reliability.",
     credentials: [
       "Ph.D. in Information Technology & Management",
       "M.S. in Telecommunications Engineering & Management, Southern Methodist University",
       "B.S. in Computer Science, Oxford Brookes University",
-      "IEEE Senior Member; ACM affiliate",
+      "IEEE Senior Member",
+      "IEEE Foothill Section CS and Local Blockchain Group Chair",
+      "DeVry University-SoCal IEEE Student Branch leadership",
+      "ACM affiliate",
+    ],
+    links: [
+      {
+        label: "LinkedIn",
+        href: "https://www.linkedin.com/in/dr-nazila-safavi-267ba65/",
+      },
+      {
+        label: "IEEE Foothill Section profile",
+        href: "https://foothill.ieee-bv.org/2026/02/foothill-sections-new-cs-and-local-blockchain-group-chair-prof-nazila-safavi/",
+      },
+      {
+        label: "IEEE vTools event host record",
+        href: "https://events.vtools.ieee.org/m/514916",
+      },
+      {
+        label: "IEEE DeVry 5G technology overview flyer",
+        href: "https://ieee-devry-university-online.org/wp-content/uploads/sites/419/DeVry-SoCal-flyer-5G-tech-overview.pdf",
+      },
     ],
   },
 ]

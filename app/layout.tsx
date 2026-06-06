@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next"
 import { Inter, Fraunces } from "next/font/google"
 import "./globals.css"
-import { siteConfig } from "@/lib/content"
+import { leadership, siteConfig } from "@/lib/content"
 import { AnnouncementBar } from "@/components/site/announcement-bar"
 import { SiteHeader } from "@/components/site/site-header"
 import { SiteFooter } from "@/components/site/site-footer"
@@ -88,7 +88,14 @@ const organizationJsonLd = {
   description: siteConfig.description,
   slogan: siteConfig.tagline,
   nonprofitStatus: "NonprofitType",
-  sameAs: [siteConfig.earthDialUrl],
+  sameAs: [
+    siteConfig.earthDialUrl,
+    siteConfig.linkedInUrl,
+    "https://www.linkedin.com/in/simoncarreras/",
+    "https://www.linkedin.com/in/dr-nazila-safavi-267ba65/",
+    "https://foothill.ieee-bv.org/2026/02/foothill-sections-new-cs-and-local-blockchain-group-chair-prof-nazila-safavi/",
+    "https://events.vtools.ieee.org/m/514916",
+  ],
   knowsAbout: [
     "Secure and Responsible Artificial Intelligence",
     "Post-Quantum Cybersecurity",
@@ -109,6 +116,40 @@ const websiteJsonLd = {
   publisher: { "@type": "Organization", name: siteConfig.organizationName },
 }
 
+const leadershipJsonLd = leadership.map((person) => ({
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: person.name,
+  jobTitle: person.role,
+  description: person.bio,
+  worksFor: {
+    "@type": "Organization",
+    name: siteConfig.organizationName,
+    url: siteConfig.url,
+  },
+  affiliation: [
+    {
+      "@type": "Organization",
+      name: siteConfig.organizationName,
+      url: siteConfig.url,
+    },
+    {
+      "@type": "Organization",
+      name: "IEEE",
+      url: "https://www.ieee.org",
+    },
+  ],
+  sameAs: person.links?.map((link) => link.href) ?? [],
+  ...(person.credentials
+    ? {
+        hasCredential: person.credentials.map((credential) => ({
+          "@type": "EducationalOccupationalCredential",
+          name: credential,
+        })),
+      }
+    : {}),
+}))
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${inter.variable} ${fraunces.variable} bg-background`}>
@@ -123,6 +164,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           // eslint-disable-next-line react/no-danger
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
         />
+        {leadershipJsonLd.map((person) => (
+          <script
+            key={person.name}
+            type="application/ld+json"
+            // eslint-disable-next-line react/no-danger
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(person) }}
+          />
+        ))}
         <a
           href="#main"
           className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded-md focus:bg-primary focus:px-4 focus:py-2 focus:text-primary-foreground"

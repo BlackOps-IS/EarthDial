@@ -46,3 +46,4 @@ static/hero_satellite.webp
 # Stage documents (local only, not source code)
 RUNBOOK_GTC.md
 FAILOVER_PROTOCOL.md
+.vercel

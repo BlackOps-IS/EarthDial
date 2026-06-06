@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import Link from "next/link"
+import { ExternalLink } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { leadership, siteConfig } from "@/lib/content"
 import { buttonVariants } from "@/components/ui/button"
@@ -36,6 +37,7 @@ const leadershipJsonLd = {
           })),
         }
       : {}),
+    sameAs: person.links?.map((link) => link.href) ?? [],
   })),
 }
 
@@ -106,6 +108,23 @@ export default function MissionPage() {
                       </li>
                     ))}
                   </ul>
+                ) : null}
+                {person.links ? (
+                  <div className="mt-5 flex flex-wrap gap-2 border-t border-border pt-5">
+                    {person.links.map((link) => (
+                      <a
+                        key={link.href}
+                        href={link.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex min-h-9 items-center gap-1.5 rounded-md border border-border px-3 py-1.5 text-xs font-semibold text-foreground transition-colors hover:border-primary/60 hover:text-primary"
+                      >
+                        {link.label}
+                        <ExternalLink className="size-3" aria-hidden />
+                        <span className="sr-only">(opens in a new tab)</span>
+                      </a>
+                    ))}
+                  </div>
                 ) : null}
               </div>
             ))}

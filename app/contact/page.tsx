@@ -44,7 +44,7 @@ export default function ContactPage() {
                 </div>
                 <div className="flex flex-col gap-1">
                   <dt className="text-muted-foreground">Website</dt>
-                  <dd className="font-medium">www.bdproj.com</dd>
+                  <dd className="font-medium">bdproj.org</dd>
                 </div>
                 <div className="flex flex-col gap-1">
                   <dt className="text-muted-foreground">Organization</dt>
