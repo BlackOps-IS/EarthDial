@@ -34,11 +34,11 @@ export function Hero() {
       <Container className="relative py-24 lg:py-36">
         <div className="max-w-2xl">
           <Eyebrow>{siteConfig.organizationName}</Eyebrow>
-          <h1 className="mt-6 font-serif text-[2.5rem] font-medium leading-[1.05] tracking-tight text-balance sm:text-6xl lg:text-[4.25rem]">
+          <h1 className="mt-6 max-w-full break-words font-serif text-[2.35rem] font-medium leading-[1.05] tracking-tight text-balance sm:text-6xl lg:text-[4.25rem]">
             Secure Technology for a{" "}
             <span className="text-gradient-gold">Safer and More Resilient Future</span>
           </h1>
-          <p className="mt-7 max-w-xl text-lg leading-relaxed text-muted-foreground">
+          <p className="mt-7 max-w-xl break-words text-lg leading-relaxed text-muted-foreground">
             {siteConfig.organizationName} advances privacy-first artificial intelligence,
             post-quantum cybersecurity, secure systems research and public-safety resilience
             technology. Our work is built for environments where trust, privacy and reliability
@@ -62,14 +62,14 @@ export function Hero() {
           </div>
 
           {/* Pillars */}
-          <ul className="mt-12 flex flex-wrap gap-3">
+          <ul className="mt-12 flex max-w-full flex-col items-start gap-3 sm:flex-row sm:flex-wrap">
             {pillars.map((pillar) => (
               <li
                 key={pillar.label}
-                className="inline-flex items-center gap-2.5 rounded-full border border-border bg-card/60 px-4 py-2 backdrop-blur-sm"
+                className="inline-flex max-w-full items-center gap-2.5 rounded-full border border-border bg-card/60 px-4 py-2 backdrop-blur-sm"
               >
                 <pillar.icon className="size-4 text-primary" aria-hidden />
-                <span className="text-sm font-medium">{pillar.label}</span>
+                <span className="min-w-0 text-sm font-medium">{pillar.label}</span>
               </li>
             ))}
           </ul>

@@ -16,7 +16,7 @@ export function AnnouncementBar() {
         <span className="hidden size-5 shrink-0 items-center justify-center rounded-full border border-primary/35 bg-primary/10 text-primary sm:inline-flex">
           <BadgeCheck className="size-3.5" aria-hidden />
         </span>
-        <p className="flex-1 text-pretty text-[0.8rem] leading-snug text-foreground/90">
+        <p className="min-w-0 flex-1 text-pretty text-[0.8rem] leading-snug text-foreground/90">
           <span className="font-semibold text-primary">Foundation status:</span>{" "}
           <span className="hidden sm:inline">
             Black Diamond Project Corp is listed in IRS Publication 78 Data as eligible to receive
@@ -28,7 +28,8 @@ export function AnnouncementBar() {
           href={announcement.ctaHref}
           className="group inline-flex shrink-0 items-center gap-1 whitespace-nowrap text-[0.8rem] font-semibold text-primary transition-colors hover:text-foreground"
         >
-          {announcement.ctaLabel}
+          <span className="sm:hidden">View Status</span>
+          <span className="hidden sm:inline">{announcement.ctaLabel}</span>
           <ArrowRight className="size-3.5 transition-transform group-hover:translate-x-0.5" aria-hidden />
         </Link>
         <button

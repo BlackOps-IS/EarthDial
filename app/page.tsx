@@ -27,11 +27,14 @@ export default function HomePage() {
 
       {/* SECTION 2 — Trust strip */}
       <section className="border-b border-border bg-[oklch(0.14_0.004_286)]">
-        <Container className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 py-6">
+        <Container className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3 py-6 text-center sm:gap-x-8">
           {trustStrip.map((item) => (
-            <span key={item} className="flex items-center gap-2 text-sm font-medium text-foreground/80">
-              <DiamondMark className="size-3.5" />
-              {item}
+            <span
+              key={item}
+              className="flex max-w-full items-center justify-center gap-2 text-sm font-medium text-foreground/80"
+            >
+              <DiamondMark className="size-3.5 shrink-0" />
+              <span className="min-w-0">{item}</span>
             </span>
           ))}
         </Container>
