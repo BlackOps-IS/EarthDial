@@ -108,6 +108,7 @@ export const donationDisclosure =
 export const trustStrip = [
   "Private Foundation",
   "Listed in IRS Publication 78 Data",
+  "Four USPTO Provisional Applications",
   "Secure AI Research",
   "Post-Quantum Security",
   "Public-Safety Resilience Technology",
@@ -222,12 +223,41 @@ export type Leader = {
   links?: { label: string; href: string }[]
 }
 
+export const patentFilings = [
+  {
+    title: "KEUC (Key Exchange Under Ciphertext)",
+    applicationNumber: "63/920,509",
+    receiptDate: "November 19, 2025",
+    area: "Post-quantum and resilient cryptography",
+  },
+  {
+    title: "AI-QEC (AI Quantum Error Correction)",
+    applicationNumber: "63/921,087",
+    receiptDate: "November 19, 2025",
+    area: "Artificial intelligence and quantum error correction",
+  },
+  {
+    title: "Parallel Multi-Session Processing",
+    applicationNumber: "63/921,091",
+    receiptDate: "November 19, 2025",
+    area: "Secure and resilient systems",
+  },
+  {
+    title:
+      "Single-Use, Human-Gated Artificial Intelligence System for Memory-Based Grief Resolution Interactions",
+    applicationNumber: "63/949,083",
+    receiptDate: "December 26, 2025",
+    area: "Human-gated artificial intelligence",
+  },
+] as const
+
 export const leadership: Leader[] = [
   {
     name: "Simon Peter Carreras",
     role: "Founder / Lead Security Researcher",
-    bio: "Simon Peter Carreras founded Black Diamond Project Corp to advance public-benefit technology at the intersection of secure AI, cybersecurity research, secure systems, IEEE-aligned technical collaboration, and resilient public-safety technology. He guides the foundation's research direction and its commitment to disciplined, evidence-grounded innovation.",
+    bio: "Simon Peter Carreras founded Black Diamond Project Corp to advance public-benefit technology at the intersection of secure AI, cybersecurity research, secure systems, IEEE-aligned technical collaboration, and resilient public-safety technology. He guides the foundation's research direction and is the named inventor on four USPTO-received provisional patent applications.",
     credentials: [
+      "Named inventor on four USPTO provisional patent applications",
       "National Cyber League team: No. 1 in cryptography among 4,214 teams nationwide",
       "National Cyber League team: No. 12 overall in the Fall 2025 competition",
       "IEEE participant",

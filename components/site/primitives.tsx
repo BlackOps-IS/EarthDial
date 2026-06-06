@@ -127,13 +127,13 @@ export function Logo({ className }: { className?: string }) {
       <span className="grid size-11 shrink-0 place-items-center rounded-sm border border-primary/25 bg-[oklch(0.12_0.006_286)] shadow-[inset_0_0_0_1px_rgb(242_212_122_/_0.06),0_10px_28px_rgb(0_0_0_/_0.28)]">
         <DiamondMark className="size-8 text-primary" />
       </span>
-      <span className="flex min-w-0 flex-col leading-none">
+      <span className="flex min-w-0 flex-col items-center leading-none">
         <span className="whitespace-nowrap font-serif text-[1.08rem] font-semibold tracking-normal text-foreground sm:text-[1.18rem]">
           Black Diamond
         </span>
-        <span className="mt-1.5 flex items-center gap-2 whitespace-nowrap text-[0.58rem] font-semibold uppercase tracking-normal text-primary/85 sm:text-[0.62rem]">
-          <span>Project Corp</span>
-          <span className="h-px w-8 bg-primary/35" aria-hidden />
+        <span className="my-1.5 h-px w-full bg-primary/45" aria-hidden />
+        <span className="whitespace-nowrap text-[0.58rem] font-semibold uppercase tracking-normal text-primary/85 sm:text-[0.62rem]">
+          Project Corp
         </span>
       </span>
     </span>
