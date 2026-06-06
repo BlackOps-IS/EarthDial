@@ -70,7 +70,7 @@ export function SectionHeading({
   )
 }
 
-/** BDPROJ crest mark used in the logo lockup and favicon system. */
+/** Faceted diamond seal used across the Black Diamond identity. */
 export function DiamondMark({ className }: { className?: string }) {
   return (
     <svg
@@ -80,25 +80,42 @@ export function DiamondMark({ className }: { className?: string }) {
       className={cn("size-9", className)}
     >
       <path
-        d="M32 4 56 20.5 46.8 58H17.2L8 20.5 32 4Z"
-        fill="#07080a"
+        d="M32 3 59 32 32 61 5 32 32 3Z"
+        fill="currentColor"
+        fillOpacity=".04"
         stroke="currentColor"
-        strokeWidth="3.2"
+        strokeWidth="2.8"
         strokeLinejoin="round"
         className="text-primary"
       />
       <path
-        d="M8 20.5h48M19.5 20.5 32 4l12.5 16.5M19.5 20.5 32 58l12.5-37.5"
+        d="M32 10 52 32 32 54 12 32 32 10Z"
+        fill="currentColor"
+        fillOpacity=".09"
         stroke="currentColor"
-        strokeWidth="1.45"
+        strokeWidth="1.2"
+        strokeLinejoin="round"
+        className="text-primary/45"
+      />
+      <path
+        d="M32 10v44M12 32h40M32 10 21 32l11 22 11-22L32 10Z"
+        stroke="currentColor"
+        strokeWidth="1.2"
         strokeLinecap="round"
         strokeLinejoin="round"
         className="text-primary/45"
       />
       <path
-        d="M22 16.2h11.2c6.5 0 10.3 3.2 10.3 8.1 0 3.1-1.5 5.3-4.3 6.4 3.6 1 5.8 3.8 5.8 7.6 0 5.7-4.4 9.5-11.3 9.5H22V16.2Zm6.5 5.9v6.4h4.2c2.7 0 4.2-1.2 4.2-3.2 0-2.1-1.5-3.2-4.3-3.2h-4.1Zm0 11.4v8.1h5.1c3.1 0 4.8-1.5 4.8-4.1 0-2.5-1.8-4-5-4h-4.9Z"
+        d="M32 18 43 32 32 46 21 32 32 18Z"
         fill="currentColor"
         className="text-primary"
+      />
+      <path
+        d="M32 18v28M21 32h22"
+        stroke="#07080a"
+        strokeWidth="1.3"
+        strokeLinecap="round"
+        opacity=".7"
       />
     </svg>
   )
@@ -106,19 +123,17 @@ export function DiamondMark({ className }: { className?: string }) {
 
 export function Logo({ className }: { className?: string }) {
   return (
-    <span className={cn("inline-flex shrink-0 items-center gap-3", className)}>
-      <span className="grid size-11 shrink-0 place-items-center rounded-sm bg-primary/10 shadow-[0_0_0_1px_rgb(242_212_122_/_0.18),0_10px_28px_rgb(0_0_0_/_0.28)]">
-        <DiamondMark className="size-8" />
+    <span className={cn("inline-flex min-w-0 shrink-0 items-center gap-3", className)}>
+      <span className="grid size-11 shrink-0 place-items-center rounded-sm border border-primary/25 bg-[oklch(0.12_0.006_286)] shadow-[inset_0_0_0_1px_rgb(242_212_122_/_0.06),0_10px_28px_rgb(0_0_0_/_0.28)]">
+        <DiamondMark className="size-8 text-primary" />
       </span>
-      <span className="flex flex-col gap-1 leading-none">
-        <span className="whitespace-nowrap font-serif text-[1.2rem] font-semibold tracking-normal text-foreground">
-          BDPROJ
-          <span className="ml-1 align-super font-sans text-[0.52rem] font-semibold text-primary">
-            TM
-          </span>
+      <span className="flex min-w-0 flex-col leading-none">
+        <span className="whitespace-nowrap font-serif text-[1.08rem] font-semibold tracking-normal text-foreground sm:text-[1.18rem]">
+          Black Diamond
         </span>
-        <span className="whitespace-nowrap text-[0.62rem] font-semibold uppercase tracking-normal text-muted-foreground">
-          Black Diamond Project Corp
+        <span className="mt-1.5 flex items-center gap-2 whitespace-nowrap text-[0.58rem] font-semibold uppercase tracking-normal text-primary/85 sm:text-[0.62rem]">
+          <span>Project Corp</span>
+          <span className="h-px w-8 bg-primary/35" aria-hidden />
         </span>
       </span>
     </span>

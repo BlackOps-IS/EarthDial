@@ -228,6 +228,8 @@ export const leadership: Leader[] = [
     role: "Founder / Lead Security Researcher",
     bio: "Simon Peter Carreras founded Black Diamond Project Corp to advance public-benefit technology at the intersection of secure AI, cybersecurity research, secure systems, IEEE-aligned technical collaboration, and resilient public-safety technology. He guides the foundation's research direction and its commitment to disciplined, evidence-grounded innovation.",
     credentials: [
+      "National Cyber League team: No. 1 in cryptography among 4,214 teams nationwide",
+      "National Cyber League team: No. 12 overall in the Fall 2025 competition",
       "IEEE participant",
       "Secure AI and cybersecurity research leadership",
       "Public-benefit technology founder",
@@ -236,6 +238,14 @@ export const leadership: Leader[] = [
       {
         label: "LinkedIn",
         href: "https://www.linkedin.com/in/simoncarreras/",
+      },
+      {
+        label: "DeVry National Cyber League recognition",
+        href: "https://www.devry.edu/newsroom/news/2025/national-cyber-league-ranks-devry-university-in-top-10-for-fall-2025-power-rankings.html",
+      },
+      {
+        label: "Yahoo Finance coverage",
+        href: "https://finance.yahoo.com/news/national-cyber-league-ranks-devry-150000323.html",
       },
     ],
   },

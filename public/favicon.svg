@@ -1,14 +1,15 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="BDPROJ animated favicon">
-  <title>BDPROJ animated favicon</title>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Black Diamond Project Corp animated favicon">
+  <title>Black Diamond Project Corp animated favicon</title>
   <style>
     :root {
       color-scheme: dark;
     }
 
     .diamond {
-      fill: #07080a;
+      fill: #f2d47a;
+      fill-opacity: .04;
       stroke: #f2d47a;
-      stroke-width: 3.2;
+      stroke-width: 2.8;
       stroke-linejoin: round;
       transform-origin: 32px 32px;
       animation: markPulse 5.6s ease-in-out infinite;
@@ -23,7 +24,7 @@
       opacity: .42;
     }
 
-    .monogram {
+    .keystone {
       fill: #f2d47a;
     }
 
@@ -53,8 +54,10 @@
       .shine { opacity: .35; }
     }
   </style>
-  <path class="diamond" d="M32 4 56 20.5 46.8 58H17.2L8 20.5 32 4Z"/>
-  <path class="facet" d="M8 20.5h48M19.5 20.5 32 4l12.5 16.5M19.5 20.5 32 58l12.5-37.5"/>
-  <path class="monogram" d="M22 16.2h11.2c6.5 0 10.3 3.2 10.3 8.1 0 3.1-1.5 5.3-4.3 6.4 3.6 1 5.8 3.8 5.8 7.6 0 5.7-4.4 9.5-11.3 9.5H22V16.2Zm6.5 5.9v6.4h4.2c2.7 0 4.2-1.2 4.2-3.2 0-2.1-1.5-3.2-4.3-3.2h-4.1Zm0 11.4v8.1h5.1c3.1 0 4.8-1.5 4.8-4.1 0-2.5-1.8-4-5-4h-4.9Z"/>
-  <path class="shine" d="M16 22.5 32 11.5l16 11-4.1 3.3L32 18.6 20.1 25.8Z"/>
+  <rect width="64" height="64" rx="7" fill="#07080a"/>
+  <path class="diamond" d="M32 3 59 32 32 61 5 32 32 3Z"/>
+  <path class="facet" d="M32 10 52 32 32 54 12 32 32 10ZM32 10v44M12 32h40M32 10 21 32l11 22 11-22L32 10Z"/>
+  <path class="keystone" d="M32 18 43 32 32 46 21 32 32 18Z"/>
+  <path fill="none" stroke="#07080a" stroke-width="1.3" stroke-linecap="round" opacity=".7" d="M32 18v28M21 32h22"/>
+  <path class="shine" d="M15 31.5 32 13l17 18.5-4.2 3.2L32 21.2 19.2 34.7Z"/>
 </svg>
