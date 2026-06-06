@@ -97,9 +97,6 @@ export const footerNav = {
   },
 } as const
 
-export const footerLegal =
-  "Black Diamond Project Corp is listed in IRS Publication 78 Data as eligible to receive tax-deductible charitable contributions. IRS deductibility code: PF — Private Foundation."
-
 export const donationDisclosure =
   "Black Diamond Project Corp is listed in IRS Publication 78 Data as an organization eligible to receive tax-deductible charitable contributions. Its IRS deductibility code is PF, identifying it as a private foundation. Consult your tax adviser regarding your individual circumstances."
 
@@ -107,7 +104,7 @@ export const donationDisclosure =
 
 export const trustStrip = [
   "Private Foundation",
-  "Listed in IRS Publication 78 Data",
+  "Evidence-Grounded Research",
   "Four USPTO Provisional Applications",
   "Secure AI Research",
   "Post-Quantum Security",
@@ -631,11 +628,6 @@ export const faqs: Faq[] = [
     question: "What is AI-QEC?",
     answer:
       "AI-QEC is a Black Diamond Project Corp research initiative exploring the intersection of artificial intelligence and quantum reliability, including AI-assisted error correction and digital-twin benchmarking. It is a proposed feasibility research initiative.",
-  },
-  {
-    question: "Are contributions to Black Diamond Project Corp tax-deductible?",
-    answer:
-      "Black Diamond Project Corp is listed in IRS Publication 78 Data as an organization eligible to receive tax-deductible charitable contributions, with IRS deductibility code PF (Private Foundation). Consult your tax adviser regarding your individual circumstances.",
   },
 ]
 

@@ -1,6 +1,6 @@
 import Link from "next/link"
 import { ExternalLink } from "lucide-react"
-import { footerNav, footerLegal, siteConfig } from "@/lib/content"
+import { footerNav, siteConfig } from "@/lib/content"
 import { Container, Logo } from "./primitives"
 
 const linkClass =
@@ -56,8 +56,7 @@ export function SiteFooter() {
         </div>
 
         <div className="mt-12 border-t border-border pt-8">
-          <p className="max-w-3xl text-xs leading-relaxed text-muted-foreground">{footerLegal}</p>
-          <div className="mt-4 flex flex-col gap-2 text-xs text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex flex-col gap-2 text-xs text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
             <p>
               &copy; {new Date().getFullYear()} {siteConfig.organizationName}. All rights reserved.
             </p>

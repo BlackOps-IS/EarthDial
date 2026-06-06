@@ -1,6 +1,6 @@
 import Link from "next/link"
 import Image from "next/image"
-import { ArrowRight } from "lucide-react"
+import { ArrowRight, Radar } from "lucide-react"
 import { cn } from "@/lib/utils"
 import {
   techAreas,
@@ -26,17 +26,19 @@ export default function HomePage() {
       <Hero />
 
       {/* SECTION 2 — Trust strip */}
-      <section className="border-b border-border bg-[oklch(0.14_0.004_286)]">
-        <Container className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3 py-6 text-center sm:gap-x-8">
-          {trustStrip.map((item) => (
-            <span
-              key={item}
-              className="flex max-w-full items-center justify-center gap-2 text-sm font-medium text-foreground/80"
-            >
-              <DiamondMark className="size-3.5 shrink-0" />
-              <span className="min-w-0">{item}</span>
-            </span>
-          ))}
+      <section className="border-b border-border bg-[oklch(0.14_0.004_286)]" aria-label="Trust signals">
+        <Container className="py-5">
+          <ul className="grid grid-cols-2 gap-px overflow-hidden rounded-md border border-border bg-border sm:grid-cols-3 lg:grid-cols-6">
+            {trustStrip.map((item) => (
+              <li
+                key={item}
+                className="flex min-h-16 min-w-0 items-center justify-center gap-2 bg-[oklch(0.145_0.004_286)] px-3 py-3 text-center text-xs font-medium leading-snug text-foreground/80 sm:text-sm"
+              >
+                <DiamondMark className="size-3.5 shrink-0" />
+                <span className="min-w-0">{item}</span>
+              </li>
+            ))}
+          </ul>
         </Container>
       </section>
 
@@ -130,24 +132,39 @@ export default function HomePage() {
 
       {/* SECTION 6 + 7 — EarthDial & Post-Quantum */}
       <section className="border-t border-border bg-[oklch(0.14_0.004_286)] py-20 sm:py-24">
-        <Container className="grid gap-6 lg:grid-cols-2">
-          <Card className="flex flex-col p-8">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">
-              Featured Initiative
-            </p>
-            <h2 className="mt-4 font-serif text-2xl font-medium tracking-tight">EarthDial</h2>
-            <p className="mt-4 flex-1 text-base leading-relaxed text-muted-foreground">
-              A public-safety resilience technology initiative focused on emergency awareness,
-              preparedness and community-impacting conditions.
-            </p>
-            <Link
-              href="/earthdial"
-              className="mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-foreground transition-colors hover:text-primary"
+        <Container className="grid items-stretch gap-8 lg:grid-cols-[1.35fr_0.65fr]">
+          <div className="relative overflow-hidden border-y border-primary/25 py-10 sm:py-12">
+            <div className="relative z-10 max-w-xl">
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">
+                Featured Initiative
+              </p>
+              <h2 className="mt-4 font-serif text-4xl font-medium tracking-tight text-balance sm:text-5xl">
+                EarthDial
+              </h2>
+              <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
+                A public-safety resilience technology initiative focused on emergency awareness,
+                preparedness and community-impacting conditions.
+              </p>
+              <Link
+                href="/earthdial"
+                className={cn(buttonVariants({ variant: "outline", size: "md" }), "mt-8")}
+              >
+                Explore EarthDial
+                <ArrowRight className="size-4" aria-hidden />
+              </Link>
+            </div>
+            <div
+              className="pointer-events-none absolute -right-16 top-1/2 size-64 -translate-y-1/2 opacity-35 sm:right-2 sm:size-72"
+              aria-hidden
             >
-              Explore EarthDial
-              <ArrowRight className="size-4" aria-hidden />
-            </Link>
-          </Card>
+              <div className="absolute inset-0 rounded-full border border-primary/25" />
+              <div className="absolute inset-[18%] rounded-full border border-primary/35" />
+              <div className="absolute inset-[36%] rounded-full border border-primary/50" />
+              <div className="absolute left-1/2 top-0 h-full w-px bg-primary/25" />
+              <div className="absolute left-0 top-1/2 h-px w-full bg-primary/25" />
+              <Radar className="absolute left-1/2 top-1/2 size-10 -translate-x-1/2 -translate-y-1/2 text-primary" />
+            </div>
+          </div>
           <Card className="flex flex-col p-8">
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">
               Research Focus
@@ -170,49 +187,7 @@ export default function HomePage() {
         </Container>
       </section>
 
-      {/* SECTION 8 — Foundation trust */}
-      <section className="border-t border-border py-20 sm:py-24">
-        <Container className="grid items-center gap-12 lg:grid-cols-2">
-          <div className="overflow-hidden rounded-xl border border-primary/25 shadow-2xl shadow-black/40">
-            <Image
-              src={siteConfig.foundationGraphic}
-              alt={siteConfig.foundationGraphicAlt}
-              width={1485}
-              height={1050}
-              className="h-auto w-full"
-            />
-          </div>
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">
-              Verified Foundation Status
-            </p>
-            <h2 className="mt-4 font-serif text-3xl font-medium leading-tight tracking-tight text-balance sm:text-4xl">
-              A Verified Private Foundation Supporting Public-Benefit Technology
-            </h2>
-            <p className="mt-5 text-base leading-relaxed text-muted-foreground">
-              Black Diamond Project Corp is listed in IRS Publication 78 Data as an organization
-              eligible to receive tax-deductible charitable contributions. IRS deductibility code:
-              PF — Private Foundation.
-            </p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <Link
-                href="/foundation-status"
-                className={cn(buttonVariants({ variant: "primary", size: "md" }))}
-              >
-                View Foundation Status
-              </Link>
-              <Link
-                href="/support"
-                className={cn(buttonVariants({ variant: "outline", size: "md" }))}
-              >
-                Support the Mission
-              </Link>
-            </div>
-          </div>
-        </Container>
-      </section>
-
-      {/* SECTION 9 — Leadership preview */}
+      {/* SECTION 8 — Leadership preview */}
       <section className="border-t border-border bg-[oklch(0.14_0.004_286)] py-20 sm:py-24">
         <Container>
           <SectionHeading
@@ -239,7 +214,7 @@ export default function HomePage() {
         </Container>
       </section>
 
-      {/* SECTION 10 — FAQ */}
+      {/* SECTION 9 — FAQ */}
       <section className="border-t border-border py-20 sm:py-24">
         <Container className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr]">
           <SectionHeading
@@ -251,7 +226,7 @@ export default function HomePage() {
         </Container>
       </section>
 
-      {/* SECTION 11 — Support */}
+      {/* SECTION 10 — Support */}
       <SupportSection />
     </>
   )
