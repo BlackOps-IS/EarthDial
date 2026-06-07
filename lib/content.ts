@@ -60,10 +60,8 @@ export const primaryNav = [
   { label: "Foundation Status", href: "/foundation-status" },
 ] as const
 
-// Footer links are organized so every destination appears exactly once:
-// Organization (who we are), Research (what we do), and Get Involved
-// (the two conversion actions + legal). /contact is represented only by
-// "Partner With Us" and /support only by "Support the Mission".
+// Footer links are organized by organization, research, and involvement.
+// Legal links live in the footer utility bar.
 export const footerNav = {
   organization: {
     heading: "Organization",
@@ -91,8 +89,6 @@ export const footerNav = {
       { label: "Partner With Us", href: "/contact" },
       { label: "Support the Mission", href: "/support" },
       { label: "LinkedIn", href: siteConfig.linkedInUrl, external: true },
-      { label: "Privacy Policy", href: "/privacy" },
-      { label: "Terms of Use", href: "/terms" },
     ],
   },
 } as const
