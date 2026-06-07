@@ -17,14 +17,14 @@ export function PageHeader({
   return (
     <section
       className={cn(
-        "relative overflow-hidden border-b border-border bg-diamond-grid",
+        "relative overflow-hidden border-b border-border bg-[oklch(0.14_0.004_286)]",
         className,
       )}
     >
-      <Container className="py-16 sm:py-20">
-        <div className="max-w-3xl">
+      <Container className="py-14 sm:py-18">
+        <div className="max-w-4xl border-l border-primary/45 pl-6 sm:pl-8">
           {eyebrow ? <Eyebrow>{eyebrow}</Eyebrow> : null}
-          <h1 className="mt-4 font-serif text-4xl font-medium leading-[1.08] tracking-tight text-balance sm:text-5xl">
+          <h1 className="mt-4 font-serif text-4xl font-medium leading-[1.08] tracking-tight text-balance sm:text-[3.4rem]">
             {title}
           </h1>
           {description ? (

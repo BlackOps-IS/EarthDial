@@ -13,10 +13,10 @@ const columns = [footerNav.organization, footerNav.research, footerNav.getInvolv
 export function SiteFooter() {
   return (
     <footer className="mt-24 border-t border-primary/25 bg-[oklch(0.125_0.004_286)]">
-      <div className="border-b border-border bg-diamond-grid">
+      <div className="border-b border-border">
         <Container className="grid gap-8 py-10 sm:py-12 lg:grid-cols-[1fr_auto] lg:items-center">
           <div className="max-w-2xl">
-            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-primary">
+            <p className="text-sm font-medium tracking-wide text-primary">
               Work With Black Diamond
             </p>
             <h2 className="mt-3 font-serif text-2xl font-medium leading-tight text-foreground sm:text-3xl">

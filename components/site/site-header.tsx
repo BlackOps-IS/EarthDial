@@ -30,8 +30,8 @@ export function SiteHeader() {
     href === "/" ? pathname === "/" : pathname.startsWith(href)
 
   return (
-    <header className="sticky top-0 z-50 border-b border-primary/20 bg-background/95 shadow-[0_1px_0_rgb(242_212_122_/_0.08),0_16px_48px_rgb(0_0_0_/_0.32)] backdrop-blur-xl">
-      <Container className="flex min-h-[4.75rem] items-center justify-between gap-4">
+    <header className="sticky top-0 z-50 border-b border-border bg-background">
+      <Container className="flex min-h-[4.5rem] items-center justify-between gap-4">
         <Link
           href="/"
           aria-label="Black Diamond Project Corp home"
@@ -47,10 +47,10 @@ export function SiteHeader() {
               href={item.href}
               aria-current={isActive(item.href) ? "page" : undefined}
               className={cn(
-                "whitespace-nowrap rounded-sm px-3 py-2 text-sm font-medium transition-colors hover:bg-muted/70 hover:text-foreground",
+                "whitespace-nowrap border-b px-3 py-2 text-sm font-medium transition-colors hover:text-foreground",
                 isActive(item.href)
-                  ? "bg-primary/10 text-primary"
-                  : "text-muted-foreground",
+                  ? "border-primary text-foreground"
+                  : "border-transparent text-muted-foreground",
               )}
             >
               {item.label}
@@ -72,7 +72,7 @@ export function SiteHeader() {
             href="/support"
             className={cn(
               buttonVariants({ variant: "primary", size: "sm" }),
-              "shadow-[0_8px_24px_rgb(242_212_122_/_0.16)]",
+              "",
             )}
           >
             Support the Mission

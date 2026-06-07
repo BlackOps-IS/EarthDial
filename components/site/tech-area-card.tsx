@@ -1,7 +1,6 @@
 import Link from "next/link"
 import { ArrowRight, ShieldCheck, Atom, Cpu, Radar, type LucideIcon } from "lucide-react"
 import { type TechArea } from "@/lib/content"
-import { Card } from "@/components/ui/card"
 
 const iconBySlug: Record<string, LucideIcon> = {
   "secure-ai": ShieldCheck,
@@ -13,11 +12,11 @@ const iconBySlug: Record<string, LucideIcon> = {
 export function TechAreaCard({ area }: { area: TechArea }) {
   const Icon = iconBySlug[area.slug] ?? ShieldCheck
   return (
-    <Card className="group flex h-full flex-col p-7 transition-colors hover:border-primary/40">
-      <span className="inline-flex size-11 items-center justify-center rounded-lg bg-primary/10 text-primary">
+    <article className="group flex h-full flex-col border-t border-border py-6 transition-colors hover:border-primary">
+      <span className="inline-flex size-9 items-center justify-center border border-primary/30 text-primary">
         <Icon className="size-5" aria-hidden />
       </span>
-      <p className="mt-5 text-xs font-semibold uppercase tracking-[0.16em] text-primary">
+      <p className="mt-5 text-xs font-medium tracking-wide text-primary">
         {area.tagline}
       </p>
       <h3 className="mt-2 font-serif text-xl font-medium leading-snug tracking-tight text-balance">
@@ -31,6 +30,6 @@ export function TechAreaCard({ area }: { area: TechArea }) {
         {area.cta}
         <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" aria-hidden />
       </Link>
-    </Card>
+    </article>
   )
 }

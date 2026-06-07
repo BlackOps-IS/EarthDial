@@ -1,0 +1,25 @@
+# New information architecture
+/programs /research 301
+/programs/earthdial /earthdial 301
+/programs/ai-qec /ai-qec 301
+/research/pqc-readiness /post-quantum-security 301
+
+# Legacy and alternate slugs
+/ai /research 301
+/labs /research 301
+/security /post-quantum-security 301
+/post-quantum /post-quantum-security 301
+/quantum /ai-qec 301
+/reldun /reldun-os 301
+/os /reldun-os 301
+/projects /research 301
+/services /research 301
+/capabilities /research 301
+/methodology /mission 301
+/leadership /mission#leadership 301
+/governance /foundation-status 301
+/donate /support 301
+/partner /contact 301
+
+# Community Infrastructure Response remains disabled.
+/electrical /mission 302

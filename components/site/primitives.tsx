@@ -22,7 +22,7 @@ export function Eyebrow({
   return (
     <p
       className={cn(
-        "text-xs font-semibold uppercase tracking-[0.22em] text-primary",
+        "text-sm font-medium tracking-wide text-primary",
         className,
       )}
     >
@@ -124,15 +124,14 @@ export function DiamondMark({ className }: { className?: string }) {
 export function Logo({ className }: { className?: string }) {
   return (
     <span className={cn("inline-flex min-w-0 shrink-0 items-center gap-3", className)}>
-      <span className="grid size-11 shrink-0 place-items-center rounded-sm border border-primary/25 bg-[oklch(0.12_0.006_286)] shadow-[inset_0_0_0_1px_rgb(242_212_122_/_0.06),0_10px_28px_rgb(0_0_0_/_0.28)]">
+      <span className="grid size-10 shrink-0 place-items-center border-r border-primary/35 pr-3">
         <DiamondMark className="size-8 text-primary" />
       </span>
-      <span className="flex min-w-0 flex-col items-center leading-none">
-        <span className="whitespace-nowrap font-serif text-[1.08rem] font-semibold tracking-normal text-foreground sm:text-[1.18rem]">
+      <span className="flex min-w-0 flex-col leading-none">
+        <span className="whitespace-nowrap font-serif text-[1.04rem] font-semibold tracking-normal text-foreground sm:text-[1.12rem]">
           Black Diamond
         </span>
-        <span className="my-1.5 h-px w-full bg-primary/45" aria-hidden />
-        <span className="whitespace-nowrap text-[0.58rem] font-semibold uppercase tracking-normal text-primary/85 sm:text-[0.62rem]">
+        <span className="mt-1.5 whitespace-nowrap text-[0.58rem] font-medium uppercase tracking-[0.16em] text-muted-foreground sm:text-[0.62rem]">
           Project Corp
         </span>
       </span>

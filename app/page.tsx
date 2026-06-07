@@ -27,15 +27,15 @@ export default function HomePage() {
 
       {/* SECTION 2 — Trust strip */}
       <section className="border-b border-border bg-[oklch(0.14_0.004_286)]" aria-label="Trust signals">
-        <Container className="py-5">
-          <ul className="grid grid-cols-2 gap-px overflow-hidden rounded-md border border-border bg-border sm:grid-cols-3 lg:grid-cols-6">
+        <Container>
+          <ul className="grid grid-cols-2 divide-x divide-y divide-border border-x border-border sm:grid-cols-3 lg:grid-cols-6 lg:divide-y-0">
             {trustStrip.map((item) => (
               <li
                 key={item}
-                className="flex min-h-16 min-w-0 items-center justify-center gap-2 bg-[oklch(0.145_0.004_286)] px-3 py-3 text-center text-xs font-medium leading-snug text-foreground/80 sm:text-sm"
+                className="flex min-h-20 min-w-0 items-center gap-3 px-4 py-4 text-xs font-medium leading-snug text-foreground/80 sm:text-sm"
               >
                 <DiamondMark className="size-3.5 shrink-0" />
-                <span className="min-w-0">{item}</span>
+                <span className="min-w-0 text-left">{item}</span>
               </li>
             ))}
           </ul>
@@ -44,7 +44,6 @@ export default function HomePage() {
 
       {/* SECTION 3 — Mission */}
       <section className="relative overflow-hidden py-20 sm:py-24">
-        <div className="bg-diamond-grid pointer-events-none absolute inset-0 opacity-60" aria-hidden />
         <Container className="relative grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
           <div>
             <Eyebrow>Our Mission</Eyebrow>
@@ -58,9 +57,9 @@ export default function HomePage() {
               together under one public-benefit mission.
             </p>
           </div>
-          <ul className="grid gap-px overflow-hidden rounded-xl border border-border bg-border">
+          <ul className="border-y border-border">
             {missionPrinciples.map((principle) => (
-              <li key={principle.title} className="bg-card p-6 sm:p-7">
+              <li key={principle.title} className="border-b border-border py-6 last:border-b-0 sm:py-7">
                 <div className="flex items-start gap-3.5">
                   <DiamondMark className="mt-0.5 size-5 shrink-0" />
                   <div>
@@ -86,7 +85,7 @@ export default function HomePage() {
             title="Four Connected Technology Areas"
             description="One coherent mission: protecting people, protecting information and building resilient systems for the future."
           />
-          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-12 grid gap-x-8 gap-y-2 sm:grid-cols-2 lg:grid-cols-4">
             {techAreas.map((area) => (
               <TechAreaCard key={area.slug} area={area} />
             ))}
@@ -97,7 +96,7 @@ export default function HomePage() {
       {/* SECTION 5 — Featured initiative: Reldun OS */}
       <section className="border-t border-border py-20 sm:py-24">
         <Container className="grid items-center gap-12 lg:grid-cols-2">
-          <div className="order-2 flex justify-center overflow-hidden rounded-xl border border-border bg-[oklch(0.12_0.004_286)] p-6 sm:p-10 lg:order-1">
+          <div className="order-2 flex justify-center overflow-hidden border-y border-border bg-[oklch(0.12_0.004_286)] p-6 sm:p-10 lg:order-1">
             <Image
               src={siteConfig.reldunImage}
               alt={siteConfig.reldunImageAlt}
@@ -108,7 +107,7 @@ export default function HomePage() {
             />
           </div>
           <div className="order-1 lg:order-2">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">
+            <p className="text-sm font-medium tracking-wide text-primary">
               Featured Initiative
             </p>
             <h2 className="mt-4 font-serif text-3xl font-medium leading-tight tracking-tight text-balance sm:text-4xl">
@@ -135,7 +134,7 @@ export default function HomePage() {
         <Container className="grid items-stretch gap-8 lg:grid-cols-[1.35fr_0.65fr]">
           <div className="relative overflow-hidden border-y border-primary/25 py-10 sm:py-12">
             <div className="relative z-10 max-w-xl">
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">
+              <p className="text-sm font-medium tracking-wide text-primary">
                 Featured Initiative
               </p>
               <h2 className="mt-4 font-serif text-4xl font-medium tracking-tight text-balance sm:text-5xl">
@@ -166,7 +165,7 @@ export default function HomePage() {
             </div>
           </div>
           <Card className="flex flex-col p-8">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">
+            <p className="text-sm font-medium tracking-wide text-primary">
               Research Focus
             </p>
             <h2 className="mt-4 font-serif text-2xl font-medium tracking-tight text-balance">

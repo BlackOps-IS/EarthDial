@@ -5,6 +5,8 @@
 # Node / Next generated files
 node_modules/
 .next/
+out/
+.playwright-cli/
 .pnpm-store/
 
 # Python
