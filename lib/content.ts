@@ -282,9 +282,9 @@ export const leadership: Leader[] = [
   },
   {
     name: "Nazila Safavi, PhD",
-    role: "Secretary",
+    role: "Co-Founder & Board Member",
     photo: "/team/nazila.jpg",
-    bio: "Nazila Safavi, PhD, Secretary of Black Diamond Project Corp and IEEE Senior Member, possesses over 30 years of expertise in telecommunications, cybersecurity, and AI. She chairs the IEEE Foothill Section Computer Society Chapter and Blockchain Initiative, researching AI-driven solutions for wireless and rural connectivity.",
+    bio: "Nazila Safavi, PhD, is a Co-Founder and Board Member of Black Diamond Project Corp and an IEEE Senior Member with over 30 years of expertise in telecommunications, cybersecurity, and AI. As an independent voice on the board, she chairs the IEEE Foothill Section Computer Society Chapter and Blockchain Initiative and researches AI-driven solutions for wireless and rural connectivity.",
     credentials: [
       "Ph.D. in Information Technology & Management",
       "M.S. in Telecommunications Engineering & Management, Southern Methodist University",

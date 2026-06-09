@@ -94,7 +94,8 @@ export function BitcoinDonate() {
       </div>
 
       <p className="border-t border-border pt-4 text-xs leading-relaxed text-muted-foreground">
-        Black Diamond Project Corp is a 501(c)(3); cryptocurrency donations may be
+        Black Diamond Project Corp is a 501(c)(3) private foundation listed in IRS
+        Publication 78 Data (deductibility code PF); cryptocurrency donations may be
         tax-deductible — consult your tax advisor.
       </p>
     </div>
