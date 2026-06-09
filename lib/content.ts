@@ -15,9 +15,10 @@ export const siteConfig = {
   headline: "Secure Technology for a Safer and More Resilient Future",
   description:
     "Black Diamond Project Corp is a private foundation advancing secure AI, post-quantum cybersecurity, Reldun OS and public-safety resilience technology.",
-  url: "https://www.bdproj.com",
-  contactEmail: "support@bdproj.com",
+  url: "https://bdproj.org",
+  contactEmail: "support@bdproj.org",
   earthDialUrl: "https://www.earthdial.ai",
+  linkedInUrl: "https://www.linkedin.com/company/black-diamond-project-corp/",
   locationNeutral:
     "A private foundation advancing privacy-first, secure and resilient technology for high-trust environments.",
 
@@ -59,10 +60,8 @@ export const primaryNav = [
   { label: "Foundation Status", href: "/foundation-status" },
 ] as const
 
-// Footer links are organized so every destination appears exactly once:
-// Organization (who we are), Research (what we do), and Get Involved
-// (the two conversion actions + legal). /contact is represented only by
-// "Partner With Us" and /support only by "Support the Mission".
+// Footer links are organized by organization, research, and involvement.
+// Legal links live in the footer utility bar.
 export const footerNav = {
   organization: {
     heading: "Organization",
@@ -89,14 +88,10 @@ export const footerNav = {
     links: [
       { label: "Partner With Us", href: "/contact" },
       { label: "Support the Mission", href: "/support" },
-      { label: "Privacy Policy", href: "/privacy" },
-      { label: "Terms of Use", href: "/terms" },
+      { label: "LinkedIn", href: siteConfig.linkedInUrl, external: true },
     ],
   },
 } as const
-
-export const footerLegal =
-  "Black Diamond Project Corp is listed in IRS Publication 78 Data as eligible to receive tax-deductible charitable contributions. IRS deductibility code: PF — Private Foundation."
 
 export const donationDisclosure =
   "Black Diamond Project Corp is listed in IRS Publication 78 Data as an organization eligible to receive tax-deductible charitable contributions. Its IRS deductibility code is PF, identifying it as a private foundation. Consult your tax adviser regarding your individual circumstances."
@@ -105,7 +100,8 @@ export const donationDisclosure =
 
 export const trustStrip = [
   "Private Foundation",
-  "Listed in IRS Publication 78 Data",
+  "Evidence-Grounded Research",
+  "Four USPTO Provisional Applications",
   "Secure AI Research",
   "Post-Quantum Security",
   "Public-Safety Resilience Technology",
@@ -218,7 +214,36 @@ export type Leader = {
   bio: string
   photo: string
   credentials?: string[]
+  links?: { label: string; href: string }[]
 }
+
+export const patentFilings = [
+  {
+    title: "KEUC (Key Exchange Under Ciphertext)",
+    applicationNumber: "63/920,509",
+    receiptDate: "November 19, 2025",
+    area: "Post-quantum and resilient cryptography",
+  },
+  {
+    title: "AI-QEC (AI Quantum Error Correction)",
+    applicationNumber: "63/921,087",
+    receiptDate: "November 19, 2025",
+    area: "Artificial intelligence and quantum error correction",
+  },
+  {
+    title: "Parallel Multi-Session Processing",
+    applicationNumber: "63/921,091",
+    receiptDate: "November 19, 2025",
+    area: "Secure and resilient systems",
+  },
+  {
+    title:
+      "Single-Use, Human-Gated Artificial Intelligence System for Memory-Based Grief Resolution Interactions",
+    applicationNumber: "63/949,083",
+    receiptDate: "December 26, 2025",
+    area: "Human-gated artificial intelligence",
+  },
+] as const
 
 export const leadership: Leader[] = [
   {
@@ -226,6 +251,28 @@ export const leadership: Leader[] = [
     role: "Chief Executive Officer & Founder",
     photo: "/team/simon.png",
     bio: "Simon Carreras, Founder and CEO of Black Diamond Project Corp and EarthDial.AI, is an inventor with four USPTO provisional patent applications. A first-generation college student of Puerto Rican heritage, he leads work in secure AI, post-quantum security, and public-safety resilience.",
+    credentials: [
+      "Named inventor on four USPTO provisional patent applications",
+      "National Cyber League team: No. 1 in cryptography among 4,214 teams nationwide",
+      "National Cyber League team: No. 12 overall in the Fall 2025 competition",
+      "IEEE participant",
+      "Secure AI and cybersecurity research leadership",
+      "Public-benefit technology founder",
+    ],
+    links: [
+      {
+        label: "LinkedIn",
+        href: "https://www.linkedin.com/in/simoncarreras/",
+      },
+      {
+        label: "DeVry National Cyber League recognition",
+        href: "https://www.devry.edu/newsroom/news/2025/national-cyber-league-ranks-devry-university-in-top-10-for-fall-2025-power-rankings.html",
+      },
+      {
+        label: "Yahoo Finance coverage",
+        href: "https://finance.yahoo.com/news/national-cyber-league-ranks-devry-150000323.html",
+      },
+    ],
   },
   {
     name: "Beverly Carreras",
@@ -242,7 +289,28 @@ export const leadership: Leader[] = [
       "Ph.D. in Information Technology & Management",
       "M.S. in Telecommunications Engineering & Management, Southern Methodist University",
       "B.S. in Computer Science, Oxford Brookes University",
-      "IEEE Senior Member; ACM affiliate",
+      "IEEE Senior Member",
+      "IEEE Foothill Section CS and Local Blockchain Group Chair",
+      "DeVry University-SoCal IEEE Student Branch leadership",
+      "ACM affiliate",
+    ],
+    links: [
+      {
+        label: "LinkedIn",
+        href: "https://www.linkedin.com/in/dr-nazila-safavi-267ba65/",
+      },
+      {
+        label: "IEEE Foothill Section profile",
+        href: "https://foothill.ieee-bv.org/2026/02/foothill-sections-new-cs-and-local-blockchain-group-chair-prof-nazila-safavi/",
+      },
+      {
+        label: "IEEE vTools event host record",
+        href: "https://events.vtools.ieee.org/m/514916",
+      },
+      {
+        label: "IEEE DeVry 5G technology overview flyer",
+        href: "https://ieee-devry-university-online.org/wp-content/uploads/sites/419/DeVry-SoCal-flyer-5G-tech-overview.pdf",
+      },
     ],
   },
 ]
@@ -565,11 +633,6 @@ export const faqs: Faq[] = [
     question: "What is AI-QEC?",
     answer:
       "AI-QEC is a Black Diamond Project Corp research initiative exploring the intersection of artificial intelligence and quantum reliability, including AI-assisted error correction and digital-twin benchmarking. It is a proposed feasibility research initiative.",
-  },
-  {
-    question: "Are contributions to Black Diamond Project Corp tax-deductible?",
-    answer:
-      "Black Diamond Project Corp is listed in IRS Publication 78 Data as an organization eligible to receive tax-deductible charitable contributions, with IRS deductibility code PF (Private Foundation). Consult your tax adviser regarding your individual circumstances.",
   },
 ]
 

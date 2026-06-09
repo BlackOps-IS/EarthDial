@@ -1,19 +1,20 @@
-import type { Metadata } from "next"
 import Link from "next/link"
+import { ExternalLink, FileCheck2 } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { leadership, siteConfig } from "@/lib/content"
+import { leadership, patentFilings, siteConfig } from "@/lib/content"
 import { buttonVariants } from "@/components/ui/button"
 import { Container, SectionHeading } from "@/components/site/primitives"
 import { PageHeader } from "@/components/site/page-header"
 import { MissionPrinciples } from "@/components/site/mission-principles"
 import { ResearchApproachTimeline } from "@/components/site/research-approach"
+import { createPageMetadata } from "@/lib/metadata"
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: "Mission & Leadership",
   description:
     "Black Diamond Project Corp advances secure AI, post-quantum cybersecurity, privacy-first systems, and public-safety resilience technology through responsible, evidence-grounded research.",
-  alternates: { canonical: "/mission" },
-}
+  path: "/mission",
+})
 
 const leadershipJsonLd = {
   "@context": "https://schema.org",
@@ -36,6 +37,7 @@ const leadershipJsonLd = {
           })),
         }
       : {}),
+    sameAs: person.links?.map((link) => link.href) ?? [],
   })),
 }
 
@@ -107,9 +109,71 @@ export default function MissionPage() {
                     ))}
                   </ul>
                 ) : null}
+                {person.links ? (
+                  <div className="mt-5 flex flex-wrap gap-2 border-t border-border pt-5">
+                    {person.links.map((link) => (
+                      <a
+                        key={link.href}
+                        href={link.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex min-h-9 items-center gap-1.5 rounded-md border border-border px-3 py-1.5 text-xs font-semibold text-foreground transition-colors hover:border-primary/60 hover:text-primary"
+                      >
+                        {link.label}
+                        <ExternalLink className="size-3" aria-hidden />
+                        <span className="sr-only">(opens in a new tab)</span>
+                      </a>
+                    ))}
+                  </div>
+                ) : null}
               </div>
             ))}
           </div>
+        </Container>
+      </section>
+
+      <section className="border-t border-border bg-[oklch(0.14_0.004_286)] py-16 sm:py-20">
+        <Container>
+          <SectionHeading
+            eyebrow="Intellectual Property"
+            title="A Filed Research Portfolio"
+            description="Founder Simon Peter Carreras is the named inventor on four provisional utility applications received by the United States Patent and Trademark Office."
+          />
+          <div className="mt-12 grid gap-px overflow-hidden rounded-xl border border-border bg-border md:grid-cols-2">
+            {patentFilings.map((filing) => (
+              <article key={filing.applicationNumber} className="bg-card p-6 sm:p-8">
+                <div className="flex items-start gap-4">
+                  <span className="grid size-10 shrink-0 place-items-center rounded-md border border-primary/25 bg-primary/10 text-primary">
+                    <FileCheck2 className="size-5" aria-hidden />
+                  </span>
+                  <div className="min-w-0">
+                    <p className="text-xs font-semibold uppercase tracking-[0.14em] text-primary">
+                      USPTO Provisional Application
+                    </p>
+                    <h3 className="mt-2 font-serif text-lg font-medium leading-snug tracking-tight">
+                      {filing.title}
+                    </h3>
+                  </div>
+                </div>
+                <dl className="mt-6 grid gap-4 border-t border-border pt-5 text-sm sm:grid-cols-2">
+                  <div>
+                    <dt className="text-muted-foreground">Application</dt>
+                    <dd className="mt-1 font-medium">{filing.applicationNumber}</dd>
+                  </div>
+                  <div>
+                    <dt className="text-muted-foreground">USPTO receipt date</dt>
+                    <dd className="mt-1 font-medium">{filing.receiptDate}</dd>
+                  </div>
+                </dl>
+                <p className="mt-5 text-sm leading-relaxed text-muted-foreground">{filing.area}</p>
+              </article>
+            ))}
+          </div>
+          <p className="mt-6 max-w-3xl text-xs leading-relaxed text-muted-foreground">
+            These records are USPTO electronic acknowledgement receipts for provisional
+            applications under 35 U.S.C. 111(b). Provisional applications establish filing dates
+            and are not examined or issued patents.
+          </p>
         </Container>
       </section>
 

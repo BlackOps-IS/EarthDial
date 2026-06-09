@@ -22,7 +22,7 @@ export function Eyebrow({
   return (
     <p
       className={cn(
-        "text-xs font-semibold uppercase tracking-[0.22em] text-primary",
+        "text-sm font-medium tracking-wide text-primary",
         className,
       )}
     >
@@ -70,28 +70,52 @@ export function SectionHeading({
   )
 }
 
-/** Refined diamond mark used in the logo lockup and as a subtle accent. */
+/** Faceted diamond seal used across the Black Diamond identity. */
 export function DiamondMark({ className }: { className?: string }) {
   return (
     <svg
-      viewBox="0 0 24 24"
+      viewBox="0 0 64 64"
       fill="none"
       aria-hidden
-      className={cn("size-6", className)}
+      className={cn("size-9", className)}
     >
       <path
-        d="M6 3h12l3.5 5.2L12 21.5 2.5 8.2 6 3Z"
+        d="M32 3 59 32 32 61 5 32 32 3Z"
+        fill="currentColor"
+        fillOpacity=".04"
         stroke="currentColor"
-        strokeWidth="1.25"
+        strokeWidth="2.8"
         strokeLinejoin="round"
         className="text-primary"
       />
       <path
-        d="M6 3l1.8 5.2h8.4L18 3M2.5 8.2h19M12 21.5l-4.2-13.3M12 21.5l4.2-13.3"
+        d="M32 10 52 32 32 54 12 32 32 10Z"
+        fill="currentColor"
+        fillOpacity=".09"
         stroke="currentColor"
-        strokeWidth="0.85"
+        strokeWidth="1.2"
         strokeLinejoin="round"
-        className="text-primary/60"
+        className="text-primary/45"
+      />
+      <path
+        d="M32 10v44M12 32h40M32 10 21 32l11 22 11-22L32 10Z"
+        stroke="currentColor"
+        strokeWidth="1.2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        className="text-primary/45"
+      />
+      <path
+        d="M32 18 43 32 32 46 21 32 32 18Z"
+        fill="currentColor"
+        className="text-primary"
+      />
+      <path
+        d="M32 18v28M21 32h22"
+        stroke="#07080a"
+        strokeWidth="1.3"
+        strokeLinecap="round"
+        opacity=".7"
       />
     </svg>
   )
@@ -99,13 +123,15 @@ export function DiamondMark({ className }: { className?: string }) {
 
 export function Logo({ className }: { className?: string }) {
   return (
-    <span className={cn("inline-flex shrink-0 items-center gap-2.5", className)}>
-      <DiamondMark className="size-7 shrink-0" />
-      <span className="flex flex-col leading-none">
-        <span className="whitespace-nowrap font-serif text-base font-semibold tracking-tight">
+    <span className={cn("inline-flex min-w-0 shrink-0 items-center gap-3", className)}>
+      <span className="grid size-10 shrink-0 place-items-center border-r border-primary/35 pr-3">
+        <DiamondMark className="size-8 text-primary" />
+      </span>
+      <span className="flex min-w-0 flex-col leading-none">
+        <span className="whitespace-nowrap font-serif text-[1.04rem] font-semibold tracking-normal text-foreground sm:text-[1.12rem]">
           Black Diamond
         </span>
-        <span className="whitespace-nowrap text-[0.62rem] font-medium uppercase tracking-[0.28em] text-muted-foreground">
+        <span className="mt-1.5 whitespace-nowrap text-[0.58rem] font-medium uppercase tracking-[0.16em] text-muted-foreground sm:text-[0.62rem]">
           Project Corp
         </span>
       </span>

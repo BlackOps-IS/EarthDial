@@ -2,6 +2,13 @@
 .env
 .streamlit/secrets.toml
 
+# Node / Next generated files
+node_modules/
+.next/
+out/
+.playwright-cli/
+.pnpm-store/
+
 # Python
 __pycache__/
 *.py[cod]
@@ -41,3 +48,4 @@ static/hero_satellite.webp
 # Stage documents (local only, not source code)
 RUNBOOK_GTC.md
 FAILOVER_PROTOCOL.md
+.vercel

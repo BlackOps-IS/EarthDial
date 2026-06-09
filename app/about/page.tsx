@@ -1,4 +1,3 @@
-import type { Metadata } from "next"
 import Link from "next/link"
 import { Container, SectionHeading } from "@/components/site/primitives"
 import { PageHeader } from "@/components/site/page-header"
@@ -6,13 +5,14 @@ import { buttonVariants } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { cn } from "@/lib/utils"
 import { siteConfig, missionPrinciples, researchApproach } from "@/lib/content"
+import { createPageMetadata } from "@/lib/metadata"
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: "About",
   description:
     "Black Diamond Project Corp is a California nonprofit corporation and IRS-listed private foundation advancing secure AI, post-quantum cybersecurity, privacy-first systems, and public-safety resilience technology.",
-  alternates: { canonical: "/about" },
-}
+  path: "/about",
+})
 
 const focusAreas = [
   "Secure and responsible, human-overseen artificial intelligence",

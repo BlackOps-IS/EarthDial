@@ -1,44 +1,27 @@
 import Link from "next/link"
-import Image from "next/image"
-import { ArrowRight, ShieldCheck, Atom, Cpu, Radar } from "lucide-react"
+import { ArrowRight } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { siteConfig } from "@/lib/content"
 import { buttonVariants } from "@/components/ui/button"
-import { Container, Eyebrow } from "./primitives"
+import { Container, DiamondMark, Eyebrow } from "./primitives"
 
 const pillars = [
-  { icon: ShieldCheck, label: "Secure & Responsible AI" },
-  { icon: Atom, label: "Post-Quantum Security" },
-  { icon: Cpu, label: "Privacy-First Systems" },
-  { icon: Radar, label: "Public-Safety Resilience" },
+  "Secure & Responsible AI",
+  "Post-Quantum Security",
+  "Privacy-First Systems",
+  "Public-Safety Resilience",
 ]
 
 export function Hero() {
   return (
-    <section className="relative overflow-hidden border-b border-border">
-      {/* Diamond backdrop */}
-      <div className="pointer-events-none absolute inset-0" aria-hidden>
-        <Image
-          src="/images/hero-diamond.png"
-          alt=""
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover object-right opacity-50 sm:opacity-70 lg:opacity-100 lg:object-[120%_center]"
-        />
-        {/* Left-to-right legibility wash */}
-        <div className="absolute inset-0 bg-gradient-to-r from-background via-background/85 to-background/30 lg:via-background/60 lg:to-transparent" />
-        <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-background to-transparent" />
-      </div>
-
-      <Container className="relative py-24 lg:py-36">
-        <div className="max-w-2xl">
+    <section className="border-b border-border">
+      <Container className="grid gap-14 py-20 lg:grid-cols-[minmax(0,1.6fr)_minmax(18rem,0.65fr)] lg:gap-20 lg:py-28">
+        <div className="max-w-3xl">
           <Eyebrow>{siteConfig.organizationName}</Eyebrow>
-          <h1 className="mt-6 font-serif text-[2.5rem] font-medium leading-[1.05] tracking-tight text-balance sm:text-6xl lg:text-[4.25rem]">
-            Secure Technology for a{" "}
-            <span className="text-gradient-gold">Safer and More Resilient Future</span>
+          <h1 className="mt-6 max-w-full break-words font-serif text-[2.55rem] font-medium leading-[1.02] tracking-tight text-balance sm:text-6xl lg:text-[4.5rem]">
+            Secure technology for a safer and more resilient future.
           </h1>
-          <p className="mt-7 max-w-xl text-lg leading-relaxed text-muted-foreground">
+          <p className="mt-7 max-w-xl break-words text-lg leading-relaxed text-muted-foreground">
             {siteConfig.organizationName} advances privacy-first artificial intelligence,
             post-quantum cybersecurity, secure systems research and public-safety resilience
             technology. Our work is built for environments where trust, privacy and reliability
@@ -60,20 +43,25 @@ export function Hero() {
               Partner With Us
             </Link>
           </div>
-
-          {/* Pillars */}
-          <ul className="mt-12 flex flex-wrap gap-3">
-            {pillars.map((pillar) => (
-              <li
-                key={pillar.label}
-                className="inline-flex items-center gap-2.5 rounded-full border border-border bg-card/60 px-4 py-2 backdrop-blur-sm"
-              >
-                <pillar.icon className="size-4 text-primary" aria-hidden />
-                <span className="text-sm font-medium">{pillar.label}</span>
+        </div>
+        <aside className="border-t border-primary/55 pt-6 lg:mt-8" aria-label="Research focus">
+          <div className="flex items-center gap-3">
+            <DiamondMark className="size-7" />
+            <p className="text-sm font-medium text-foreground">Research focus</p>
+          </div>
+          <ol className="mt-6 divide-y divide-border border-b border-border">
+            {pillars.map((pillar, index) => (
+              <li key={pillar} className="grid grid-cols-[2rem_1fr] gap-3 py-4 text-sm">
+                <span className="font-serif text-primary">0{index + 1}</span>
+                <span className="font-medium leading-snug">{pillar}</span>
               </li>
             ))}
-          </ul>
-        </div>
+          </ol>
+          <p className="mt-6 text-sm leading-relaxed text-muted-foreground">
+            Independent research conducted for public benefit, with clear statements of scope,
+            status, and limitations.
+          </p>
+        </aside>
       </Container>
     </section>
   )

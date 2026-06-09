@@ -1,4 +1,3 @@
-import type { Metadata } from "next"
 import Link from "next/link"
 import { Check } from "lucide-react"
 import { cn } from "@/lib/utils"
@@ -6,14 +5,14 @@ import { pqcSections } from "@/lib/content"
 import { buttonVariants } from "@/components/ui/button"
 import { Container } from "@/components/site/primitives"
 import { PageHeader } from "@/components/site/page-header"
-import { Breadcrumbs } from "@/components/site/breadcrumbs"
+import { createPageMetadata } from "@/lib/metadata"
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: "Post-Quantum Cybersecurity Research",
   description:
     "Explore Black Diamond Project Corp research into quantum-resilient security and future-ready protection of sensitive information.",
-  alternates: { canonical: "/post-quantum-security" },
-}
+  path: "/post-quantum-security",
+})
 
 export default function PostQuantumSecurityPage() {
   return (
@@ -22,14 +21,7 @@ export default function PostQuantumSecurityPage() {
         eyebrow="Post-Quantum Cybersecurity"
         title="Preparing Security for the Post-Quantum Future"
         description="A practical, educational overview of how organizations can approach cryptographic readiness in a changing standards environment. This is an educational resource, not a commercial service."
-      >
-        <Breadcrumbs
-          items={[
-            { label: "Research", href: "/research" },
-            { label: "Post-Quantum Security", href: "/post-quantum-security" },
-          ]}
-        />
-      </PageHeader>
+      />
 
       <section className="py-16 sm:py-20">
         <Container className="max-w-3xl">

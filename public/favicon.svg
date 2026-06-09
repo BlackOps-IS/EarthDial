@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Black Diamond Project Corp animated favicon">
+  <title>Black Diamond Project Corp animated favicon</title>
+  <style>
+    :root {
+      color-scheme: dark;
+    }
+
+    .diamond {
+      fill: #f2d47a;
+      fill-opacity: .04;
+      stroke: #f2d47a;
+      stroke-width: 2.8;
+      stroke-linejoin: round;
+      transform-origin: 32px 32px;
+      animation: markPulse 5.6s ease-in-out infinite;
+    }
+
+    .facet {
+      fill: none;
+      stroke: #d4af37;
+      stroke-width: 1.45;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      opacity: .42;
+    }
+
+    .keystone {
+      fill: #f2d47a;
+    }
+
+    .shine {
+      fill: #fff8cc;
+      opacity: 0;
+      animation: shineSweep 5.6s ease-in-out infinite;
+    }
+
+    @keyframes markPulse {
+      0%, 100% { transform: translateY(0) scale(1); }
+      46% { transform: translateY(-.7px) scale(1.018); }
+    }
+
+    @keyframes shineSweep {
+      0%, 34% { opacity: 0; transform: translateX(-18px); }
+      42% { opacity: .72; }
+      52% { opacity: .9; }
+      64%, 100% { opacity: 0; transform: translateX(18px); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .diamond,
+      .shine {
+        animation: none;
+      }
+      .shine { opacity: .35; }
+    }
+  </style>
+  <rect width="64" height="64" rx="7" fill="#07080a"/>
+  <path class="diamond" d="M32 3 59 32 32 61 5 32 32 3Z"/>
+  <path class="facet" d="M32 10 52 32 32 54 12 32 32 10ZM32 10v44M12 32h40M32 10 21 32l11 22 11-22L32 10Z"/>
+  <path class="keystone" d="M32 18 43 32 32 46 21 32 32 18Z"/>
+  <path fill="none" stroke="#07080a" stroke-width="1.3" stroke-linecap="round" opacity=".7" d="M32 18v28M21 32h22"/>
+  <path class="shine" d="M15 31.5 32 13l17 18.5-4.2 3.2L32 21.2 19.2 34.7Z"/>
+</svg>

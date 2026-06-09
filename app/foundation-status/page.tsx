@@ -1,4 +1,3 @@
-import type { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
 import { Check, ExternalLink, ShieldCheck } from "lucide-react"
@@ -8,13 +7,14 @@ import { buttonVariants } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Container } from "@/components/site/primitives"
 import { PageHeader } from "@/components/site/page-header"
+import { createPageMetadata } from "@/lib/metadata"
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: "Foundation Status & IRS Recognition",
   description:
     "Black Diamond Project Corp is listed in IRS Publication 78 Data as eligible to receive tax-deductible charitable contributions. IRS classification: Private Foundation.",
-  alternates: { canonical: "/foundation-status" },
-}
+  path: "/foundation-status",
+})
 
 const statusRows = [
   { label: "Organization", value: siteConfig.organizationName },
@@ -35,7 +35,7 @@ export default function FoundationStatusPage() {
       <section className="py-16 sm:py-20">
         <Container className="grid gap-12 lg:grid-cols-2 lg:items-start">
           {/* Status card */}
-          <div className="flex flex-col gap-6">
+          <div className="min-w-0 flex flex-col gap-6">
             <Card className="hairline-top">
               <CardContent className="p-7">
                 <div className="flex items-center gap-3">
@@ -79,7 +79,10 @@ export default function FoundationStatusPage() {
                   href="https://apps.irs.gov/app/eos/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={cn(buttonVariants({ variant: "outline", size: "sm" }), "mt-5")}
+                  className={cn(
+                    buttonVariants({ variant: "outline", size: "sm" }),
+                    "mt-5 h-auto min-h-9 max-w-full whitespace-normal py-2 text-center",
+                  )}
                 >
                   IRS Tax Exempt Organization Search
                   <ExternalLink className="size-4" aria-hidden />
@@ -104,7 +107,7 @@ export default function FoundationStatusPage() {
           </div>
 
           {/* Announcement graphic */}
-          <div className="flex flex-col gap-6">
+          <div className="min-w-0 flex flex-col gap-6">
             <div className="overflow-hidden rounded-xl border border-primary/25 shadow-2xl shadow-black/40">
               <Image
                 src={siteConfig.foundationGraphic}

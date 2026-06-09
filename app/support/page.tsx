@@ -1,4 +1,3 @@
-import type { Metadata } from "next"
 import Link from "next/link"
 import { Container, SectionHeading } from "@/components/site/primitives"
 import { PageHeader } from "@/components/site/page-header"
@@ -7,13 +6,14 @@ import { buttonVariants } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import { siteConfig, donationDisclosure } from "@/lib/content"
 import { BitcoinDonate } from "@/components/site/bitcoin-donate"
+import { createPageMetadata } from "@/lib/metadata"
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: "Support the Mission",
   description:
     "Support Black Diamond Project Corp, an IRS Publication 78-listed private foundation, in advancing secure AI, post-quantum cybersecurity, privacy-first systems, and public-safety resilience research.",
-  alternates: { canonical: "/support" },
-}
+  path: "/support",
+})
 
 const supportImpact = [
   {
