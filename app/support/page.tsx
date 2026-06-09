@@ -6,6 +6,7 @@ import { Card } from "@/components/ui/card"
 import { buttonVariants } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import { siteConfig, donationDisclosure } from "@/lib/content"
+import { BitcoinDonate } from "@/components/site/bitcoin-donate"
 
 export const metadata: Metadata = {
   title: "Support the Mission",
@@ -59,42 +60,47 @@ export default function SupportPage() {
             </div>
           </div>
 
-          <Card className="flex h-fit flex-col gap-5 p-7">
-            <h3 className="font-serif text-xl font-medium">Make a Contribution</h3>
-            {siteConfig.donationEnabled ? (
-              <Link
-                href="/contact"
-                className={cn(buttonVariants({ variant: "primary", size: "lg" }))}
-              >
-                Continue to Giving
-              </Link>
-            ) : (
-              <>
-                <p className="text-sm leading-relaxed text-muted-foreground">
-                  Online giving is being prepared. To make or discuss a contribution today, email
-                  our team directly and we will follow up with the details for your gift.
-                </p>
-                <a
-                  href={`mailto:${siteConfig.contactEmail}?subject=Supporting%20Black%20Diamond%20Project%20Corp`}
+          <div className="flex flex-col gap-6">
+            <Card className="flex h-fit flex-col gap-5 p-7">
+              <h3 className="font-serif text-xl font-medium">Make a Contribution</h3>
+              {siteConfig.donationEnabled ? (
+                <Link
+                  href="/contact"
                   className={cn(buttonVariants({ variant: "primary", size: "lg" }))}
                 >
-                  Email Us to Give
-                </a>
-                <p className="text-sm leading-relaxed text-muted-foreground">
-                  Exploring a research collaboration or institutional partnership instead?{" "}
-                  <Link
-                    href="/contact"
-                    className="font-medium text-primary underline-offset-4 hover:underline"
+                  Continue to Giving
+                </Link>
+              ) : (
+                <>
+                  <p className="text-sm leading-relaxed text-muted-foreground">
+                    Online giving is being prepared. To make or discuss a contribution today, email
+                    our team directly and we will follow up with the details for your gift.
+                  </p>
+                  <a
+                    href={`mailto:${siteConfig.contactEmail}?subject=Supporting%20Black%20Diamond%20Project%20Corp`}
+                    className={cn(buttonVariants({ variant: "primary", size: "lg" }))}
                   >
-                    Partner With Us
-                  </Link>
-                </p>
-              </>
-            )}
-            <p className="border-t border-border pt-5 text-xs leading-relaxed text-muted-foreground">
-              {donationDisclosure}
-            </p>
-          </Card>
+                    Email Us to Give
+                  </a>
+                  <p className="text-sm leading-relaxed text-muted-foreground">
+                    Exploring a research collaboration or institutional partnership instead?{" "}
+                    <Link
+                      href="/contact"
+                      className="font-medium text-primary underline-offset-4 hover:underline"
+                    >
+                      Partner With Us
+                    </Link>
+                  </p>
+                </>
+              )}
+              <p className="border-t border-border pt-5 text-xs leading-relaxed text-muted-foreground">
+                {donationDisclosure}
+              </p>
+            </Card>
+
+            {/* Bitcoin donation */}
+            <BitcoinDonate />
+          </div>
         </Container>
       </section>
     </>

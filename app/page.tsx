@@ -209,21 +209,37 @@ export default function HomePage() {
         </Container>
       </section>
 
-      {/* SECTION 9 — Leadership preview */}
+      {/* SECTION 9 — Leadership */}
       <section className="border-t border-border bg-[oklch(0.14_0.004_286)] py-20 sm:py-24">
         <Container>
           <SectionHeading
             eyebrow="Leadership"
             title="Guided by Research and Responsibility"
-            description="Black Diamond Project Corp is led by researchers focused on secure AI, cybersecurity, secure systems and public-benefit technology."
+            description="Black Diamond Project Corp is led by professionals committed to secure, responsible, and public-benefit technology."
           />
-          <div className="mt-12 grid gap-6 sm:grid-cols-2">
+          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {leadership.map((leader) => (
-              <Card key={leader.name} className="p-7">
-                <h3 className="font-serif text-xl font-medium tracking-tight">{leader.name}</h3>
-                <p className="mt-1 text-sm font-medium text-primary">{leader.role}</p>
-                <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{leader.bio}</p>
-              </Card>
+              <div
+                key={leader.name}
+                className="flex flex-col overflow-hidden rounded-xl border border-border bg-card"
+              >
+                {/* Headshot */}
+                <div className="relative aspect-square w-full overflow-hidden bg-[oklch(0.12_0.004_286)]">
+                  <Image
+                    src={leader.photo}
+                    alt={`${leader.name}, ${leader.role}`}
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    className="object-cover object-top"
+                  />
+                </div>
+                {/* Info */}
+                <div className="flex flex-1 flex-col p-6">
+                  <h3 className="font-serif text-xl font-medium tracking-tight">{leader.name}</h3>
+                  <p className="mt-1 text-sm font-semibold text-primary">{leader.role}</p>
+                  <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{leader.bio}</p>
+                </div>
+              </div>
             ))}
           </div>
           <Link

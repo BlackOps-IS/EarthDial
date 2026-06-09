@@ -86,6 +86,21 @@ export default function FoundationStatusPage() {
                 </a>
               </CardContent>
             </Card>
+
+            {/* Intellectual property */}
+            <Card>
+              <CardContent className="p-7">
+                <h2 className="font-serif text-lg font-medium tracking-tight">
+                  Intellectual Property
+                </h2>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                  Black Diamond Project Corp secures its innovations through four USPTO provisional
+                  patent applications spanning secure AI, post-quantum security, privacy-first
+                  systems, and public-safety resilience. This intellectual property reflects
+                  original research, protected to ensure it remains dedicated to the public benefit.
+                </p>
+              </CardContent>
+            </Card>
           </div>
 
           {/* Announcement graphic */}
