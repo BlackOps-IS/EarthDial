@@ -212,6 +212,7 @@ export type Leader = {
   name: string
   role: string
   bio: string
+  photo: string
   credentials?: string[]
   links?: { label: string; href: string }[]
 }
@@ -246,9 +247,10 @@ export const patentFilings = [
 
 export const leadership: Leader[] = [
   {
-    name: "Simon Peter Carreras",
-    role: "Founder / Lead Security Researcher",
-    bio: "Simon Peter Carreras founded Black Diamond Project Corp to advance public-benefit technology at the intersection of secure AI, cybersecurity research, secure systems, IEEE-aligned technical collaboration, and resilient public-safety technology. He guides the foundation's research direction and is the named inventor on four USPTO-received provisional patent applications.",
+    name: "Simon Carreras",
+    role: "Chief Executive Officer & Founder",
+    photo: "/team/simon.png",
+    bio: "Simon Carreras, Founder and CEO of Black Diamond Project Corp and EarthDial.AI, is an inventor with four USPTO provisional patent applications. A first-generation college student of Puerto Rican heritage, he leads work in secure AI, post-quantum security, and public-safety resilience.",
     credentials: [
       "Named inventor on four USPTO provisional patent applications",
       "National Cyber League team: No. 1 in cryptography among 4,214 teams nationwide",
@@ -273,9 +275,16 @@ export const leadership: Leader[] = [
     ],
   },
   {
-    name: "Nazila Safavi, Ph.D.",
-    role: "Co-Founder",
-    bio: "Dr. Nazila Safavi is an engineering, computer science and information technology educator and professional whose work includes digital systems, information technology, cybersecurity, telecommunications, blockchain, AI, computer-based workflows, and system reliability.",
+    name: "Beverly Carreras",
+    role: "Chief Financial Officer",
+    photo: "/team/beverly.jpg",
+    bio: "Beverly Carreras serves as the Chief Financial Officer of Black Diamond Project Corp. She directs the foundation's financial stewardship and compliance, ensuring rigorous accountability for grant funding and technology research initiatives.",
+  },
+  {
+    name: "Nazila Safavi, PhD",
+    role: "Secretary",
+    photo: "/team/nazila.jpg",
+    bio: "Nazila Safavi, PhD, Secretary of Black Diamond Project Corp and IEEE Senior Member, possesses over 30 years of expertise in telecommunications, cybersecurity, and AI. She chairs the IEEE Foothill Section Computer Society Chapter and Blockchain Initiative, researching AI-driven solutions for wireless and rural connectivity.",
     credentials: [
       "Ph.D. in Information Technology & Management",
       "M.S. in Telecommunications Engineering & Management, Southern Methodist University",

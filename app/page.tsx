@@ -186,21 +186,79 @@ export default function HomePage() {
         </Container>
       </section>
 
-      {/* SECTION 8 — Leadership preview */}
+      {/* SECTION 8 — Foundation trust */}
+      <section className="border-t border-border py-20 sm:py-24">
+        <Container className="grid items-center gap-12 lg:grid-cols-2">
+          <div className="overflow-hidden rounded-xl border border-primary/25 shadow-2xl shadow-black/40">
+            <Image
+              src={siteConfig.foundationGraphic}
+              alt={siteConfig.foundationGraphicAlt}
+              width={1485}
+              height={1050}
+              className="h-auto w-full"
+            />
+          </div>
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">
+              Verified Foundation Status
+            </p>
+            <h2 className="mt-4 font-serif text-3xl font-medium leading-tight tracking-tight text-balance sm:text-4xl">
+              A Verified Private Foundation Supporting Public-Benefit Technology
+            </h2>
+            <p className="mt-5 text-base leading-relaxed text-muted-foreground">
+              Black Diamond Project Corp is listed in IRS Publication 78 Data as an organization
+              eligible to receive tax-deductible charitable contributions. IRS deductibility code:
+              PF — Private Foundation.
+            </p>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <Link
+                href="/foundation-status"
+                className={cn(buttonVariants({ variant: "primary", size: "md" }))}
+              >
+                View Foundation Status
+              </Link>
+              <Link
+                href="/support"
+                className={cn(buttonVariants({ variant: "outline", size: "md" }))}
+              >
+                Support the Mission
+              </Link>
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      {/* SECTION 9 — Leadership */}
       <section className="border-t border-border bg-[oklch(0.14_0.004_286)] py-20 sm:py-24">
         <Container>
           <SectionHeading
             eyebrow="Leadership"
             title="Guided by Research and Responsibility"
-            description="Black Diamond Project Corp is led by researchers focused on secure AI, cybersecurity, secure systems and public-benefit technology."
+            description="Black Diamond Project Corp is led by professionals committed to secure, responsible, and public-benefit technology."
           />
-          <div className="mt-12 grid gap-6 sm:grid-cols-2">
+          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {leadership.map((leader) => (
-              <Card key={leader.name} className="p-7">
-                <h3 className="font-serif text-xl font-medium tracking-tight">{leader.name}</h3>
-                <p className="mt-1 text-sm font-medium text-primary">{leader.role}</p>
-                <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{leader.bio}</p>
-              </Card>
+              <div
+                key={leader.name}
+                className="flex flex-col overflow-hidden rounded-xl border border-border bg-card"
+              >
+                {/* Headshot */}
+                <div className="relative aspect-square w-full overflow-hidden bg-[oklch(0.12_0.004_286)]">
+                  <Image
+                    src={leader.photo}
+                    alt={`${leader.name}, ${leader.role}`}
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    className="object-cover object-top"
+                  />
+                </div>
+                {/* Info */}
+                <div className="flex flex-1 flex-col p-6">
+                  <h3 className="font-serif text-xl font-medium tracking-tight">{leader.name}</h3>
+                  <p className="mt-1 text-sm font-semibold text-primary">{leader.role}</p>
+                  <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{leader.bio}</p>
+                </div>
+              </div>
             ))}
           </div>
           <Link
